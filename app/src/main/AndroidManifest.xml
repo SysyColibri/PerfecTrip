@@ -18,6 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".EcranDeChargement" />
+        <activity android:name=".EcranDaccueil" />
+        <activity android:name=".EcranChoixActivitesEdition" />
+        <activity android:name=".EcranChoixTypeDeLieu" />
+        <activity android:name=".EcranListePossibilites" />
+        <activity android:name=".EcranChoixActivitesRecapitulatif" />
+        <activity android:name=".APropos"></activity>
     </application>
 
 </manifest>
