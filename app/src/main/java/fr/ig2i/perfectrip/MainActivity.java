@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,11 +17,12 @@ public class MainActivity extends AppCompatActivity {
     protected Button mRomantique;
     protected Button mAmis;
     protected Button mFamille;
-    protected Button mAutre;
+    protected Button mAutres;
 
     protected Boolean moyenDeplacementPieton = false;
     protected Boolean moyenDeplacementVelo = false;
     protected Boolean moyenDeplacementVoiture = false;
+    protected Boolean moyenDeplacmeentEtat = false;
 
 
     @Override
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mRomantique = (Button) findViewById(R.id.buttonRomantique);
         mAmis = (Button) findViewById(R.id.buttonAmis);
         mFamille = (Button) findViewById(R.id.buttonFamille);
-        mAutre = (Button) findViewById(R.id.buttonAutre);
+        mAutres = (Button) findViewById(R.id.buttonAutres);
 
         mPieton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 moyenDeplacementPieton = true;
                 moyenDeplacementVelo = false;
                 moyenDeplacementVoiture = false;
+                moyenDeplacmeentEtat = true;
                 setButtonsEnabledState();
             }
         });
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 moyenDeplacementPieton = false;
                 moyenDeplacementVelo = true;
                 moyenDeplacementVoiture = false;
+                moyenDeplacmeentEtat = true;
                 setButtonsEnabledState();
             }
         });
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 moyenDeplacementPieton = false;
                 moyenDeplacementVelo = false;
                 moyenDeplacementVoiture = true;
+                moyenDeplacmeentEtat = true;
                 setButtonsEnabledState();
             }
         });
@@ -69,7 +74,48 @@ public class MainActivity extends AppCompatActivity {
         mRomantique.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                if(moyenDeplacmeentEtat == true) {
+                    startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                }
+                else{
+                    Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        mAmis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(moyenDeplacmeentEtat == true) {
+                    startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                }
+                else{
+                    Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        mFamille.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(moyenDeplacmeentEtat == true) {
+                    startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                }
+                else{
+                    Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        mAutres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(moyenDeplacmeentEtat == true) {
+                    startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                }
+                else{
+                    Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
