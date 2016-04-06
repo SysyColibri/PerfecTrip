@@ -10,26 +10,20 @@
     android:background="#660000"
     tools:context="fr.ig2i.perfectrip.EcranDaccueil">
 
-    <!--<TextView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:textAppearance="@color/colorPrimary"
+    <TextView android:id="@+id/texteMoyenDeplacement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Quel est votre moyen de déplacement?"
-        android:textColorLink="@color/colorPrimary"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/text_id"
-        android:capitalize="characters"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textColorHighlight="@android:color/primary_text_dark"
-        android:textSize="50dp"/>-->
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/texteMoyenDeplacement"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/linearLayout">
+        android:id="@+id/layoutMoyenDeplacement">
 
         <Button
             android:layout_width="0dp"
@@ -37,7 +31,6 @@
             android:layout_weight="1"
             android:text="Pieton"
             android:id="@+id/buttonPieton"/>
-
 
         <Button
             android:layout_width="0dp"
@@ -55,13 +48,21 @@
 
     </LinearLayout>
 
+    <TextView android:id="@+id/texteTypeSortie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutMoyenDeplacement"
+        android:text="Qui vous accompagne dans cette aventure?"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/texteTypeSortie"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_below="@+id/linearLayout"
-        android:id="@+id/editText">
+        android:id="@+id/layoutTypeSoirée">
 
         <Button
             android:layout_width="match_parent"
