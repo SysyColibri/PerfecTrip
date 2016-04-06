@@ -1,23 +1,9 @@
 package fr.ig2i.perfectrip;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
-public class EcranDeChargement extends Activity {
+//public class EcranDeChargement extends Activity {
+public class EcranDeChargement extends AppCompatActivity {/*
 
     String now_playing, earned;
 
@@ -32,14 +18,14 @@ public class EcranDeChargement extends Activity {
     /**
      * Async Task to make http call
      */
-    private class VerifierReseau extends AsyncTask<Void, Void, Void> {
+    /*private class VerifierReseau extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
-        @Override
+        /*@Override
         protected Void doInBackground(Void... arg0) {
             /*ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -58,7 +44,7 @@ public class EcranDeChargement extends Activity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }*/
-            return null;
+            /*return null;
         }
 
         @Override
@@ -72,5 +58,5 @@ public class EcranDeChargement extends Activity {
         }
 
     }
-
+*/
 }
