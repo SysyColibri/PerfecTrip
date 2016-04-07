@@ -1,9 +1,16 @@
 package fr.ig2i.perfectrip;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-//public class EcranDeChargement extends Activity {
-public class EcranDeChargement extends AppCompatActivity {/*
+public class EcranDeChargement extends Activity {
+//public class EcranDeChargement extends AppCompatActivity {
 
     String now_playing, earned;
 
@@ -18,16 +25,16 @@ public class EcranDeChargement extends AppCompatActivity {/*
     /**
      * Async Task to make http call
      */
-    /*private class VerifierReseau extends AsyncTask<Void, Void, Void> {
+    private class VerifierReseau extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
-        /*@Override
+        @Override
         protected Void doInBackground(Void... arg0) {
-            /*ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             boolean isConnected = activeNetwork != null &&
@@ -38,13 +45,13 @@ public class EcranDeChargement extends AppCompatActivity {/*
             }
             else {
                 finish();
-            }*/
-            /*try {
+            }
+            try {
                 wait(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
-            /*return null;
+            }
+            return null;
         }
 
         @Override
@@ -58,5 +65,4 @@ public class EcranDeChargement extends AppCompatActivity {/*
         }
 
     }
-*/
 }
