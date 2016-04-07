@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 public class EcranDeChargement extends Activity {
 //public class EcranDeChargement extends AppCompatActivity {
@@ -40,7 +39,7 @@ public class EcranDeChargement extends Activity {
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             boolean isConnected = activeNetwork != null &&
                     activeNetwork.isConnectedOrConnecting();
-            if(isConnected == true) {
+            if(isConnected) {
                 Intent i = new Intent(EcranDeChargement.this, EcranDaccueil.class);
                 startActivity(i);
             }

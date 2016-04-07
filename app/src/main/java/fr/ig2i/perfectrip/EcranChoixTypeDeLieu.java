@@ -157,7 +157,7 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
         permet d'éviter un crash lors d'un retour arrière depuis la liste d'activités
          */
         else{
-            startActivity(new Intent(EcranChoixTypeDeLieu.this, MainActivity.class));
+            startActivity(new Intent(EcranChoixTypeDeLieu.this, EcranDaccueil.class));
         }
     }
 }

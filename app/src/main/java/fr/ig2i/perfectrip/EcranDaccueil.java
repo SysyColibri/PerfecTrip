@@ -71,11 +71,14 @@ public class EcranDaccueil extends AppCompatActivity {
         mRomantique.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(moyenDeplacementEtat == true) {
+                if(moyenDeplacementEtat) {
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
-                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    startActivity(intentTypeSortie);
+                    Intent intentTypeSortie1 = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
+                    Intent intentTypeSortie2 = new Intent(EcranDaccueil.this, EcranChoixTypeDeLieu.class);
+                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    intentTypeSortie2.putExtra("clefTypeSortie", "romantique");
+                    startActivity(intentTypeSortie1);
+                    startActivity(intentTypeSortie2);
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -84,11 +87,14 @@ public class EcranDaccueil extends AppCompatActivity {
         mAmis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(moyenDeplacementEtat == true) {
+                if(moyenDeplacementEtat) {
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
-                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    startActivity(intentTypeSortie);
+                    Intent intentTypeSortie1 = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
+                    Intent intentTypeSortie2 = new Intent(EcranDaccueil.this, EcranChoixTypeDeLieu.class);
+                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    intentTypeSortie2.putExtra("clefTypeSortie", "amis");
+                    startActivity(intentTypeSortie1);
+                    startActivity(intentTypeSortie2);
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -97,11 +103,14 @@ public class EcranDaccueil extends AppCompatActivity {
         mFamille.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(moyenDeplacementEtat == true) {
+                if(moyenDeplacementEtat) {
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
-                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    startActivity(intentTypeSortie);
+                    Intent intentTypeSortie1 = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
+                    Intent intentTypeSortie2 = new Intent(EcranDaccueil.this, EcranChoixTypeDeLieu.class);
+                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    intentTypeSortie2.putExtra("clefTypeSortie", "famille");
+                    startActivity(intentTypeSortie1);
+                    startActivity(intentTypeSortie2);
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
@@ -112,11 +121,14 @@ public class EcranDaccueil extends AppCompatActivity {
         mAutres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(moyenDeplacementEtat == true) {
+                if(moyenDeplacementEtat) {
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
-                    intentTypeSortie.putExtra("clefTypeSortie", "autres");
-                    startActivity(intentTypeSortie);
+                    Intent intentTypeSortie1 = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
+                    Intent intentTypeSortie2 = new Intent(EcranDaccueil.this, EcranChoixTypeDeLieu.class);
+                    intentTypeSortie1.putExtra("clefTypeSortie", "autres");
+                    intentTypeSortie2.putExtra("clefTypeSortie", "autres");
+                    startActivity(intentTypeSortie1);
+                    startActivity(intentTypeSortie2);
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
