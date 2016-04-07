@@ -73,9 +73,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(moyenDeplacementEtat == true) {
                     startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
-                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    startActivity(intentTypeSortie);
+                    Intent intentTypeSortie1 = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
+                    Intent intentTypeSortie2 = new Intent(MainActivity.this, EcranChoixTypeDeLieu.class);
+                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    intentTypeSortie2.putExtra("clefTypeSortie", "romantique");
+                    startActivity(intentTypeSortie1);
+                    startActivity(intentTypeSortie2);
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -86,9 +89,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(moyenDeplacementEtat == true) {
                     startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
-                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    startActivity(intentTypeSortie);
+                    Intent intentTypeSortie1 = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
+                    Intent intentTypeSortie2 = new Intent(MainActivity.this, EcranChoixTypeDeLieu.class);
+                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    intentTypeSortie2.putExtra("clefTypeSortie", "amis");
+                    startActivity(intentTypeSortie1);
+                    startActivity(intentTypeSortie2);
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -99,9 +105,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(moyenDeplacementEtat == true) {
                     startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
-                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    startActivity(intentTypeSortie);
+                    Intent intentTypeSortie1 = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
+                    Intent intentTypeSortie2 = new Intent(MainActivity.this, EcranChoixTypeDeLieu.class);
+                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    intentTypeSortie2.putExtra("clefTypeSortie", "famille");
+                    startActivity(intentTypeSortie1);
+                    startActivity(intentTypeSortie2);
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
@@ -114,9 +123,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(moyenDeplacementEtat == true) {
                     startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
-                    intentTypeSortie.putExtra("clefTypeSortie", "autres");
-                    startActivity(intentTypeSortie);
+                    Intent intentTypeSortie1 = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
+                    Intent intentTypeSortie2 = new Intent(MainActivity.this, EcranChoixTypeDeLieu.class);
+                    intentTypeSortie1.putExtra("clefTypeSortie", "autres");
+                    intentTypeSortie2.putExtra("clefTypeSortie", "autres");
+                    startActivity(intentTypeSortie1);
+                    startActivity(intentTypeSortie2);
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
