@@ -39,7 +39,7 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         permet d'éviter un crash lors d'un retour arrière depuis la liste d'activités
          */
         else{
-            startActivity(new Intent(EcranChoixActivitesEdition.this, MainActivity.class));
+            startActivity(new Intent(EcranChoixActivitesEdition.this, EcranDaccueil.class));
         }
     }
 }

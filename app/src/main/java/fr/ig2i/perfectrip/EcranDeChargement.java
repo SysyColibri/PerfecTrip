@@ -34,22 +34,18 @@ public class EcranDeChargement extends Activity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
+            //Toast.make
             ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             boolean isConnected = activeNetwork != null &&
                     activeNetwork.isConnectedOrConnecting();
             if(isConnected == true) {
-                Intent i = new Intent(EcranDeChargement.this, MainActivity.class);
+                Intent i = new Intent(EcranDeChargement.this, EcranDaccueil.class);
                 startActivity(i);
             }
             else {
                 finish();
-            }
-            try {
-                wait(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
             return null;
         }
