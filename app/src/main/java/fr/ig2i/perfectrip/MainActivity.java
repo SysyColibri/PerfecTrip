@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected Boolean moyenDeplacementVoiture = false;
     protected Boolean moyenDeplacementEtat = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +71,12 @@ public class MainActivity extends AppCompatActivity {
         mRomantique.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(moyenDeplacementEtat == true) {startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));}
+                if(moyenDeplacementEtat == true) {
+                    startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                    Intent intentTypeSortie = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
+                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    startActivity(intentTypeSortie);
+                }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
         });
@@ -80,7 +84,12 @@ public class MainActivity extends AppCompatActivity {
         mAmis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(moyenDeplacementEtat == true) {startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));}
+                if(moyenDeplacementEtat == true) {
+                    startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                    Intent intentTypeSortie = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
+                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    startActivity(intentTypeSortie);
+                }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
         });
@@ -90,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(moyenDeplacementEtat == true) {
                     startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                    Intent intentTypeSortie = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
+                    intentTypeSortie.putExtra("clefTypeSortie", "romantiqueAmisFamille");
+                    startActivity(intentTypeSortie);
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
@@ -102,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(moyenDeplacementEtat == true) {
                     startActivity(new Intent(MainActivity.this, EcranChoixActivitesEdition.class));
+                    Intent intentTypeSortie = new Intent(MainActivity.this, EcranChoixActivitesEdition.class);
+                    intentTypeSortie.putExtra("clefTypeSortie", "autres");
+                    startActivity(intentTypeSortie);
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();

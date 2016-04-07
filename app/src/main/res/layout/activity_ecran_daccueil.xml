@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layoutMoyenDeplacement"
-        android:text="Qui vous accompagne dans cette aventure?"
+        android:text="De quel type sera cette sortie?"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF"/>
 
