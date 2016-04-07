@@ -1,64 +1,47 @@
 package fr.ig2i.perfectrip;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class EcranDeChargement extends Activity {
-//public class EcranDeChargement extends AppCompatActivity {
 
-    String now_playing, earned;
-
+    private Handler splashHandler = new Handler();
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ecran_de_chargement);
-        VerifierReseau vf = new VerifierReseau();
-        vf.execute();
-    }
-
-    /**
-     * Async Task to make http call
-     */
-    private class VerifierReseau extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            //Toast.make
-            ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-            boolean isConnected = activeNetwork != null &&
-                    activeNetwork.isConnectedOrConnecting();
-            if(isConnected == true) {
-                Intent i = new Intent(EcranDeChargement.this, EcranDaccueil.class);
-                startActivity(i);
-            }
-            else {
+        Runnable r = new Runnable(){
+            public void run(){
+                Intent brain = new Intent(EcranDeChargement.this, EcranDaccueil.class);
+                startActivity(brain);
                 finish();
             }
-            return null;
+        };
+        setContentView(R.layout.activity_ecran_de_chargement);
+        if(isNetworkAvailable())
+            splashHandler.postDelayed(r, 2000);
+        else {
+            Intent brain2 = new Intent(EcranDeChargement.this, EcranPasDeReseau.class);
+            startActivity(brain2);
         }
+    }
 
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            Intent i = new Intent(EcranDeChargement.this, EcranDaccueil.class);
-            startActivity(i);
+    public void onResume(Bundle savedInstanceState){
+        super.onResume();
+    }
 
-            // close this activity
-            finish();
-        }
-
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 }
