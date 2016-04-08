@@ -1,11 +1,17 @@
 package fr.ig2i.perfectrip;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class EcranChoixTypeDeLieu extends AppCompatActivity {
 
@@ -140,24 +146,67 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
             setContentView(R.layout.activity_ecran_choix_type_de_lieu);
             mListView = (ListView) findViewById(R.id.listViewActivites);
 
-            String intentTypeSortieRetour = extras.getString("clefTypeSortie");
+            final String intentTypeActivite = extras.getString("clefTypeActivite");
 
-            if (intentTypeSortieRetour.equals("romantique")) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
-                mListView.setAdapter(adapter);
-            } else if (intentTypeSortieRetour.equals("autres")) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueRepas);
-                mListView.setAdapter(adapter);
-            } else {
-                Toast.makeText(getBaseContext(), "Erreur", Toast.LENGTH_SHORT).show();
+            switch (intentTypeActivite) {
+                case "romantiqueCadeau":
+                    ArrayAdapter<String> adapterRomantiqueCadeau = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
+                    mListView.setAdapter(adapterRomantiqueCadeau);
+                    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            if(position==0){
+                                // try opening the myfilename.txt
+                                try {
+                                    InputStream instream = openFileInput("myfilename.txt");
+
+                                    // if file the available for reading
+                                    if (instream != null) {
+                                        InputStreamReader inputreader = new InputStreamReader(instream);
+                                        BufferedReader buffreader = new BufferedReader(inputreader);
+
+                                        System.out.println(buffreader.readLine());
+
+                                        String line = "voiture";
+
+                                        while (( line.equals(buffreader.readLine()))) {
+                                            Toast.makeText(getBaseContext(), "TROUVE!", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+
+                                    // close the file again
+                                    instream.close();
+                                } catch (java.io.FileNotFoundException e) {
+                                    Toast.makeText(getBaseContext(), "Fichier introuvable", Toast.LENGTH_SHORT).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    });
+                    break;
+                case "romantiqueRepas":
+                    ArrayAdapter<String> adapterRomantiqueRepas = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueRepas);
+                    mListView.setAdapter(adapterRomantiqueRepas);
+                    break;
+                case "romantiqueSortie":
+                    ArrayAdapter<String> adapterRomantiqueSortie = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueSortie);
+                    mListView.setAdapter(adapterRomantiqueSortie);
+                    break;
+                case "romantiqueHebergement":
+                    ArrayAdapter<String> adapterRomantiqueHebergement = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueHebergement);
+                    mListView.setAdapter(adapterRomantiqueHebergement);
+                    break;
+                case "romantiqueAdresse":
+                    ArrayAdapter<String> adapterRomantiqueAdresse = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
+                    mListView.setAdapter(adapterRomantiqueAdresse);
+                    break;
+                default:
+                    ArrayAdapter<String> adapterRomantiqueAutres = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
+                    mListView.setAdapter(adapterRomantiqueAutres);
+                    break;
             }
-        }
-
-        /*
-        permet d'éviter un crash lors d'un retour arrière depuis la liste d'activités
-         */
-        else{
-            startActivity(new Intent(EcranChoixTypeDeLieu.this, EcranDaccueil.class));
         }
     }
 }

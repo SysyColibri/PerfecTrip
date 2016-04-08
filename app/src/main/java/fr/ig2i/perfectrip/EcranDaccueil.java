@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.OutputStreamWriter;
+
 public class EcranDaccueil extends AppCompatActivity {
 
     protected Button mPieton;
@@ -21,6 +23,8 @@ public class EcranDaccueil extends AppCompatActivity {
     protected Boolean moyenDeplacementVelo = false;
     protected Boolean moyenDeplacementVoiture = false;
     protected Boolean moyenDeplacementEtat = false;
+
+    protected String moyenDeplacement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementVoiture = false;
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
+                moyenDeplacement = "pieton";
             }
         });
 
@@ -54,6 +59,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementVoiture = false;
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
+                moyenDeplacement = "velo";
             }
         });
 
@@ -65,6 +71,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementVoiture = true;
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
+                moyenDeplacement = "voiture";
             }
         });
 
@@ -72,13 +79,25 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
-                    startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie1 = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
-                    Intent intentTypeSortie2 = new Intent(EcranDaccueil.this, EcranChoixTypeDeLieu.class);
-                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    intentTypeSortie2.putExtra("clefTypeSortie", "romantique");
-                    startActivity(intentTypeSortie1);
-                    startActivity(intentTypeSortie2);
+                    Intent intentTypeSortie = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
+                    intentTypeSortie.putExtra("clefTypeSortie", "romantique");
+                    startActivity(intentTypeSortie);
+
+                    try {
+                        OutputStreamWriter out = new OutputStreamWriter(openFileOutput("moyenDeplacement.txt", MODE_PRIVATE));
+                        out.write(moyenDeplacement);
+                        out.close();
+                    } catch (java.io.IOException e) {
+                        Toast.makeText(getBaseContext(),"Impossible de sauvegarder", Toast.LENGTH_SHORT).show();
+                    }
+
+                    try {
+                        OutputStreamWriter out = new OutputStreamWriter(openFileOutput("typeSortie.txt", MODE_PRIVATE));
+                        out.write("romantique");
+                        out.close();
+                    } catch (java.io.IOException e) {
+                        Toast.makeText(getBaseContext(),"Impossible de sauvegarder", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -88,13 +107,16 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
-                    startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie1 = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
-                    Intent intentTypeSortie2 = new Intent(EcranDaccueil.this, EcranChoixTypeDeLieu.class);
-                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    intentTypeSortie2.putExtra("clefTypeSortie", "amis");
-                    startActivity(intentTypeSortie1);
-                    startActivity(intentTypeSortie2);
+                    Intent intentTypeSortie = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
+                    intentTypeSortie.putExtra("clefTypeSortie", "amis");
+                    startActivity(intentTypeSortie);
+                    try {
+                        OutputStreamWriter out = new OutputStreamWriter(openFileOutput("moyenDeplacement.txt", MODE_PRIVATE));
+                        out.write(moyenDeplacement);
+                        out.close();
+                    } catch (java.io.IOException e) {
+                        Toast.makeText(getBaseContext(), "Impossible de sauvegarder", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -104,13 +126,16 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
-                    startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie1 = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
-                    Intent intentTypeSortie2 = new Intent(EcranDaccueil.this, EcranChoixTypeDeLieu.class);
-                    intentTypeSortie1.putExtra("clefTypeSortie", "romantiqueAmisFamille");
-                    intentTypeSortie2.putExtra("clefTypeSortie", "famille");
-                    startActivity(intentTypeSortie1);
-                    startActivity(intentTypeSortie2);
+                    Intent intentTypeSortie = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
+                    intentTypeSortie.putExtra("clefTypeSortie", "famille");
+                    startActivity(intentTypeSortie);
+                    try {
+                        OutputStreamWriter out = new OutputStreamWriter(openFileOutput("moyenDeplacement.txt", MODE_PRIVATE));
+                        out.write(moyenDeplacement);
+                        out.close();
+                    } catch (java.io.IOException e) {
+                        Toast.makeText(getBaseContext(),"Impossible de sauvegarder", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
@@ -122,13 +147,16 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
-                    startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    Intent intentTypeSortie1 = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
-                    Intent intentTypeSortie2 = new Intent(EcranDaccueil.this, EcranChoixTypeDeLieu.class);
-                    intentTypeSortie1.putExtra("clefTypeSortie", "autres");
-                    intentTypeSortie2.putExtra("clefTypeSortie", "autres");
-                    startActivity(intentTypeSortie1);
-                    startActivity(intentTypeSortie2);
+                    Intent intentTypeSortie = new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class);
+                    intentTypeSortie.putExtra("clefTypeSortie", "autres");
+                    startActivity(intentTypeSortie);
+                    try {
+                        OutputStreamWriter out = new OutputStreamWriter(openFileOutput("moyenDeplacement.txt", MODE_PRIVATE));
+                        out.write(moyenDeplacement);
+                        out.close();
+                    } catch (java.io.IOException e) {
+                        Toast.makeText(getBaseContext(),"Impossible de sauvegarder", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
