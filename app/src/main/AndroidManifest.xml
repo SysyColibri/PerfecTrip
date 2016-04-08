@@ -33,10 +33,6 @@
         <activity android:name=".EcranListePossibilites" />
         <activity android:name=".EcranChoixActivitesRecapitulatif" />
         <activity android:name=".APropos" />
-        <activity
-            android:name=".EcranPasDeReseau"
-            android:label="@string/title_activity_ecran_pas_de_reseau"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

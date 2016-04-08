@@ -1,15 +1,24 @@
 package fr.ig2i.perfectrip;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 
-public class EcranPasDeReseau extends AppCompatActivity {
+public class EcranAlerte extends AppCompatActivity {
 
-    @Override
+    public Activity activity;
+
+    public EcranAlerte(final Activity activity, String title, String message, String textButton, DialogInterface.OnClickListener listener) {
+        this.activity = activity;
+        AlertDialog LDialog = new AlertDialog.Builder(this.activity)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(textButton, listener).create();
+        LDialog.show();
+    }
+
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_pas_de_reseau);
@@ -24,6 +33,5 @@ public class EcranPasDeReseau extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
-
+    }*/
 }
