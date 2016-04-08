@@ -83,17 +83,13 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
             "Café",
             "Casino",
             "Repas à emporter",
-            "Restaurant"};
+            "Restaurant"};*/
 
     String[] amisHebergement = new String[]{
-            "Bar",
-            "Boulangerie",
-            "Café",
-            "Casino",
-            "Repas à emporter",
-            "Restaurant"};
+            "Camping",
+            "Hébergement"};
 
-    String[] familleCadeau = new String[]{
+    /*String[] familleCadeau = new String[]{
             "Bar",
             "Boulangerie",
             "Café",
