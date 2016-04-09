@@ -10,24 +10,35 @@
     android:background="#660000"
     tools:context="fr.ig2i.perfectrip.EcranChoixActivitesRecapitulatif">
 
-        <TextView android:id="@+id/texteChoixActivites"
-            android:layout_width="match_parent"
+        <TextView android:id="@+id/texteRecapitulation"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Récapitulons"
+            android:text="Récapitulons."
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFFFF"/>
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/layoutActivites"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/texteChoixActivites">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/texteRecapitulation">
 
             <ListView
                 android:id="@+id/listViewActivites"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"/>
+        </LinearLayout>
 
-        </RelativeLayout>
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="On retourne en édition?"
+            android:id="@+id/switchEdition"
+            android:layout_below="@+id/layoutActivites"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF"
+            android:gravity="bottom|right" />
 
 </RelativeLayout>
