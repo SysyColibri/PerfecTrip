@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -221,6 +222,7 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
 
     ListView mListView;
     String typeActivites;
+    String typeSortie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -229,31 +231,93 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
         setContentView(R.layout.activity_ecran_choix_type_de_lieu);
         mListView = (ListView) findViewById(R.id.listViewActivites);
 
+        typeSortie = recuperationValeurFichier("typeSortie.txt");
         typeActivites = recuperationValeurFichier("typeActivite.txt");
 
-        switch (typeActivites) {
-            case "cadeau":
-                ArrayAdapter<String> adapterRomantiqueCadeau = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
-                mListView.setAdapter(adapterRomantiqueCadeau);
+        switch(typeSortie){
+            case "romantique":
+                switch (typeActivites) {
+                    case "cadeau":
+                        ArrayAdapter<String> adapterRomantiqueCadeau = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
+                        mListView.setAdapter(adapterRomantiqueCadeau);
+                        break;
+                    case "repas":
+                        ArrayAdapter<String> adapterRomantiqueRepas = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueRepas);
+                        mListView.setAdapter(adapterRomantiqueRepas);
+                        break;
+                    case "sortie":
+                        ArrayAdapter<String> adapterRomantiqueSortie = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueSortie);
+                        mListView.setAdapter(adapterRomantiqueSortie);
+                        break;
+                    case "hebergement":
+                        ArrayAdapter<String> adapterRomantiqueHebergement = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueHebergement);
+                        mListView.setAdapter(adapterRomantiqueHebergement);
+                        break;
+                    case "adresse":
+                        Toast.makeText(getBaseContext(), "Pas encore implémenté.", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        ArrayAdapter<String> adapterRomantiqueAutres = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, autres);
+                        mListView.setAdapter(adapterRomantiqueAutres);
+                        break;
+                }
                 break;
-            case "repas":
-                ArrayAdapter<String> adapterRomantiqueRepas = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueRepas);
-                mListView.setAdapter(adapterRomantiqueRepas);
+            case "amis":
+                switch (typeActivites) {
+                    case "cadeau":
+                        ArrayAdapter<String> adapterRomantiqueCadeau = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, amisCadeau);
+                        mListView.setAdapter(adapterRomantiqueCadeau);
+                        break;
+                    case "repas":
+                        ArrayAdapter<String> adapterRomantiqueRepas = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, amisRepas);
+                        mListView.setAdapter(adapterRomantiqueRepas);
+                        break;
+                    case "sortie":
+                        ArrayAdapter<String> adapterRomantiqueSortie = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, amisSortie);
+                        mListView.setAdapter(adapterRomantiqueSortie);
+                        break;
+                    case "hebergement":
+                        ArrayAdapter<String> adapterRomantiqueHebergement = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, amisHebergement);
+                        mListView.setAdapter(adapterRomantiqueHebergement);
+                        break;
+                    case "adresse":
+                        Toast.makeText(getBaseContext(), "Pas encore implémenté.", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        ArrayAdapter<String> adapterRomantiqueAutres = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, autres);
+                        mListView.setAdapter(adapterRomantiqueAutres);
+                        break;
+                }
                 break;
-            case "sortie":
-                ArrayAdapter<String> adapterRomantiqueSortie = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueSortie);
-                mListView.setAdapter(adapterRomantiqueSortie);
-                break;
-            case "hebergement":
-                ArrayAdapter<String> adapterRomantiqueHebergement = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueHebergement);
-                mListView.setAdapter(adapterRomantiqueHebergement);
-                break;
-            case "adresse":
-                ArrayAdapter<String> adapterRomantiqueAdresse = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
-                mListView.setAdapter(adapterRomantiqueAdresse);
+            case "famille":
+                switch (typeActivites) {
+                    case "cadeau":
+                        ArrayAdapter<String> adapterRomantiqueCadeau = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, familleCadeau);
+                        mListView.setAdapter(adapterRomantiqueCadeau);
+                        break;
+                    case "repas":
+                        ArrayAdapter<String> adapterRomantiqueRepas = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, familleRepas);
+                        mListView.setAdapter(adapterRomantiqueRepas);
+                        break;
+                    case "sortie":
+                        ArrayAdapter<String> adapterRomantiqueSortie = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, familleSortie);
+                        mListView.setAdapter(adapterRomantiqueSortie);
+                        break;
+                    case "hebergement":
+                        ArrayAdapter<String> adapterRomantiqueHebergement = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, familleHebergement);
+                        mListView.setAdapter(adapterRomantiqueHebergement);
+                        break;
+                    case "adresse":
+                        Toast.makeText(getBaseContext(), "Pas encore implémenté.", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        ArrayAdapter<String> adapterRomantiqueAutres = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, autres);
+                        mListView.setAdapter(adapterRomantiqueAutres);
+                        break;
+                }
                 break;
             default:
-                ArrayAdapter<String> adapterRomantiqueAutres = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
+                ArrayAdapter<String> adapterRomantiqueAutres = new ArrayAdapter<>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, autres);
                 mListView.setAdapter(adapterRomantiqueAutres);
                 break;
         }
