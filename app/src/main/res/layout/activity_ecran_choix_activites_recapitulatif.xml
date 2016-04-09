@@ -7,6 +7,27 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#660000"
     tools:context="fr.ig2i.perfectrip.EcranChoixActivitesRecapitulatif">
+
+        <TextView android:id="@+id/texteChoixActivites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Récapitulons"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF"/>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/texteChoixActivites">
+
+            <ListView
+                android:id="@+id/listViewActivites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"/>
+
+        </RelativeLayout>
 
 </RelativeLayout>

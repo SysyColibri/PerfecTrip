@@ -11,15 +11,17 @@
     tools:context=".EcranChoixActivitesEdition">
 
     <TextView android:id="@+id/texteChoixActivites"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Définissons ensemble cette belle sortie."
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layoutActivites"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/texteChoixActivites">
 
         <ListView
@@ -27,6 +29,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"/>
+    </LinearLayout>
 
-    </RelativeLayout>
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="On récapitule?"
+        android:id="@+id/switchRecapitulation"
+        android:layout_below="@+id/layoutActivites"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF"
+        android:gravity="bottom|right" />
 </RelativeLayout>

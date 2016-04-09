@@ -18,7 +18,6 @@
         android:textColor="#FFFFFF"/>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/texteMoyenDeplacement"
@@ -47,6 +46,7 @@
             android:id="@+id/buttonVoiture" />
 
     </LinearLayout>
+    android:orientation="horizontal"
 
     <TextView android:id="@+id/texteTypeSortie"
         android:layout_width="wrap_content"
