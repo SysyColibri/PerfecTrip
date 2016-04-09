@@ -61,13 +61,28 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
             "Camping",
             "Hébergement"};
 
-    /*String[] amisCadeau = new String[]{
-            "Bar",
+    String[] amisCadeau = new String[]{
+            "Agence de voyages",
+            "Bijouterie",
             "Boulangerie",
-            "Café",
-            "Casino",
-            "Repas à emporter",
-            "Restaurant"};
+            "Epicerie ou supermarché",
+            "Fleuriste",
+            "Galerie marchande",
+            "Institut de beauté",
+            "Librairie",
+            "Magasin",
+            "Magasin d’alcool",
+            "Magasin d’électronique",
+            "Magasin de chaussure",
+            "Magasin de meubles",
+            "Magasin de produit de maison",
+            "Magasin de vélo",
+            "Magasin de vêtements",
+            "Parc d'attractions",
+            "Salon de beauté",
+            "Spa",
+            "Stade",
+            "Supérette"};
 
     String[] amisRepas = new String[]{
             "Bar",
@@ -79,23 +94,44 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
 
     String[] amisSortie = new String[]{
             "Bar",
-            "Boulangerie",
-            "Café",
+            "Boite de nuit",
+            "Bowling",
             "Casino",
-            "Repas à emporter",
-            "Restaurant"};*/
+            "Cinéma",
+            "Galerie d’art",
+            "Galerie marchande",
+            "Magasin d’électronique",
+            "Magasin de vêtements",
+            "Musée",
+            "Parc",
+            "Parc d'attractions",
+            "Stade",
+            "Zoo"};
 
     String[] amisHebergement = new String[]{
             "Camping",
             "Hébergement"};
 
-    /*String[] familleCadeau = new String[]{
-            "Bar",
+    String[] familleCadeau = new String[]{
+            "Agence de voyages",
+            "Bijouterie",
             "Boulangerie",
-            "Café",
-            "Casino",
-            "Repas à emporter",
-            "Restaurant"};
+            "Fleuriste",
+            "Galerie marchande",
+            "Institut de beauté",
+            "Librairie",
+            "Magasin",
+            "Magasin d’alcool",
+            "Magasin d’électronique",
+            "Magasin de chaussure",
+            "Magasin de meubles",
+            "Magasin de produit de maison",
+            "Magasin de vélo",
+            "Magasin de vêtements",
+            "Parc d'attractions",
+            "Salon de beauté",
+            "Spa",
+            "Stade"};
 
     String[] familleRepas = new String[]{
             "Bar",
@@ -107,27 +143,81 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
 
     String[] familleSortie = new String[]{
             "Bar",
-            "Boulangerie",
-            "Café",
+            "Boite de nuit",
+            "Bowling",
             "Casino",
-            "Repas à emporter",
-            "Restaurant"};
+            "Cinéma",
+            "Galerie d’art",
+            "Galerie marchande",
+            "Magasin d’électronique",
+            "Magasin de vêtements",
+            "Musée",
+            "Parc",
+            "Parc d'attractions",
+            "Stade",
+            "Zoo"};
 
     String[] familleHebergement = new String[]{
-            "Bar",
-            "Boulangerie",
-            "Café",
-            "Casino",
-            "Repas à emporter",
-            "Restaurant"};
+            "Camping",
+            "Hébergement"};
 
     String[] autres = new String[]{
+            "Aéroport",
+            "Agence de voyages",
+            "Banque",
             "Bar",
+            "Bibliothèque",
+            "Bijouterie",
+            "Blanchisserie",
+            "Boite de nuit",
             "Boulangerie",
+            "Bowling",
+            "Bureau de poste",
             "Café",
+            "Camping",
             "Casino",
+            "Cinéma",
+            "Distributeur d’argent",
+            "Emplacement camping car",
+            "Epicerie ou supermarché",
+            "Fleuriste",
+            "Galerie d’art",
+            "Galerie marchande",
+            "Hôpital",
+            "Institut de beauté",
+            "Lavage de voiture",
+            "Librairie",
+            "Livraison de repas",
+            "Location de films",
+            "Location de voiture",
+            "Magasin",
+            "Magasin d’alcool",
+            "Magasin d’électronique",
+            "Magasin de chaussure",
+            "Magasin de meubles",
+            "Magasin de produit de maison",
+            "Magasin de vélo",
+            "Magasin de vêtements",
+            "Musée",
+            "Parc",
+            "Parc d'attractions",
+            "Parking",
+            "Pharmacie",
+            "Police",
             "Repas à emporter",
-            "Restaurant"};*/
+            "Restaurant",
+            "Salon de beauté",
+            "Spa",
+            "Stade",
+            "Station de bus",
+            "Station de métro",
+            "Station de train",
+            "Station de transit",
+            "Station de vélo",
+            "Station-essence",
+            "Supérette",
+            "Supermarché",
+            "Zoo"};
 
     ListView mListView;
     String typeActivites;
@@ -146,19 +236,19 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
                 ArrayAdapter<String> adapterRomantiqueCadeau = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
                 mListView.setAdapter(adapterRomantiqueCadeau);
                 break;
-            case "romantiqueRepas":
+            case "repas":
                 ArrayAdapter<String> adapterRomantiqueRepas = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueRepas);
                 mListView.setAdapter(adapterRomantiqueRepas);
                 break;
-            case "romantiqueSortie":
+            case "sortie":
                 ArrayAdapter<String> adapterRomantiqueSortie = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueSortie);
                 mListView.setAdapter(adapterRomantiqueSortie);
                 break;
-            case "romantiqueHebergement":
+            case "hebergement":
                 ArrayAdapter<String> adapterRomantiqueHebergement = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueHebergement);
                 mListView.setAdapter(adapterRomantiqueHebergement);
                 break;
-            case "romantiqueAdresse":
+            case "adresse":
                 ArrayAdapter<String> adapterRomantiqueAdresse = new ArrayAdapter<String>(EcranChoixTypeDeLieu.this, android.R.layout.simple_list_item_1, romantiqueCadeau);
                 mListView.setAdapter(adapterRomantiqueAdresse);
                 break;
