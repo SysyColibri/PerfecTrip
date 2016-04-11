@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 
 public class EcranDeChargement extends Activity {
 
@@ -23,16 +25,11 @@ public class EcranDeChargement extends Activity {
             }
         };
         setContentView(R.layout.activity_ecran_de_chargement);
-        /*if(isNetworkAvailable())
-            splashHandler.postDelayed(r, 2000);
-        else {
-            Intent brain2 = new Intent(EcranDeChargement.this, EcranAlerte.class);
-            startActivity(brain2);
-        }*/
 
-        if(!isOnline(this)) { new EcranAlerte(this, "Pas de réseau",
+        if(!isOnline(this)) {
+            new EcranAlerte(this, "Pas de réseau",
             "Aucune connexion internet n'a été trouvée, veuillez réessayer lorsque la connexion sera rétablie.",
-            "ok",
+            "OK",
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -40,27 +37,31 @@ public class EcranDeChargement extends Activity {
                 }
             });
         }
-        else{
+        else if(!isGPSEnabled(this)){
+            new EcranAlerte(this, "Pas de GPS",
+                    "Vous n'avez pas activé la géolocalisation, veuillez réessayer lorsque la géolocalisation sera activée.",
+                    "OK",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+        }
+        else {
             splashHandler.postDelayed(r, 2000);
         }
     }
-
-    /*public void onResume(Bundle savedInstanceState){
-        super.onResume();
-    }
-
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null;
-    }*/
-
-
 
     public static boolean isOnline(Context ctx) {
         ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public static boolean isGPSEnabled(Context ctx)  {
+        LocationManager lm = (LocationManager)ctx.getSystemService(Context.LOCATION_SERVICE);
+
+        return lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 }
