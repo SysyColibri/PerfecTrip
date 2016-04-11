@@ -21,6 +21,7 @@ import java.io.OutputStreamWriter;
 public class EcranChoixActivitesEdition extends AppCompatActivity {
 
     ListView listview;
+    GlobalState gs;
     ImageButton add;
     String[] romantiqueAmisFamille = new String[]{"Cadeau", "Repas", "Sortie", "Hébergement", "Adresse particulière", "Autres"};
 
@@ -30,6 +31,11 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         setContentView(R.layout.activity_ecran_choix_activites_edition);
         listview = (ListView) findViewById(R.id.listViewActivites);
         listview.setAdapter(new Adapter(this, romantiqueAmisFamille));
+
+        gs = new GlobalState();
+
+        Toast.makeText(getApplicationContext(),gs.typeSortie,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),gs.typeLocomotion,Toast.LENGTH_LONG).show();
 
     }
 

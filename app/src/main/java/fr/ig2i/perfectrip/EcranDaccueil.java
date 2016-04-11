@@ -25,12 +25,13 @@ public class EcranDaccueil extends AppCompatActivity {
     protected Boolean moyenDeplacementEtat = false;
 
     protected String moyenDeplacement;
+    protected GlobalState gs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_daccueil);
-
+        gs = new GlobalState();
         mPieton = (Button) findViewById(R.id.buttonPieton);
         mVelo = (Button) findViewById(R.id.buttonVelo);
         mVoiture = (Button) findViewById(R.id.buttonVoiture);
@@ -47,7 +48,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementVoiture = false;
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
-                sauvegardeMoyenDeplacement("pieton");
+                gs.typeLocomotion = "pieton";
             }
         });
 
@@ -59,7 +60,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementVoiture = false;
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
-                sauvegardeMoyenDeplacement("velo");
+                gs.typeLocomotion = "velo";
             }
         });
 
@@ -71,7 +72,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementVoiture = true;
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
-                sauvegardeMoyenDeplacement("voiture");
+                gs.typeLocomotion = "voiture";
             }
         });
 
@@ -79,8 +80,8 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
+                    gs.typeSortie = "romantique";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    sauvegardeTypeSortie("romantique");
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -90,8 +91,8 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
+                    gs.typeSortie = "amis";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    sauvegardeTypeSortie("amis");
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -101,8 +102,9 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
+                    gs.typeSortie = "famille";
+
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    sauvegardeTypeSortie("famille");
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
@@ -114,8 +116,8 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
+                    gs.typeSortie = "autre";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    sauvegardeTypeSortie("autres");
                 }
                 else{
                     Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
@@ -144,32 +146,6 @@ public class EcranDaccueil extends AppCompatActivity {
             mPieton.setEnabled(true);
             mVelo.setEnabled(true);
             mVoiture.setEnabled(true);
-        }
-    }
-
-    /*
-    Sauvegarde du moyen de déplacement sélectionné
-     */
-    private void sauvegardeMoyenDeplacement(String moyenDeplacement){
-        try {
-            OutputStreamWriter out = new OutputStreamWriter(openFileOutput("moyenDeplacement.txt", MODE_PRIVATE));
-            out.write(moyenDeplacement);
-            out.close();
-        } catch (java.io.IOException e) {
-            Toast.makeText(getBaseContext(),"Impossible de sauvegarder le moyen de deplacement", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    /*
-    Sauvegarde du type de sortie
-     */
-    private void sauvegardeTypeSortie(String typeSortie){
-        try {
-            OutputStreamWriter out = new OutputStreamWriter(openFileOutput("typeSortie.txt", MODE_PRIVATE));
-            out.write(typeSortie);
-            out.close();
-        } catch (java.io.IOException e) {
-            Toast.makeText(getBaseContext(),"Impossible de sauvegarder le type de sortie", Toast.LENGTH_SHORT).show();
         }
     }
 }
