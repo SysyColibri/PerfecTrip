@@ -1,22 +1,11 @@
 package fr.ig2i.perfectrip;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 public class EcranChoixActivitesEdition extends AppCompatActivity {
 
@@ -30,7 +19,7 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_choix_activites_edition);
         listview = (ListView) findViewById(R.id.listViewActivites);
-        listview.setAdapter(new Adapter(this, romantiqueAmisFamille));
+        listview.setAdapter(new AdapterEcranListeActivités(this, romantiqueAmisFamille));
 
         gs = new GlobalState();
 
