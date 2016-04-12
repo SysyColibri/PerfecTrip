@@ -9,10 +9,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 
 public class EcranDeChargement extends Activity {
-
+    protected GlobalState gs = new GlobalState();
     private Handler splashHandler = new Handler();
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +24,7 @@ public class EcranDeChargement extends Activity {
             }
         };
         setContentView(R.layout.activity_ecran_de_chargement);
+        startActivity(new Intent(EcranDeChargement.this, Localisation.class));
 
         if(!isOnline(this)) {
             new EcranAlerte(this, "Pas de réseau",

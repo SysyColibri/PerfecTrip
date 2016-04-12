@@ -9,6 +9,9 @@ public class GlobalState {
     public static String typeSortie;
     public static List<Activite> activites;
 
+    public static double latitude;
+    public static double longitude;
+
     public GlobalState() {
     }
 }

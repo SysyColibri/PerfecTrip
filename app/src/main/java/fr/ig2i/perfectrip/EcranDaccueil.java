@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.io.OutputStreamWriter;
-
 public class EcranDaccueil extends AppCompatActivity {
 
     protected Button mPieton;
@@ -24,11 +22,10 @@ public class EcranDaccueil extends AppCompatActivity {
     protected Boolean moyenDeplacementVoiture = false;
     protected Boolean moyenDeplacementEtat = false;
 
-    protected String moyenDeplacement;
     protected GlobalState gs;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_daccueil);
         gs = new GlobalState();
@@ -39,6 +36,9 @@ public class EcranDaccueil extends AppCompatActivity {
         mAmis = (Button) findViewById(R.id.buttonAmis);
         mFamille = (Button) findViewById(R.id.buttonFamille);
         mAutres = (Button) findViewById(R.id.buttonAutres);
+
+        Toast.makeText(getBaseContext(), "Lattitude: " + gs.latitude, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Longitude: " + gs.longitude, Toast.LENGTH_SHORT).show();
 
         mPieton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,13 +101,12 @@ public class EcranDaccueil extends AppCompatActivity {
         mFamille.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(moyenDeplacementEtat) {
+                if (moyenDeplacementEtat) {
                     gs.typeSortie = "famille";
 
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                }
-                else{
-                    Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getBaseContext(), "Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -115,12 +114,11 @@ public class EcranDaccueil extends AppCompatActivity {
         mAutres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(moyenDeplacementEtat) {
+                if (moyenDeplacementEtat) {
                     gs.typeSortie = "autre";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                }
-                else{
-                    Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getBaseContext(), "Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

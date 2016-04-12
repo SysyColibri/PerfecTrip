@@ -1,11 +1,8 @@
 package fr.ig2i.perfectrip;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,51 +17,40 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 public class Localisation extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
-    /*########## DECLARATIONS ##########*/
-    protected static final String TAG = "location-updates-sample";//ECHANTILLON
+
     public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;//The desired interval for location updates. Inexact. Updates may be more or less frequent.
-    public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS =
-            UPDATE_INTERVAL_IN_MILLISECONDS / 2;//The fastest rate for active location updates. Exact. Updates will never be more frequent than this value.
-    protected final static String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";//Keys for storing activity state in the Bundle
-    protected final static String LOCATION_KEY = "location-key";
-    protected final static String LAST_UPDATED_TIME_STRING_KEY = "last-updated-time-string-key";
+    public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
+
+    protected static final String TAG = "location-updates-sample";
+    protected static final String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";//Keys for storing activity state in the Bundle
+    protected static final String LOCATION_KEY = "location-key";
+    protected static final String LAST_UPDATED_TIME_STRING_KEY = "last-updated-time-string-key";
+
     protected GoogleApiClient mGoogleApiClient;//Provides the entry point to Google Play services
     protected LocationRequest mLocationRequest;//Stores parameters for requests to the FusedLocationProviderApi
-    protected Location mCurrentLocation;//Localisation géographique
-
+    public Location mCurrentLocation;//Localisation géographique
     protected Boolean mRequestingLocationUpdates;//Tracks the status of the location updates request. Value changes when the user presses the Start Updates and Stop Updates buttons
+
+    protected GlobalState gs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mRequestingLocationUpdates = false;
-
-        updateValuesFromBundle(savedInstanceState);// Update values using data stored in the Bundle.
-
-        buildGoogleApiClient();// Kick off the process of building a GoogleApiClient and requesting the LocationServices API.
+        buildGoogleApiClient();
     }
-
-    public static boolean isOnline(Context ctx) {
-        ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
-
 
     /**
      * Updates fields based on data stored in the bundle.
-     *
      * @param savedInstanceState The activity state saved in the Bundle.
      */
-    private void updateValuesFromBundle(Bundle savedInstanceState) {
+    protected void updateValuesFromBundle(Bundle savedInstanceState) {
         Log.i(TAG, "Updating values from bundle");
         if (savedInstanceState != null) {
             // Update the value of mRequestingLocationUpdates from the Bundle, and make sure that
             // the Start Updates and Stop Updates buttons are correctly enabled or disabled.
             if (savedInstanceState.keySet().contains(REQUESTING_LOCATION_UPDATES_KEY)) {
-                mRequestingLocationUpdates = savedInstanceState.getBoolean(
-                        REQUESTING_LOCATION_UPDATES_KEY);
+                mRequestingLocationUpdates = savedInstanceState.getBoolean(REQUESTING_LOCATION_UPDATES_KEY);
             }
 
             // Update the value of mCurrentLocation from the Bundle and update the UI to show the
@@ -78,17 +64,16 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
     }
 
     /**
-     * Builds a GoogleApiClient. Uses the {@code #addApi} method to request the
-     * LocationServices API.
+     * Builds a GoogleApiClient. Uses the {@code #addApi} method to request the LocationServices API.
      */
-    protected synchronized void buildGoogleApiClient() {
+    public synchronized void buildGoogleApiClient() {
         Log.i(TAG, "Building GoogleApiClient");
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-        createLocationRequest();
+        //createLocationRequest();
     }
 
     /**
@@ -101,8 +86,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      * interval (5 seconds), the Fused Location Provider API returns location updates that are
      * accurate to within a few feet.
      * <p/>
-     * These settings are appropriate for mapping applications that show real-time location
-     * updates.
+     * These settings are appropriate for mapping applications that show real-time location updates.
      */
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
@@ -124,32 +108,17 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      * Requests location updates from the FusedLocationApi.
      */
     protected void startLocationUpdates() {
-        // The final argument to {@code requestLocationUpdates()} is a LocationListener
-        // (http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html).
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        LocationServices.FusedLocationApi.requestLocationUpdates(
-                mGoogleApiClient, mLocationRequest, this);
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
     /**
      * Removes location updates from the FusedLocationApi.
      */
     protected void stopLocationUpdates() {
-        // It is a good practice to remove location requests when the activity is in a paused or
-        // stopped state. Doing so helps battery performance and is especially
-        // recommended in applications that request frequent location updates.
-
-        // The final argument to {@code requestLocationUpdates()} is a LocationListener
-        // (http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html).
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
 
@@ -216,13 +185,8 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
                 return;
             }
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        }
-
-        // If the user presses the Start Updates button before GoogleApiClient connects, we set
-        // mRequestingLocationUpdates to true (see startUpdatesButtonHandler()). Here, we check
-        // the value of mRequestingLocationUpdates and if it is true, we start location updates.
-        if (mRequestingLocationUpdates) {
-            startLocationUpdates();
+            gs.latitude = mCurrentLocation.getLatitude();
+            gs.longitude = mCurrentLocation.getLongitude();
         }
     }
 
