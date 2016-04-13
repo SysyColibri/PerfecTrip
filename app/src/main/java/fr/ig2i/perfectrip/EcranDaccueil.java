@@ -23,7 +23,6 @@ public class EcranDaccueil extends AppCompatActivity {
     protected Boolean moyenDeplacementEtat = false;
 
     protected GlobalState gs;
-    Localisation loca = new Localisation();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

@@ -24,7 +24,6 @@ public class EcranDeChargement extends Activity {
             }
         };
         setContentView(R.layout.activity_ecran_de_chargement);
-        startActivity(new Intent(EcranDeChargement.this, Localisation.class));
 
         if(!isOnline(this)) {
             new EcranAlerte(this, "Pas de réseau",
@@ -50,6 +49,7 @@ public class EcranDeChargement extends Activity {
         }
         else {
             splashHandler.postDelayed(r, 2000);
+            startActivity(new Intent(EcranDeChargement.this, Localisation.class));
         }
     }
 
@@ -61,7 +61,6 @@ public class EcranDeChargement extends Activity {
 
     public static boolean isGPSEnabled(Context ctx)  {
         LocationManager lm = (LocationManager)ctx.getSystemService(Context.LOCATION_SERVICE);
-
         return lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 }

@@ -18,7 +18,6 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 public class Localisation extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
-
     //public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;//The desired interval for location updates. Inexact. Updates may be more or less frequent.
     //public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
 
@@ -35,6 +34,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_ecran_de_chargement);
         super.onCreate(savedInstanceState);
         mRequestingLocationUpdates = false; //SUPPRESSION?
 
