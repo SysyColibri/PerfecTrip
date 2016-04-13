@@ -12,6 +12,8 @@ public class GlobalState {
     public static double latitude;
     public static double longitude;
 
+    protected GlobalState gs;
+
     public GlobalState() {
     }
 }
