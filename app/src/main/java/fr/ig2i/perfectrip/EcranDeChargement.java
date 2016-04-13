@@ -49,7 +49,7 @@ public class EcranDeChargement extends Activity {
         }
         else {
             splashHandler.postDelayed(r, 2000);
-            startActivity(new Intent(EcranDeChargement.this, Localisation.class));
+            //startActivity(new Intent(EcranDeChargement.this, Localisation.class));
         }
     }
 
