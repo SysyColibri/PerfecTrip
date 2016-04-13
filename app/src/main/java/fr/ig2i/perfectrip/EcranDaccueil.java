@@ -83,7 +83,6 @@ public class EcranDaccueil extends AppCompatActivity {
                 if(moyenDeplacementEtat) {
                     gs.typeSortie = "romantique";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    loca.updateLocalisation();
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -95,7 +94,6 @@ public class EcranDaccueil extends AppCompatActivity {
                 if(moyenDeplacementEtat) {
                     gs.typeSortie = "amis";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    loca.updateLocalisation();
                 }
                 else{Toast.makeText(getBaseContext(),"Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();}
             }
@@ -107,7 +105,6 @@ public class EcranDaccueil extends AppCompatActivity {
                 if (moyenDeplacementEtat) {
                     gs.typeSortie = "famille";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    loca.updateLocalisation();
                 } else {
                     Toast.makeText(getBaseContext(), "Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
                 }
@@ -120,7 +117,6 @@ public class EcranDaccueil extends AppCompatActivity {
                 if (moyenDeplacementEtat) {
                     gs.typeSortie = "autre";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
-                    loca.updateLocalisation();
                 } else {
                     Toast.makeText(getBaseContext(), "Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
                 }
