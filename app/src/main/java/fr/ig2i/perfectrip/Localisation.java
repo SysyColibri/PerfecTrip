@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -222,5 +223,16 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
         savedInstanceState.putBoolean(REQUESTING_LOCATION_UPDATES_KEY, mRequestingLocationUpdates);
         savedInstanceState.putParcelable(LOCATION_KEY, mCurrentLocation);
         super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void updateLocalisation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        gs.latitude = mCurrentLocation.getLatitude();
+        gs.longitude = mCurrentLocation.getLongitude();
+        Toast.makeText(getBaseContext(), "Lattitude: " + gs.latitude, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Longitude: " + gs.longitude, Toast.LENGTH_SHORT).show();
     }
 }

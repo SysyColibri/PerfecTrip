@@ -15,6 +15,7 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
     String[] romantiqueAmisFamille = new String[]{"Cadeau", "Repas", "Sortie", "Hébergement", "Adresse particulière", "Autres"};
 
 
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_choix_activites_edition);
@@ -35,11 +36,11 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
 
             @Override
             public void onClick(View arg0) {
-                //Passage a l'activité suivante
+
                 Toast.makeText(getApplicationContext(),"t'as cliqué ptdr",Toast.LENGTH_LONG).show();
+
             }
 
         });
-
     }
 }
