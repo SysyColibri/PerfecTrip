@@ -19,7 +19,12 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_choix_activites_edition);
+        //Récupération de la ListView
         listview = (ListView) findViewById(R.id.listViewActivites);
+        /* Association de la ListView avec un Adapter :
+        1er paramètre : le contexte
+        2ème paramètre : un tableau de données qui va représenter le contenu de la ListView
+         */
         listview.setAdapter(new AdapterEcranListeActivités(this, romantiqueAmisFamille));
 
         gs = new GlobalState();
@@ -29,7 +34,7 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
 
     }
 
-    public void addListenerOnButton() {
+    /*public void addListenerOnButton() {
 
         add = (ImageButton) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
@@ -42,5 +47,5 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
             }
 
         });
-    }
+    }*/
 }

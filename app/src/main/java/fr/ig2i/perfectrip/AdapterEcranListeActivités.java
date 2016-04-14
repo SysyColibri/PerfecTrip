@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 class AdapterEcranListeActivités extends BaseAdapter {
 
     Context context;
@@ -17,22 +18,22 @@ class AdapterEcranListeActivités extends BaseAdapter {
     private static LayoutInflater inflater = null;
 
     public AdapterEcranListeActivités(Context context, String[] data) {
-        // TODO Auto-generated constructor stub
         this.context = context;
         this.data = data;
+        //Prend les fichiers xml pour mettre en forme nos Views
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
+        //Permet d'obtenir la taille du tableau de données et donc le nomre d'item de la listview
         return data.length;
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
+        //Permet d'obtenir un item de la listview avec son indice passé en paramètre
         return data[position];
     }
 
@@ -43,12 +44,19 @@ class AdapterEcranListeActivités extends BaseAdapter {
     }
 
     @Override
+
+    //Contient les traitements pour la génération des items
+    /* On n'appellera pas cette méthode, c'est l'adapter qui va l'appeler implicitement quand un item doit etre créé
+       http://stackoverflow.com/questions/10120119/how-does-the-getview-method-work-when-creating-your-own-custom-adapter
+ */
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
         if (vi == null)
             vi = inflater.inflate(R.layout.ligne, null);
+        //Récupération des zones de texte
         TextView text = (TextView) vi.findViewById(R.id.text);
+        //on mets les intitulé de manière automatique
         text.setText(data[position]);
 
         ImageView add = (ImageView)vi.findViewById(R.id.add); //Récupération des images '+'
@@ -62,7 +70,6 @@ class AdapterEcranListeActivités extends BaseAdapter {
                 context.startActivity(mainIntent);
             }
         });
-
 
         return vi;
     }
