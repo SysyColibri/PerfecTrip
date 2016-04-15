@@ -8,33 +8,28 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-class AdapterEcranListeActivités extends BaseAdapter {
+class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
 
     Context context;
     String[] data;
     private static LayoutInflater inflater = null;
 
-    public AdapterEcranListeActivités(Context context, String[] data) {
+    public AdapterEcranChoixTypeDeLieu(Context context, String[] data) {
         this.context = context;
         this.data = data;
-        //Prend les fichiers xml pour mettre en forme nos Views
-        inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);//Prend les fichiers xml pour mettre en forme nos Views
     }
 
     @Override
     public int getCount() {
-        //Permet d'obtenir la taille du tableau de données et donc le nomre d'item de la listview
-        return data.length;
+        return data.length;//Permet d'obtenir la taille du tableau de données et donc le nombre d'item de la listview
     }
 
     @Override
     public Object getItem(int position) {
-        //Permet d'obtenir un item de la listview avec son indice passé en paramètre
-        return data[position];
+        return data[position];//Permet d'obtenir un item de la listview avec son indice passé en paramètre
     }
 
     @Override
@@ -44,16 +39,11 @@ class AdapterEcranListeActivités extends BaseAdapter {
     }
 
     @Override
-
     //Contient les traitements pour la génération des items
-    /* On n'appellera pas cette méthode, c'est l'adapter qui va l'appeler implicitement quand un item doit etre créé
-       http://stackoverflow.com/questions/10120119/how-does-the-getview-method-work-when-creating-your-own-custom-adapter
- */
     public View getView(int position, View convertView, ViewGroup parent) {
-
         View vi = convertView;
         if (vi == null)
-            vi = inflater.inflate(R.layout.ligne, null);
+            vi = inflater.inflate(R.layout.ligne_ecran_choix_type_de_lieu, null);
         //Récupération des zones de texte
         TextView text = (TextView) vi.findViewById(R.id.text);
         //on mets les intitulé de manière automatique
@@ -64,8 +54,8 @@ class AdapterEcranListeActivités extends BaseAdapter {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Ajouter un(e)"+v.getTag().toString(), Toast.LENGTH_SHORT).show();
-                Intent mainIntent = new Intent(context, EcranChoixTypeDeLieu.class);
+                //Toast.makeText(context, "Ajouter un(e)"+v.getTag().toString(), Toast.LENGTH_SHORT).show();
+                Intent mainIntent = new Intent(context, EcranListePossibilites.class);
                 //Sauvegarder le choix de l'utilisateur
                 context.startActivity(mainIntent);
             }

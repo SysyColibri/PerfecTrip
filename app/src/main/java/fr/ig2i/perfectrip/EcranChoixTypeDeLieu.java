@@ -2,15 +2,7 @@ package fr.ig2i.perfectrip;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class EcranChoixTypeDeLieu extends AppCompatActivity {
 
@@ -221,6 +213,7 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
             "Zoo"};
 
     ListView mListView;
+    GlobalState gs = new GlobalState();
     String typeActivites;
     String typeSortie;
 
@@ -229,9 +222,13 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_ecran_choix_type_de_lieu);
-        mListView = (ListView) findViewById(R.id.listViewActivites);
 
-        typeSortie = recuperationValeurFichier("typeSortie.txt");
+        mListView = (ListView) findViewById(R.id.listViewActivites);
+        mListView.setAdapter(new AdapterEcranChoixTypeDeLieu(this, romantiqueCadeau));
+
+        System.out.println("typeSortie: " +gs.typeSortie);
+
+        /*typeSortie = recuperationValeurFichier("typeSortie.txt");
         typeActivites = recuperationValeurFichier("typeActivite.txt");
 
         switch(typeSortie){
@@ -335,7 +332,7 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
 
             try
             {
-                //On écrit la valeur de la première ligne dans le String
+                //On écrit la valeur de la première ligne_ecran_activites_edition dans le String
                 retour = br.readLine();
                 br.close();
                 inputreader.close();
@@ -350,6 +347,6 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
             System.out.println ("Le fichier n'a pas été trouvé");
         }
         return retour;
+        */
     }
 }
-
