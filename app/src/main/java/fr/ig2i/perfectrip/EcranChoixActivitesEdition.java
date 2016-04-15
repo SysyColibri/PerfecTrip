@@ -10,7 +10,7 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
     ListView listview;
     GlobalState gs;
     ImageButton add;
-    String[] romantiqueAmisFamille = new String[]{"Cadeau", "Repas", "Sortie", "Hébergement", "Adresse particulière", "Autres"};
+    String[] romantiqueAmisFamille = new String[]{"Cadeau", "Repas", "Sortie", "Hébergement", "Autres"};
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
