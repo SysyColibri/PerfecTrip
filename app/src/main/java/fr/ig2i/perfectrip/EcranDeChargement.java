@@ -49,7 +49,6 @@ public class EcranDeChargement extends Activity {
         }
         else {
             splashHandler.postDelayed(r, 2000);
-            Local.getLocalisationInGlobalState(getApplicationContext());
             //startActivity(new Intent(EcranDeChargement.this, Localisation.class));
         }
     }
