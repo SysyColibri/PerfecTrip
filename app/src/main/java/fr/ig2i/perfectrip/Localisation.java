@@ -191,6 +191,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
                 return;
             }
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            System.out.println("mCurrentLocation" +mCurrentLocation);
             updateGlobalState();
         }
 
