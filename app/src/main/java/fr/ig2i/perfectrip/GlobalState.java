@@ -1,8 +1,6 @@
 package fr.ig2i.perfectrip;
 
 
-import java.util.List;
-
 public class GlobalState {
     //Ecran de chargement
     public static double latitude;
@@ -14,7 +12,8 @@ public class GlobalState {
 
     //Ecran choix activités edition
     public static String activitesEnCours;
-    public static List<Activite> activites;
+    //public static List<Activite> activites; JE PEUX REMPLACER LIST PAR STRING[] ?
+    public static String[] activites = {"Thibault", "Pierre", "Pierre-Hugues", "Guillaume", "Martin", "Sylvain"};
 
     //Ecran choix type de lieux
     public static String lieuEnCours;

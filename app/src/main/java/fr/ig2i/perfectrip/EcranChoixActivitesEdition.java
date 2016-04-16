@@ -1,9 +1,12 @@
 package fr.ig2i.perfectrip;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Switch;
 
 public class EcranChoixActivitesEdition extends AppCompatActivity {
 
@@ -12,11 +15,14 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
     ImageButton add;
     String[] romantiqueAmisFamille = new String[]{"Cadeau", "Repas", "Sortie", "Hébergement", "Autres"};
 
+    protected Switch mSwitchRecapitulation;
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_ecran_choix_activites_edition);
+
+        mSwitchRecapitulation = (Switch) findViewById(R.id.switchRecapitulation);
 
         listview = (ListView) findViewById(R.id.listViewActivites);//Récupération de la ListView
 
@@ -28,6 +34,13 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
 
         //Toast.makeText(getApplicationContext(),gs.typeSortie,Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(),gs.typeLocomotion,Toast.LENGTH_LONG).show();
+
+        mSwitchRecapitulation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EcranChoixActivitesEdition.this, EcranChoixActivitesRecapitulation.class));
+            }
+        });
     }
 
     /*public void addListenerOnButton() {
