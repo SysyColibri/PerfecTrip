@@ -15,6 +15,7 @@ class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
     Context context;
     String[] data;
     private static LayoutInflater inflater = null;
+    GlobalState gs = new GlobalState();
 
     public AdapterEcranChoixTypeDeLieu(Context context, String[] data) {
         this.context = context;
@@ -49,15 +50,14 @@ class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
         //on mets les intitulé de manière automatique
         text.setText(data[position]);
 
-        ImageView add = (ImageView)vi.findViewById(R.id.add); //Récupération des images '+'
-        add.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
-        add.setOnClickListener(new View.OnClickListener() {
+        ImageView barre = (ImageView)vi.findViewById(R.id.barreChoixLieu); //Récupération des images '+'
+        barre.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
+        barre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context, "Ajouter un(e)"+v.getTag().toString(), Toast.LENGTH_SHORT).show();
+                gs.lieuEnCours = v.getTag().toString();//Enregistre le lieu choisit par le user
                 Intent mainIntent = new Intent(context, EcranListePossibilites.class);
-                //Sauvegarder le choix de l'utilisateur
-                context.startActivity(mainIntent);
+                context.startActivity(mainIntent);//Sauvegarde le choix de l'utilisateur
             }
         });
 
