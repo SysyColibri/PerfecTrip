@@ -37,7 +37,7 @@
         <activity android:name=".EcranChoixActivitesEdition" />
         <activity android:name=".EcranChoixTypeDeLieu" />
         <activity android:name=".EcranListePossibilites" />
-        <activity android:name=".EcranChoixActivitesRecapitulatif" />
+        <activity android:name=".EcranChoixActivitesRecapitulation" />
         <activity android:name=".APropos" />
         <activity android:name=".Localisation" />
     </application>
