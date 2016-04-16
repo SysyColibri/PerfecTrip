@@ -8,9 +8,10 @@ import android.widget.ListView;
 public class EcranChoixActivitesEdition extends AppCompatActivity {
 
     ListView listview;
-    GlobalState gs;
+    GlobalState gs = new GlobalState();
     ImageButton add;
     String[] romantiqueAmisFamille = new String[]{"Cadeau", "Repas", "Sortie", "Hébergement", "Autres"};
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +25,6 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         * 2ème paramètre : un tableau de données qui va représenter le contenu de la ListView
         */
         listview.setAdapter(new AdapterEcranActivitesEdition(this, romantiqueAmisFamille));
-
-        gs = new GlobalState();
 
         //Toast.makeText(getApplicationContext(),gs.typeSortie,Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(),gs.typeLocomotion,Toast.LENGTH_LONG).show();

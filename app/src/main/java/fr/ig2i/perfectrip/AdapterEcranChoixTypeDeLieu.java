@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -50,7 +50,7 @@ class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
         //on mets les intitulé de manière automatique
         text.setText(data[position]);
 
-        ImageView barre = (ImageView)vi.findViewById(R.id.barreChoixLieu); //Récupération des images '+'
+        LinearLayout barre = (LinearLayout) vi.findViewById(R.id.choixTypeDeLieux); //Récupération des images
         barre.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
         barre.setOnClickListener(new View.OnClickListener() {
             @Override
