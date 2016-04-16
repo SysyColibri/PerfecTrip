@@ -8,7 +8,7 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity {
 
     ListView mListView;
     GlobalState gs = new GlobalState();
-    DataListePossibilites data = new DataListePossibilites();
+    Data data = new Data();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
