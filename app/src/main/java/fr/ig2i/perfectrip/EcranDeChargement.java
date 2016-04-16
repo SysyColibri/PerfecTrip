@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class EcranDeChargement extends Activity {
-    protected GlobalState gs = new GlobalState();
     private Handler splashHandler = new Handler();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +49,8 @@ public class EcranDeChargement extends Activity {
         }
         else {
             splashHandler.postDelayed(r, 2000);
-            //startActivity(new Intent(EcranDeChargement.this, Localisation.class));
+            //Local.getLocalisationInGlobalState(getApplicationContext());
+            startActivity(new Intent(EcranDeChargement.this, Localisation.class));
         }
     }
 

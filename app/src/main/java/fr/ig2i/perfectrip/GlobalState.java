@@ -7,12 +7,12 @@ public class GlobalState {
 
     public static String typeLocomotion;
     public static String typeSortie;
+
+    public static String activitesEnCours;
     public static List<Activite> activites;
 
     public static double latitude;
     public static double longitude;
-
-    protected GlobalState gs;
 
     public GlobalState() {
     }

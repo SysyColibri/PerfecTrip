@@ -24,6 +24,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
     protected static final String TAG = "location-updates-sample";
     protected static final String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";//Keys for storing activity state in the Bundle
     protected static final String LOCATION_KEY = "location-key";
+    private static final int REQUEST_LOCATION = 1;
 
     protected GoogleApiClient mGoogleApiClient;//Provides the entry point to Google Play services
     protected LocationRequest mLocationRequest;//Stores parameters for requests to the FusedLocationProviderApi
@@ -181,16 +182,12 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
             System.out.println("---------- 25 ----------");
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 System.out.println("---------- 26 ----------");
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION);
             }
+            System.out.println("mCurrentLocation" +mCurrentLocation);
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            System.out.println("mCurrentLocation" +mCurrentLocation);
             updateGlobalState();
         }
 
@@ -257,6 +254,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
     public void onLocationChanged(Location location) {
         System.out.println("---------- 28 ----------");
         mCurrentLocation = location;
+        System.out.println("mCurrentLocation: " +mCurrentLocation);
         updateGlobalState();
     }
 

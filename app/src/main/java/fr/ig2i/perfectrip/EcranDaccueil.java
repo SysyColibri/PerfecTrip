@@ -37,9 +37,6 @@ public class EcranDaccueil extends AppCompatActivity {
         mFamille = (Button) findViewById(R.id.buttonFamille);
         mAutres = (Button) findViewById(R.id.buttonAutres);
 
-        Toast.makeText(getBaseContext(), "Lattitude: " + gs.latitude, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getBaseContext(), "Longitude: " + gs.longitude, Toast.LENGTH_SHORT).show();
-
         mPieton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
