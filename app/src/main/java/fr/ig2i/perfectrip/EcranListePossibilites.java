@@ -14,8 +14,7 @@ public class EcranListePossibilites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_liste_possibilites);
 
-        Toast.makeText(getBaseContext(), "Mot clef lieu: " +data.getLieu(gs.lieuEnCours), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getBaseContext(), "Rayon: " +data.getRadius(gs.typeLocomotion), Toast.LENGTH_SHORT).show();
+        //List<>
 
         /*
         EXEMPLE DE REQUETTE API POUR INFO
