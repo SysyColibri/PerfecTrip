@@ -1,27 +1,18 @@
 package fr.ig2i.perfectrip;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Activite {
 
     private String typeActivite;
     private String typeLieu;
-    private String nom;
-    private ArrayList<Double> localisation;
+    private Lieu lieu;
 
-    public Activite(String typeLieu, String nom, ArrayList<Double> localisation, String typeActivite) {
+    public Activite(String typeLieu, Lieu lieu, String typeActivite) {
         this.typeLieu = typeLieu;
-        this.nom = nom;
-        this.localisation = localisation;
+        this.lieu = lieu;
         this.typeActivite = typeActivite;
-    }
-
-    public ArrayList<Double> getLocalisation() {
-        return localisation;
-    }
-
-    public String getNom() {
-        return nom;
     }
 
     public String getTypeLieu() {
@@ -34,14 +25,6 @@ public class Activite {
 
     public void setTypeActivite(String typeActivite) {
         this.typeActivite = typeActivite;
-    }
-
-    public void setLocalisation(ArrayList<Double> localisation) {
-        this.localisation = localisation;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public void setTypeLieu(String typeLieu) {
