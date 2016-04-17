@@ -44,11 +44,10 @@ class AdapterEcranActivitesEdition extends BaseAdapter {
     }
 
     @Override
-
-    //Contient les traitements pour la génération des items
-    /* On n'appellera pas cette méthode, c'est l'adapter qui va l'appeler implicitement quand un item doit etre créé
-       http://stackoverflow.com/questions/10120119/how-does-the-getview-method-work-when-creating-your-own-custom-adapter
- */
+    /*
+    Contient les traitements pour la génération des items
+    On n'appellera pas cette méthode, c'est l'adapter qui va l'appeler implicitement quand un item doit etre créé
+    */
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
@@ -71,7 +70,6 @@ class AdapterEcranActivitesEdition extends BaseAdapter {
                 context.startActivity(mainIntent);
             }
         });
-
         return vi;
     }
 }

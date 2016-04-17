@@ -43,6 +43,30 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         });
     }
 
+    /*
+    Verrouillage du switch
+     
+    private void setButtonsEnabledState() {
+        if (moyenDeplacementPieton) {
+            mPieton.setEnabled(false);
+            mVelo.setEnabled(true);
+            mVoiture.setEnabled(true);
+        } else if (moyenDeplacementVelo){
+            mPieton.setEnabled(true);
+            mVelo.setEnabled(false);
+            mVoiture.setEnabled(true);
+        }else if (moyenDeplacementVoiture){
+            mPieton.setEnabled(true);
+            mVelo.setEnabled(true);
+            mVoiture.setEnabled(false);
+        }else {
+            mPieton.setEnabled(true);
+            mVelo.setEnabled(true);
+            mVoiture.setEnabled(true);
+        }
+    }
+    */
+
     /*public void addListenerOnButton() {
 
         add = (ImageButton) findViewById(R.id.add);
