@@ -60,7 +60,8 @@ public class Lieu {
         this.ordrePrix = ordrePrix;
     }
 
-    public String getNumTel() { return numTel; }
+    //public String getNumTel() { return numTel; }
+    public String getNumTel() { return "06 10 29 28 17"; }
 
     public void setNumTel(String numTel) { this.numTel = numTel; }
 }

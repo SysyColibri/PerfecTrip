@@ -62,10 +62,10 @@ class AdapterEcranActivitesEdition extends BaseAdapter {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("DEBUT ACTIVITY TYPE DE LIEU");
                 gs.activitesEnCours = v.getTag().toString();
                 //Toast.makeText(context, "Ajouter un(e)"+v.getTag().toString(), Toast.LENGTH_SHORT).show();
                 Intent mainIntent = new Intent(context, EcranChoixTypeDeLieu.class);
-                //Sauvegarder le choix de l'utilisateur
                 context.startActivity(mainIntent);
             }
         });

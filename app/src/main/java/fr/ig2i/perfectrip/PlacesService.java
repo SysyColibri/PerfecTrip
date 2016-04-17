@@ -2,11 +2,7 @@ package fr.ig2i.perfectrip;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -134,7 +130,7 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
                         resarray.getJSONObject(j).getJSONObject("geometry").getJSONObject("location").getDouble("lng"),
                         resarray.getJSONObject(j).getDouble("rating"),
                         resarray.getJSONObject(j).getDouble("price"),
-                        "03 00 00 00 00"
+                        "06 10 29 28 17"
                         /*Pour avoir le N° de téléphone il faut faire une requête détails
                         Nuémro en dur pour l'instant
                          */
