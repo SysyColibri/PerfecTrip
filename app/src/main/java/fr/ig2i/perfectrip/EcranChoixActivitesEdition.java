@@ -4,25 +4,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Switch;
 
 public class EcranChoixActivitesEdition extends AppCompatActivity {
 
     ListView listview;
-    GlobalState gs = new GlobalState();
+    EcranChoixActivitesRecapitulation switchRecapitulation = new EcranChoixActivitesRecapitulation();
     ImageButton add;
     String[] romantiqueAmisFamille = new String[]{"Cadeau", "Repas", "Sortie", "Hébergement", "Autres"};
 
-    protected Switch mSwitchRecapitulation;
-
+    protected Button mButtonAccueil;
+    protected Button mButtonEdition;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_choix_activites_edition);
 
-        mSwitchRecapitulation = (Switch) findViewById(R.id.switchRecapitulation);
+        mButtonAccueil = (Button) findViewById(R.id.buttonAccueil);
+        mButtonEdition = (Button) findViewById(R.id.buttonEdition);
 
         listview = (ListView) findViewById(R.id.listViewActivites);//Récupération de la ListView
 
@@ -35,7 +36,14 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(),gs.typeSortie,Toast.LENGTH_LONG).show();
         //Toast.makeText(getApplicationContext(),gs.typeLocomotion,Toast.LENGTH_LONG).show();
 
-        mSwitchRecapitulation.setOnClickListener(new View.OnClickListener() {
+        mButtonAccueil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EcranChoixActivitesEdition.this, EcranDaccueil.class));
+            }
+        });
+
+        mButtonEdition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EcranChoixActivitesEdition.this, EcranChoixActivitesRecapitulation.class));
@@ -43,32 +51,7 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         });
     }
 
-    /*
-    Verrouillage du switch
-     
-    private void setButtonsEnabledState() {
-        if (moyenDeplacementPieton) {
-            mPieton.setEnabled(false);
-            mVelo.setEnabled(true);
-            mVoiture.setEnabled(true);
-        } else if (moyenDeplacementVelo){
-            mPieton.setEnabled(true);
-            mVelo.setEnabled(false);
-            mVoiture.setEnabled(true);
-        }else if (moyenDeplacementVoiture){
-            mPieton.setEnabled(true);
-            mVelo.setEnabled(true);
-            mVoiture.setEnabled(false);
-        }else {
-            mPieton.setEnabled(true);
-            mVelo.setEnabled(true);
-            mVoiture.setEnabled(true);
-        }
-    }
-    */
-
     /*public void addListenerOnButton() {
-
         add = (ImageButton) findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
 

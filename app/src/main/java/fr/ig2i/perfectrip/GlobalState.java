@@ -1,6 +1,8 @@
 package fr.ig2i.perfectrip;
 
 
+import android.widget.Switch;
+
 public class GlobalState {
     //Ecran de chargement
     public static double latitude;
@@ -14,6 +16,7 @@ public class GlobalState {
     public static String activitesEnCours;
     //public static List<Activite> activites; JE PEUX REMPLACER LIST PAR STRING[] ?
     public static String[] activites = {"Thibault", "Pierre", "Pierre-Hugues", "Guillaume", "Martin", "Sylvain"};
+    public static Switch mSwitchEditionRecapitulation;
 
     //Ecran choix type de lieux
     public static String lieuEnCours;

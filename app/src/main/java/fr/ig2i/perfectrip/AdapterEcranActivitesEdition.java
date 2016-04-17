@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 class AdapterEcranActivitesEdition extends BaseAdapter {
 
     Context context;

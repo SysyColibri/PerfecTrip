@@ -46,7 +46,6 @@
             android:id="@+id/buttonVoiture" />
 
     </LinearLayout>
-    android:orientation="horizontal"
 
     <TextView android:id="@+id/texteTypeSortie"
         android:layout_width="wrap_content"
