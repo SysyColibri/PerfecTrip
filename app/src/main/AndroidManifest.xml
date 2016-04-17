@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -37,9 +39,10 @@
         <activity android:name=".EcranChoixActivitesEdition" />
         <activity android:name=".EcranChoixTypeDeLieu" />
         <activity android:name=".EcranListePossibilites" />
-        <activity android:name=".EcranChoixActivitesRecapitulatif" />
+        <activity android:name=".EcranChoixActivitesRecapitulation" />
         <activity android:name=".APropos" />
         <activity android:name=".Localisation" />
+        <activity android:name=".Call" />
     </application>
 
 </manifest>

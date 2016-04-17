@@ -10,9 +10,32 @@
     android:background="#660000"
     tools:context=".EcranChoixActivitesEdition">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layoutBoutonsEdition">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Accueil"
+            android:id="@+id/buttonAccueil"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Recapitulation"
+            android:id="@+id/buttonEdition"/>
+
+    </LinearLayout>
+
     <TextView android:id="@+id/texteChoixActivites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutBoutonsEdition"
         android:text="Définissons ensemble cette belle sortie."
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF"/>
@@ -32,13 +55,4 @@
             android:background="#FFFFFF"/>
     </LinearLayout>
 
-    <Switch
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="On récapitule?"
-        android:id="@+id/switchRecapitulation"
-        android:layout_below="@+id/layoutActivites"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF"
-        android:gravity="bottom|right" />
 </RelativeLayout>

@@ -6,8 +6,8 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="100px"
-        android:gravity="center_vertical"
+        android:layout_height="50dp"
+        android:gravity="left|center"
         android:textColor="@color/black"
         android:id="@+id/text"/>
 
@@ -34,6 +34,5 @@
         android:scaleType="fitXY"
         android:layout_alignParentRight="true"
         android:focusable="false"/>-->
-
 
 </RelativeLayout>
