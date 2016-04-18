@@ -1,8 +1,15 @@
 package fr.ig2i.perfectrip;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,22 +34,25 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
     private Integer radius;
     private String type;
     private Context ctx;
+    private View ui;
 
     private ProgressDialog pd; //lol
-
-    public AsyncResponse delegate = null;
 
     public interface AsyncResponse {
         void processFinishCallBack(List<Lieu> lieux);
     }
 
-    public PlacesService(Double lat, Double lng, Integer radius, String type, Context ctx) {
+    public AsyncResponse delegate = null;
+
+    public PlacesService(Double lat, Double lng, Integer radius, String type, Context ctx, AsyncResponse asyncResponse) {
         super();
         this.lat = lat;
         this.lng = lng;
         this.radius = radius;
         this.type = type;
         this.ctx = ctx;
+        delegate = asyncResponse;
+        this.ui = ui;
     }
 
     @Override
@@ -65,6 +75,11 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
             e.printStackTrace();
         }
         for(int i=0;i>100000000;i++) {}
+        for(int i=0;i>100000000;i++) {}
+        for(int i=0;i>100000000;i++) {}
+        for(int i=0;i>100000000;i++) {}
+        for(int i=0;i>100000000;i++) {}
+
         return lieux;
     }
 
@@ -72,9 +87,17 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
     protected void onPostExecute(List<Lieu> lieux) {
         super.onPostExecute(lieux);
         pd.dismiss();
+        delegate.processFinishCallBack(lieux);
+        //Faire l'UI ici ?
+        //RelativeLayout comentariEditText = (RelativeLayout) ui.findViewById(R.id.activity_ecran_liste);
+
         for(Lieu l : lieux) {
-            System.out.println(l.getNom());
+            TextView tv=new TextView(ctx);
+            tv.setText(l.getNom());
         }
+        /*for(Lieu l : lieux) {
+            System.out.println(l.getNom());
+        }*/
     }
 
     public String URLBuilder(Double lat, Double lng, Integer radius, String type) {
@@ -117,19 +140,34 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
         JSONObject jsonobj = new JSONObject(json);
         JSONArray resarray = jsonobj.getJSONArray("results");
 
+        Double rating = null;
+        Double price = null;
+
         Lieu l;
         List<Lieu> lieux = new ArrayList<Lieu>();
 
         if (resarray.length() == 0) {
+            //Pas de résultats, cas a prévoir
         } else {
             int len = resarray.length();
             for (int j = 0; j < len; j++) {
+                if(!resarray.getJSONObject(j).has("rating")) {
+                    rating = null;
+                } else {
+                    rating = resarray.getJSONObject(j).getDouble("rating");
+                }
+                if(!resarray.getJSONObject(j).has("price")) {
+                    price = null;
+                } else {
+                    rating = resarray.getJSONObject(j).getDouble("price");
+                }
+
                 l = new Lieu(
                         resarray.getJSONObject(j).getString("name"),
                         resarray.getJSONObject(j).getJSONObject("geometry").getJSONObject("location").getDouble("lat"),
                         resarray.getJSONObject(j).getJSONObject("geometry").getJSONObject("location").getDouble("lng"),
-                        resarray.getJSONObject(j).getDouble("rating"),
-                        resarray.getJSONObject(j).getDouble("price"),
+                        rating,
+                        price,
                         "06 10 29 28 17"
                         /*Pour avoir le N° de téléphone il faut faire une requête détails
                         Nuémro en dur pour l'instant
