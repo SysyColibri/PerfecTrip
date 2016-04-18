@@ -20,8 +20,6 @@ public class Call extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         startActivity(new Intent(Call.this, EcranChoixActivitesRecapitulation.class));
         startCall();
-
-
     }
 
     public void startCall() {

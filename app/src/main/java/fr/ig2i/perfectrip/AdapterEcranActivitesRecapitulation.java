@@ -65,11 +65,9 @@ class AdapterEcranActivitesRecapitulation extends BaseAdapter {
         telephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("DEBUT ACTIVITY CALL 2");
                 gs.corespondantTelephonique = v.getTag().toString();
                 Intent mainIntent = new Intent(context, Call.class);
                 context.startActivity(mainIntent);
-
             }
         });
 /*
