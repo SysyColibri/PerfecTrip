@@ -16,7 +16,6 @@ class AdapterEcranActivitesRecapitulation extends BaseAdapter {
     String[] data;
     GlobalState gs = new GlobalState();
     private static LayoutInflater inflater = null;
-    EcranChoixActivitesRecapitulation call = new EcranChoixActivitesRecapitulation();
 
     public AdapterEcranActivitesRecapitulation(Context context, String[] data) {
         this.context = context;
@@ -60,6 +59,9 @@ class AdapterEcranActivitesRecapitulation extends BaseAdapter {
         //on mets les intitulé de manière automatique
         text.setText(data[position]);
 
+        /*
+        Bouton téléphone
+         */
         ImageView telephone = (ImageView)vi.findViewById(R.id.telephone);
         telephone.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
         telephone.setOnClickListener(new View.OnClickListener() {
@@ -70,20 +72,22 @@ class AdapterEcranActivitesRecapitulation extends BaseAdapter {
                 context.startActivity(mainIntent);
             }
         });
-/*
-        ImageView gps = (ImageView)vi.findViewById(R.id.gps); //Récupération des images '+'
+
+        /*
+        Bouton GPS
+         */
+        ImageView gps = (ImageView)vi.findViewById(R.id.gps); //Récupération des images
         gps.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
+        System.out.println("START GOOGLE MAP ACTIVITY 1");
         gps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gs.activitesEnCours = v.getTag().toString();
-                //Toast.makeText(context, "Ajouter un(e)"+v.getTag().toString(), Toast.LENGTH_SHORT).show();
-                Intent mainIntent = new Intent(context, EcranChoixTypeDeLieu.class);
-                //Sauvegarder le choix de l'utilisateur
+                System.out.println("START GOOGLE MAP ACTIVITY 2");
+                Intent mainIntent = new Intent(context, GoogleMap.class);
                 context.startActivity(mainIntent);
             }
         });
-*/
+
         return vi;
     }
 }

@@ -23,7 +23,6 @@ public class Call extends AppCompatActivity {
     }
 
     public void startCall() {
-        System.out.println("START INTENT");
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + lieu.getNumTel()));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {

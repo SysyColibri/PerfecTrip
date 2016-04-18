@@ -33,11 +33,7 @@
             android:contentDescription="thumbnail"
             android:background="@drawable/gps"
             android:id="@+id/gps"
-            android:scaleType="fitXY"
-            android:layout_alignParentRight="true"
-            android:focusable="false"
-            android:focusableInTouchMode="true"
-            android:clickable="true"/>
+            android:scaleType="fitXY"/>
 
     </LinearLayout>
 
