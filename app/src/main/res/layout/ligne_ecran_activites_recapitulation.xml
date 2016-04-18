@@ -20,28 +20,20 @@
         android:id="@+id/choixTypeDeLieux">
 
         <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:contentDescription="thumbnail"
             android:background="@drawable/telephone"
             android:id="@+id/telephone"
-            android:scaleType="fitXY"
-            android:layout_alignParentRight="true"
-            android:focusable="false"
-            android:focusableInTouchMode="true"
-            android:clickable="true"/>
+            android:scaleType="fitXY"/>
 
         <ImageButton
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:contentDescription="thumbnail"
             android:background="@drawable/gps"
             android:id="@+id/gps"
-            android:scaleType="fitXY"
-            android:layout_alignParentRight="true"
-            android:focusable="false"
-            android:focusableInTouchMode="true"
-            android:clickable="true"/>
+            android:scaleType="fitXY"/>
 
     </LinearLayout>
 

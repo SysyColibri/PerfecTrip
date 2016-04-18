@@ -57,7 +57,7 @@ class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
             public void onClick(View v) {
                 gs.lieuEnCours = v.getTag().toString();//Enregistre le lieu choisit par le user
                 Intent mainIntent = new Intent(context, EcranListePossibilites.class);
-                context.startActivity(mainIntent);//Sauvegarde le choix de l'utilisateur
+                context.startActivity(mainIntent);
             }
         });
 

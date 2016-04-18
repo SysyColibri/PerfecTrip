@@ -43,6 +43,7 @@
         <activity android:name=".APropos" />
         <activity android:name=".Localisation" />
         <activity android:name=".Call" />
+        <activity android:name=".GoogleMap" />
     </application>
 
 </manifest>
