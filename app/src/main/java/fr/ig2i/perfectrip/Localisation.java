@@ -1,8 +1,10 @@
 package fr.ig2i.perfectrip;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +26,8 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
     protected static final String TAG = "location-updates-sample";
     protected static final String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";//Keys for storing activity state in the Bundle
     protected static final String LOCATION_KEY = "location-key";
-    private static final int REQUEST_LOCATION = 1;
+    private static final int REQUEST_LOCATION = 2;
+    Permission permission = new Permission();
 
     protected GoogleApiClient mGoogleApiClient;//Provides the entry point to Google Play services
     protected LocationRequest mLocationRequest;//Stores parameters for requests to the FusedLocationProviderApi
@@ -163,6 +166,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      * SIXIEME ETAPE
      * Runs when a GoogleApiClient object successfully connects.
      */
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onConnected(Bundle connectionHint) {
         System.out.println("---------- 24 ----------");
@@ -180,11 +184,24 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
         // is displayed as the activity is re-created.
         if (mCurrentLocation == null) {
             System.out.println("---------- 25 ----------");
+
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if(shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) == true){
+                    permission.explain();
+                }
+                else{
+                    requestPermissions(new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 2);
+                }
+            }
+
+            /*
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 System.out.println("---------- 26 ----------");
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION);
             }
+            */
+
             System.out.println("mCurrentLocation" +mCurrentLocation);
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             System.out.println("mCurrentLocation" +mCurrentLocation);
@@ -208,6 +225,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      */
     private void updateGlobalState() {
         System.out.println("---------- 16 ----------");
+
         gs.latitude = mCurrentLocation.getLatitude();
         gs.longitude = mCurrentLocation.getLongitude();
     }
@@ -341,5 +359,23 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
         // Refer to the javadoc for ConnectionResult to see what error codes might be returned in
         // onConnectionFailed.
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+    {
+        if(requestCode == 2)
+        {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                updateGlobalState();
+            }
+            else
+            {
+                //expliquer pourquoi nous avons besoin de la permission
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
     }
 }

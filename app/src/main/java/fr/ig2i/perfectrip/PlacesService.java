@@ -36,7 +36,7 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
         void processFinishCallBack(List<Lieu> lieux);
     }
 
-    public PlacesService(Double lat, Double lng, Integer radius, String type, Context ctx) {
+    public PlacesService(Double lat, Double lng, Integer radius, String type, Context ctx, AsyncResponse asyncResponse) {
         super();
         this.lat = lat;
         this.lng = lng;
