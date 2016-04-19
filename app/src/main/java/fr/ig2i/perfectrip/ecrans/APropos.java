@@ -1,7 +1,9 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.ecrans;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import fr.ig2i.perfectrip.R;
 
 public class APropos extends AppCompatActivity {
 

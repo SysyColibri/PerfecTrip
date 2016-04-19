@@ -1,4 +1,4 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-class AdapterEcranActivitesEdition extends BaseAdapter {
+import fr.ig2i.perfectrip.ecrans.EcranChoixTypeDeLieu;
+import fr.ig2i.perfectrip.GlobalState;
+import fr.ig2i.perfectrip.R;
+
+public class AdapterEcranActivitesEdition extends BaseAdapter {
 
     Context context;
     String[] data;

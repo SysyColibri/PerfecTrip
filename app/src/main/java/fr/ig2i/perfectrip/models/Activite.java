@@ -1,7 +1,4 @@
-package fr.ig2i.perfectrip;
-
-import java.util.ArrayList;
-import java.util.List;
+package fr.ig2i.perfectrip.models;
 
 public class Activite {
 

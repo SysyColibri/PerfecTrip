@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
+import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesRecapitulation;
+import fr.ig2i.perfectrip.models.Lieu;
+
 public class Call extends AppCompatActivity {
 
     Lieu lieu = new Lieu();

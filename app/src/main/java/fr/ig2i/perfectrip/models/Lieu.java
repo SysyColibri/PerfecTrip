@@ -1,8 +1,9 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.models;
 
 public class Lieu {
 
     private String nom;
+    private String name;
     private Double latitude;
     private Double longitude;
     private Double note;
@@ -16,6 +17,14 @@ public class Lieu {
         this.longitude = longitude;
         this.latitude = latitude;
         this.numTel = numTel;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Lieu() {}

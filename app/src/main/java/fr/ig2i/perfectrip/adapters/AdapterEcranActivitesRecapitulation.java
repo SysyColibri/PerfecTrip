@@ -1,4 +1,4 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import fr.ig2i.perfectrip.Call;
+import fr.ig2i.perfectrip.GlobalState;
+import fr.ig2i.perfectrip.GoogleMap;
+import fr.ig2i.perfectrip.R;
 
-class AdapterEcranActivitesRecapitulation extends BaseAdapter {
+
+public class AdapterEcranActivitesRecapitulation extends BaseAdapter {
 
     Context context;
     String[] data;

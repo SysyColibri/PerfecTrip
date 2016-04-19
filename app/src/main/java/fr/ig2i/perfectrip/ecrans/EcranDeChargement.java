@@ -1,4 +1,4 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.ecrans;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+
+import fr.ig2i.perfectrip.Localisation;
+import fr.ig2i.perfectrip.R;
 
 public class EcranDeChargement extends Activity {
     private Handler splashHandler = new Handler();

@@ -1,14 +1,25 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.ecrans;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
+
+import fr.ig2i.perfectrip.Data;
+import fr.ig2i.perfectrip.GlobalState;
+import fr.ig2i.perfectrip.PerfectripApp;
+import fr.ig2i.perfectrip.interfaces.Call2;
+import fr.ig2i.perfectrip.models.Lieu;
+import fr.ig2i.perfectrip.PlacesService;
+import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.models.LieuContainer;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EcranListePossibilites extends AppCompatActivity {
 
@@ -20,12 +31,15 @@ public class EcranListePossibilites extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_liste_possibilites);
+
+        chargerLieux();
+       /*
         PlacesService p = new PlacesService(gs.latitude, gs.longitude, data.getRadius(gs.typeLocomotion), gs.typeSortie, this, new PlacesService.AsyncResponse() {
             @Override
             public void processFinishCallBack(List<Lieu> lieux) {
                 // On récupère les données de l'asyntask ici
                 lieuxPossible = lieux;
-                System.out.println("nb lieux process:"+lieuxPossible.size());
+                //System.out.println("nb lieux process:"+lieuxPossible.size());
                 LinearLayout linearLayout = new LinearLayout(getApplicationContext());
                 setContentView(linearLayout);
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -37,7 +51,7 @@ public class EcranListePossibilites extends AppCompatActivity {
                 }
             }
         });
-        p.execute();
+        p.execute();*/
 
         //System.out.println("nb lieux after:"+lieuxPossible.size());
         /*LinearLayout linearLayout = new LinearLayout(this);
@@ -59,5 +73,26 @@ public class EcranListePossibilites extends AppCompatActivity {
         type        : OK - getLieu()
         clef API    : OK - AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U
          */
+    }
+
+    private void chargerLieux(){
+        Call2 service = ((PerfectripApp) getApplicationContext()).getRetrofitService();
+        Call<LieuContainer> call = service.getLieux(gs.latitude+","+gs.longitude, "1000", "food", "AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
+
+        call.enqueue(new Callback<LieuContainer>() {
+            @Override
+            public void onResponse(Call<LieuContainer> call, Response<LieuContainer> response) {
+                Log.i("HELLO", "HELLO");
+                response.body().getResults();
+
+            }
+
+            @Override
+            public void onFailure(Call<LieuContainer> call, Throwable t) {
+                Log.i("HELLO", "HELLO KO");
+            }
+        });
+
+
     }
 }
