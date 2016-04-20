@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tableLayout1"
+<ScrollView android:id="@+id/scrollView1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:shrinkColumns="*"
-    android:stretchColumns="*">
-    <TableRow
-        android:id="@+id/tableRow1"
+    android:layout_height="0dp"
+    android:layout_weight="2"
+    android:fillViewport="true"
+    android:gravity="top"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/test"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-        <TextView
-            android:id="@+id/nom"
-            android:text="Feb 7"
-            android:textStyle="bold"
-            android:typeface="serif"></TextView>
-        <TextView
-            android:id="@+id/prix"
-            android:text="Feb 8"
-            android:textStyle="bold"
-            android:typeface="serif"></TextView>
-        <TextView
-            android:id="@+id/note"
-            android:text="Feb 9"
-            android:textStyle="bold"
-            android:typeface="serif"></TextView>
-    </TableRow>
-</TableLayout>
+        android:orientation="vertical" >
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
+
+</ScrollView>

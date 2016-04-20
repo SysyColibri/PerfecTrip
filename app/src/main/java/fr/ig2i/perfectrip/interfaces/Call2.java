@@ -12,14 +12,3 @@ public interface Call2 {
     @GET("/maps/api/place/nearbysearch/json")
     Call<LieuContainer> getLieux(@Query("location") String latlng, @Query("radius")String radius, @Query("types") String type, @Query("key")String key);
 }
-
-/*"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
-        lat.toString() +
-        "," +
-        lng.toString() +
-        "&radius=" +
-        radius.toString() +
-        "&types=" +
-        type +
-        "&key=" +
-        API_KEY;*/

@@ -12,6 +12,10 @@ public class Activite {
         this.typeActivite = typeActivite;
     }
 
+    public Lieu getLieu() { return lieu; }
+
+    public void setLieu(Lieu lieu) { this.lieu = lieu; }
+
     public String getTypeLieu() {
         return typeLieu;
     }

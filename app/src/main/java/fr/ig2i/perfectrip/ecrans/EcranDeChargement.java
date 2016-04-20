@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 
 import fr.ig2i.perfectrip.Localisation;
+import fr.ig2i.perfectrip.Permission;
 import fr.ig2i.perfectrip.R;
 
 public class EcranDeChargement extends Activity {
@@ -52,10 +53,9 @@ public class EcranDeChargement extends Activity {
             }
         }
 
-        while(shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) == true))
-        {
+        /*while(shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) == true)){
 
-        }
+        }*/
 
 
 

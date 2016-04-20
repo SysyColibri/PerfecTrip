@@ -19,6 +19,7 @@ import java.util.List;
 
 import fr.ig2i.perfectrip.models.Lieu;
 
+
 public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
 
     //Attention : quand on pushera, la clé sera visible publiquement sur Github

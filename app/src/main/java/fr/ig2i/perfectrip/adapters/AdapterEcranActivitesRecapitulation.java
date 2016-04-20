@@ -5,24 +5,30 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import fr.ig2i.perfectrip.Call;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.GoogleMap;
 import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.models.Activite;
 
 
-public class AdapterEcranActivitesRecapitulation extends BaseAdapter {
+public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
 
     Context context;
-    String[] data;
+    ArrayList<Activite> data;
     GlobalState gs = new GlobalState();
     private static LayoutInflater inflater = null;
 
-    public AdapterEcranActivitesRecapitulation(Context context, String[] data) {
+
+    public AdapterEcranActivitesRecapitulation(Context context, ArrayList<Activite> data) {
+        super(context,0,data);
         this.context = context;
         this.data = data;
         //Prend les fichiers xml pour mettre en forme nos Views
@@ -33,13 +39,13 @@ public class AdapterEcranActivitesRecapitulation extends BaseAdapter {
     @Override
     public int getCount() {
         //Permet d'obtenir la taille du tableau de données et donc le nomre d'item de la listview
-        return data.length;
+        return data.size();
     }
 
     @Override
     public Object getItem(int position) {
         //Permet d'obtenir un item de la listview avec son indice passé en paramètre
-        return data[position];
+        return data.get(position);
     }
 
     @Override
@@ -62,13 +68,13 @@ public class AdapterEcranActivitesRecapitulation extends BaseAdapter {
         //Récupération des zones de texte
         TextView text = (TextView) vi.findViewById(R.id.text);
         //on mets les intitulé de manière automatique
-        text.setText(data[position]);
+        text.setText(data.get(position).getLieu().getName());
 
         /*
         Bouton téléphone
          */
         ImageView telephone = (ImageView)vi.findViewById(R.id.telephone);
-        telephone.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
+        telephone.setTag(data.get(position)); //Ajout d'un identifiant unique sur chaque image
         telephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +88,7 @@ public class AdapterEcranActivitesRecapitulation extends BaseAdapter {
         Bouton GPS
          */
         ImageView gps = (ImageView)vi.findViewById(R.id.gps); //Récupération des images
-        gps.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
+        gps.setTag(data.get(position)); //Ajout d'un identifiant unique sur chaque image
         System.out.println("START GOOGLE MAP ACTIVITY 1");
         gps.setOnClickListener(new View.OnClickListener() {
             @Override

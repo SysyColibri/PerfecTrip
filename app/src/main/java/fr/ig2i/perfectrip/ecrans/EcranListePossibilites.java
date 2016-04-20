@@ -1,17 +1,21 @@
 package fr.ig2i.perfectrip.ecrans;
 
+import android.app.ListActivity;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.ig2i.perfectrip.Data;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.PerfectripApp;
+import fr.ig2i.perfectrip.adapters.AdapterEcranListePossibilites;
 import fr.ig2i.perfectrip.interfaces.Call2;
 import fr.ig2i.perfectrip.models.Lieu;
 import fr.ig2i.perfectrip.PlacesService;
@@ -21,48 +25,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EcranListePossibilites extends AppCompatActivity {
+public class EcranListePossibilites extends ListActivity {
 
     Data data = new Data();
     GlobalState gs = new GlobalState();
-    List<Lieu> lieuxPossible;
+    ArrayList<Lieu> lieuxPossible;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ecran_liste_possibilites);
 
         chargerLieux();
-       /*
-        PlacesService p = new PlacesService(gs.latitude, gs.longitude, data.getRadius(gs.typeLocomotion), gs.typeSortie, this, new PlacesService.AsyncResponse() {
-            @Override
-            public void processFinishCallBack(List<Lieu> lieux) {
-                // On récupère les données de l'asyntask ici
-                lieuxPossible = lieux;
-                //System.out.println("nb lieux process:"+lieuxPossible.size());
-                LinearLayout linearLayout = new LinearLayout(getApplicationContext());
-                setContentView(linearLayout);
-                linearLayout.setOrientation(LinearLayout.VERTICAL);
-                for(Lieu l : lieuxPossible) {
-                    TextView textView = new TextView(getApplicationContext());
-                    textView.setText(l.getNom());
-                    textView.setTextColor(Color.parseColor("#000000"));
-                    linearLayout.addView(textView);
-                }
-            }
-        });
-        p.execute();*/
-
-        //System.out.println("nb lieux after:"+lieuxPossible.size());
-        /*LinearLayout linearLayout = new LinearLayout(this);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        for( int i = 0; i < lieuxPossible.size(); i++ )
-        {
-            TextView textView = new TextView(this);
-            textView.setText(lieuxPossible.get(i).getNom());
-            linearLayout.addView(textView);
-        }*/
-
         /*
         EXEMPLE DE REQUETTE API POUR INFO
         FLEURISTE - 1000m - IG2I
@@ -82,13 +56,19 @@ public class EcranListePossibilites extends AppCompatActivity {
         call.enqueue(new Callback<LieuContainer>() {
             @Override
             public void onResponse(Call<LieuContainer> call, Response<LieuContainer> response) {
-                Log.i("HELLO", "HELLO");
-                response.body().getResults();
-
+                lieuxPossible = response.body().getResults();
+                /*for (Lieu l : lieuxPossible) {
+                    Log.i("TEST",l.getName());
+                }*/
+                listView = getListView();
+                AdapterEcranListePossibilites adapter = new AdapterEcranListePossibilites(getApplicationContext(), lieuxPossible);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<LieuContainer> call, Throwable t) {
+                //Si l'appel http a merdé
                 Log.i("HELLO", "HELLO KO");
             }
         });
