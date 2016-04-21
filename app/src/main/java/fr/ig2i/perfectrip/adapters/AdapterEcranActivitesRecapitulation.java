@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,11 +54,6 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
     }
 
     @Override
-
-    //Contient les traitements pour la génération des items
-    /* On n'appellera pas cette méthode, c'est l'adapter qui va l'appeler implicitement quand un item doit etre créé
-       http://stackoverflow.com/questions/10120119/how-does-the-getview-method-work-when-creating-your-own-custom-adapter
- */
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
@@ -69,6 +63,8 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
         TextView text = (TextView) vi.findViewById(R.id.text);
         //on mets les intitulé de manière automatique
         text.setText(data.get(position).getLieu().getName());
+        final Double latitude = data.get(position).getLieu().getLatitude();
+        final String nom = data.get(position).getLieu().getName();
 
         /*
         Bouton téléphone
@@ -93,7 +89,10 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
         gps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("START GOOGLE MAP ACTIVITY 2");
+                //System.out.println("NOM: " +nom);
+                //System.out.println("LATITUDE: " +latitude);
+
+                gs.activitesEnCours = v.getTag().toString();
                 Intent mainIntent = new Intent(context, GoogleMap.class);
                 context.startActivity(mainIntent);
             }

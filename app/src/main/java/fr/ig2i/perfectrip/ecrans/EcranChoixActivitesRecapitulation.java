@@ -30,7 +30,7 @@ public class EcranChoixActivitesRecapitulation extends AppCompatActivity {
         mButtonRecapitulation = (Button) findViewById(R.id.buttonRecapitulation);
 
         listview = (ListView) findViewById(R.id.listViewActivites);//Récupération de la ListView
-        listview.setAdapter(new AdapterEcranActivitesRecapitulation(this, gs.activites2));
+        listview.setAdapter(new AdapterEcranActivitesRecapitulation(this, gs.activites));
 
         mButtonAccueil.setOnClickListener(new View.OnClickListener() {
             @Override

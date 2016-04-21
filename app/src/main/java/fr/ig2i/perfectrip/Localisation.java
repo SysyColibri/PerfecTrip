@@ -20,16 +20,16 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
+
 public class Localisation extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
     protected static final String TAG = "location-updates-sample";
     protected static final String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";
     protected static final String LOCATION_KEY = "location-key";
 
-
-    protected double latitude;
-    protected double longitude;
     protected View mLayout;
     Button mButtonCheckPermission = null;
+    GlobalState gs = new GlobalState();
 
     protected static final int REQUEST_LOCATION = 1;
     protected static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -42,6 +42,8 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_ecran_de_chargement);
 
         System.out.println("---------- 2 ----------");
         buildGoogleApiClient();
@@ -101,16 +103,22 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
             System.out.println("---------- 25 ----------");
             System.out.println("Manifest.permission.ACCESS_FINE_LOCATION: " + Manifest.permission.ACCESS_FINE_LOCATION);
             System.out.println("PackageManager.PERMISSION_GRANTED: " + PackageManager.PERMISSION_GRANTED);
-
-            while(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
             }
         }
 
         System.out.println("mCurrentLocation" + mCurrentLocation);
-
         mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         System.out.println("mCurrentLocation" + mCurrentLocation);
+        updateGlobalState();
     }
 
     /*
@@ -119,8 +127,8 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      */
     public void updateGlobalState() {
         System.out.println("---------- 16 ----------");
-        latitude = mCurrentLocation.getLatitude();
-        longitude = mCurrentLocation.getLongitude();
+        gs.latitude = mCurrentLocation.getLatitude();
+        gs.longitude = mCurrentLocation.getLongitude();
     }
 
     /**

@@ -6,7 +6,6 @@ import android.widget.Switch;
 import java.util.ArrayList;
 
 import fr.ig2i.perfectrip.models.Activite;
-import fr.ig2i.perfectrip.models.Lieu;
 
 public class GlobalState {
     //Ecran de chargement
@@ -20,6 +19,8 @@ public class GlobalState {
     //Ecran choix activités edition
     public static String activitesEnCours;
     public static ArrayList<Activite> activites = new ArrayList<>();
+
+
     //public static String[] activites = {"Thibault", "Pierre", "Pierre-Hugues", "Guillaume", "Martin", "Sylvain"};
     public static Switch mSwitchEditionRecapitulation;
 
@@ -29,6 +30,6 @@ public class GlobalState {
     //Call
     public static String corespondantTelephonique;
 
-    public GlobalState() {//A QUOI CA SERT?
+    public GlobalState() {
     }
 }

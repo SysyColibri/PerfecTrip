@@ -3,40 +3,22 @@ package fr.ig2i.perfectrip.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
-import fr.ig2i.perfectrip.ecrans.EcranChoixTypeDeLieu;
-
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import fr.ig2i.perfectrip.ecrans.EcranChoixTypeDeLieu;
-import fr.ig2i.perfectrip.GlobalState;
-import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.models.Activite;
 import fr.ig2i.perfectrip.models.Lieu;
 
-public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter  {
+public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter  {
 
     Context context;
     ArrayList<Lieu> data = new ArrayList<Lieu>();
