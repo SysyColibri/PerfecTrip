@@ -1,4 +1,4 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.ecrans;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import fr.ig2i.perfectrip.GlobalState;
+import fr.ig2i.perfectrip.R;
 
 public class EcranDaccueil extends AppCompatActivity {
 

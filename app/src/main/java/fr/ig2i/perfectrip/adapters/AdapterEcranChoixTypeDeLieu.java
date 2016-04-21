@@ -1,9 +1,7 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +9,17 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
+import fr.ig2i.perfectrip.ecrans.EcranListePossibilites;
+import fr.ig2i.perfectrip.GlobalState;
+import fr.ig2i.perfectrip.R;
 
 
-class AdapterEcranChoixTypeDeLieu extends BaseAdapter implements GoogleApiClient.ConnectionCallbacks {
+public class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
 
     Context context;
     String[] data;
     private static LayoutInflater inflater = null;
     GlobalState gs = new GlobalState();
-
 
     public AdapterEcranChoixTypeDeLieu(Context context, String[] data) {
         this.context = context;
@@ -60,26 +59,12 @@ class AdapterEcranChoixTypeDeLieu extends BaseAdapter implements GoogleApiClient
         barre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 gs.lieuEnCours = v.getTag().toString();//Enregistre le lieu choisit par le user
                 Intent mainIntent = new Intent(context, EcranListePossibilites.class);
-                Intent secondIntent = new Intent(context, Localisation.class);
-
-                //context.startActivity(secondIntent);
                 context.startActivity(mainIntent);
             }
         });
 
         return vi;
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
     }
 }

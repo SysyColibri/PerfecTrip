@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesRecapitulation;
+
 public class GoogleMap extends AppCompatActivity {
     GlobalState gs = new GlobalState();
 

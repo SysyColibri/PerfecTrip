@@ -1,16 +1,20 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.models;
 
 public class Activite {
 
-    public String typeActivite;
-    public String typeLieu;
-    public Lieu lieu;
+    private String typeActivite;
+    private String typeLieu;
+    private Lieu lieu;
 
     public Activite(String typeLieu, Lieu lieu, String typeActivite) {
         this.typeLieu = typeLieu;
         this.lieu = lieu;
         this.typeActivite = typeActivite;
     }
+
+    public Lieu getLieu() { return lieu; }
+
+    public void setLieu(Lieu lieu) { this.lieu = lieu; }
 
     public String getTypeLieu() {
         return typeLieu;

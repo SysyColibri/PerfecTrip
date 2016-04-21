@@ -1,8 +1,14 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.ecrans;
 
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+
+import fr.ig2i.perfectrip.Data;
+import fr.ig2i.perfectrip.GlobalState;
+import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.adapters.AdapterEcranChoixTypeDeLieu;
 
 public class EcranChoixTypeDeLieu extends AppCompatActivity {
 

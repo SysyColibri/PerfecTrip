@@ -1,4 +1,4 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.ecrans;
 
 import android.app.Activity;
 import android.app.AlertDialog;

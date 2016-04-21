@@ -17,6 +17,9 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.ig2i.perfectrip.models.Lieu;
+
+
 public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
 
     //Attention : quand on pushera, la clé sera visible publiquement sur Github
@@ -31,7 +34,7 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
     private Context ctx;
     private View ui;
 
-    private ProgressDialog pd; //lol
+    private ProgressDialog pd;
 
     public interface AsyncResponse {
         void processFinishCallBack(List<Lieu> lieux);
@@ -54,7 +57,7 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
     protected void onPreExecute() {
         super.onPreExecute();
         pd = new ProgressDialog(ctx);
-        pd.setTitle("Sylvain le plus beau");
+        pd.setTitle("Chargement");
         pd.setMessage("Récupérations des données...");
         pd.show();
     }
@@ -86,10 +89,10 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
         //Faire l'UI ici ?
         //RelativeLayout comentariEditText = (RelativeLayout) ui.findViewById(R.id.activity_ecran_liste);
 
-        for(Lieu l : lieux) {
+        /*for(Lieu l : lieux) {
             TextView tv=new TextView(ctx);
             tv.setText(l.getNom());
-        }
+        }*/
         /*for(Lieu l : lieux) {
             System.out.println(l.getNom());
         }*/
