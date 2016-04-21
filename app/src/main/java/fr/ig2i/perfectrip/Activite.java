@@ -1,13 +1,10 @@
 package fr.ig2i.perfectrip;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Activite {
 
-    private String typeActivite;
-    private String typeLieu;
-    private Lieu lieu;
+    public String typeActivite;
+    public String typeLieu;
+    public Lieu lieu;
 
     public Activite(String typeLieu, Lieu lieu, String typeActivite) {
         this.typeLieu = typeLieu;

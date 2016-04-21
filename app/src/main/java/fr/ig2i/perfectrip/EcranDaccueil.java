@@ -1,6 +1,8 @@
 package fr.ig2i.perfectrip;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,10 +26,12 @@ public class EcranDaccueil extends AppCompatActivity {
 
     protected GlobalState gs;
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_daccueil);
+
         gs = new GlobalState();
         mPieton = (Button) findViewById(R.id.buttonPieton);
         mVelo = (Button) findViewById(R.id.buttonVelo);
@@ -36,6 +40,19 @@ public class EcranDaccueil extends AppCompatActivity {
         mAmis = (Button) findViewById(R.id.buttonAmis);
         mFamille = (Button) findViewById(R.id.buttonFamille);
         mAutres = (Button) findViewById(R.id.buttonAutres);
+
+
+
+        /*
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 2);
+            requestPermissions(new String[] { Manifest.permission.ACCESS_COARSE_LOCATION }, 2);
+            requestPermissions(new String[] { Manifest.permission.CALL_PHONE }, 2);
+        }
+        */
 
         mPieton.setOnClickListener(new View.OnClickListener() {
             @Override

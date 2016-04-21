@@ -3,6 +3,8 @@ package fr.ig2i.perfectrip;
 
 import android.widget.Switch;
 
+import java.util.List;
+
 public class GlobalState {
     //Ecran de chargement
     public static double latitude;
@@ -14,8 +16,10 @@ public class GlobalState {
 
     //Ecran choix activités edition
     public static String activitesEnCours;
-    //public static List<Activite> activites; JE PEUX REMPLACER LIST PAR STRING[] ?
-    public static String[] activites = {"Thibault", "Pierre", "Pierre-Hugues", "Guillaume", "Martin", "Sylvain"};
+
+
+    public static List<Activite> activites;
+    public static String[] activites2 = {"Thibault", "Pierre", "Pierre-Hugues", "Guillaume", "Martin", "Sylvain"};
     public static Switch mSwitchEditionRecapitulation;
 
     //Ecran choix type de lieux
@@ -24,6 +28,14 @@ public class GlobalState {
     //Call
     public static String corespondantTelephonique;
 
-    public GlobalState() {//A QUOI CA SERT?
+    public GlobalState() {
+    }
+
+    public void peuplerTest() {
+        Activite a;
+        a = new Activite("Dijon", new Lieu("nom", 100.0, 3.0, 10.1, 20.1, "06486744242"), "Bucheron");
+        activites.add(a);
+        a = new Activite("Dijon", new Lieu("nom", 100.0, 3.0, 10.1, 20.1, "06486744242"), "Bucheron");
+        activites.add(a);
     }
 }
