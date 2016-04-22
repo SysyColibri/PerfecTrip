@@ -94,6 +94,8 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
             @Override
             public void onClick(View v) {
                 gs.activites.add(new Activite(gs.lieuEnCours,data.get(position),gs.activitesEnCours));
+                Log.i("debug",lieu.getName());
+                Log.i("debug",lieu.getGeometry().getLocation());
                 Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(mainIntent);

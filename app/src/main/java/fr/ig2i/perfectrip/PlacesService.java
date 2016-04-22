@@ -160,7 +160,7 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
                     rating = resarray.getJSONObject(j).getDouble("price");
                 }
 
-                l = new Lieu(
+                /*l = new Lieu(
                         resarray.getJSONObject(j).getString("name"),
                         resarray.getJSONObject(j).getJSONObject("geometry").getJSONObject("location").getDouble("lat"),
                         resarray.getJSONObject(j).getJSONObject("geometry").getJSONObject("location").getDouble("lng"),
@@ -169,10 +169,10 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
                         "06 10 29 28 17"
                         /*Pour avoir le N° de téléphone il faut faire une requête détails
                         Nuémro en dur pour l'instant
-                         */
 
-                );
-                lieux.add(l);
+
+                );*/
+                //lieux.add(l);
             }
         }
         return lieux;

@@ -95,6 +95,7 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
             public void onClick(View v) {
                 System.out.println("START GOOGLE MAP ACTIVITY 2");
                 Intent mainIntent = new Intent(context, GoogleMap.class);
+                //mainIntent.putExtra()
                 context.startActivity(mainIntent);
             }
         });

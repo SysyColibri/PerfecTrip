@@ -2,7 +2,7 @@ package fr.ig2i.perfectrip.models;
 
 class Geometry {
 
-    Location location;
+    private Location location;
 
     public Geometry() {}
 
@@ -55,14 +55,16 @@ public class Lieu {
     private Double note;
     private Double ordrePrix;
     private String numTel;
+    private Geometry geometry;
 
-    public Lieu(String nom, Double ordrePrix, Double note, Double longitude, Double latitude, String numTel) {
+    public Lieu(String nom, Double ordrePrix, Double note, Double longitude, Double latitude, String numTel, Geometry geometry) {
         this.name = nom;
         this.ordrePrix = ordrePrix;
         this.note = note;
         this.longitude = longitude;
         this.latitude = latitude;
         this.numTel = numTel;
+        this.geometry = geometry;
     }
 
 
@@ -72,44 +74,35 @@ public class Lieu {
 
     public Lieu() {}
 
+    public Geometry getGeometry() {return this.geometry;}
     public String getName() {
         return name;
     }
-
     public Double getLatitude() {
         return latitude;
     }
-
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
-
     public Double getLongitude() {
         return longitude;
     }
-
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
-
     public Double getNote() {
         return note;
     }
-
     public void setNote(Double note) {
         this.note = note;
     }
-
     public Double getOrdrePrix() {
         return ordrePrix;
     }
-
     public void setOrdrePrix(Double ordrePrix) {
         this.ordrePrix = ordrePrix;
     }
-
     //public String getNumTel() { return numTel; }
     public String getNumTel() { return "06 10 29 28 17"; }
-
     public void setNumTel(String numTel) { this.numTel = numTel; }
 }
