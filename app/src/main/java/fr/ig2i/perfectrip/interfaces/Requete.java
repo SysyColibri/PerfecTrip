@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 /**
  * Created by 10082892 on 19/04/2016.
  */
-public interface Call2 {
+public interface Requete {
     @GET("/maps/api/place/nearbysearch/json")
     Call<LieuContainer> getLieux(@Query("location") String latlng, @Query("radius")String radius, @Query("types") String type, @Query("key")String key);
 }

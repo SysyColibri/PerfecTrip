@@ -2,14 +2,15 @@ package fr.ig2i.perfectrip;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -19,78 +20,37 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
+
 public class Localisation extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
-    //public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;//The desired interval for location updates. Inexact. Updates may be more or less frequent.
-    //public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
-
     protected static final String TAG = "location-updates-sample";
-    protected static final String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";//Keys for storing activity state in the Bundle
+    protected static final String REQUESTING_LOCATION_UPDATES_KEY = "requesting-location-updates-key";
     protected static final String LOCATION_KEY = "location-key";
-    private static final int REQUEST_LOCATION = 2;
-    Permission permission = new Permission();
 
-    protected GoogleApiClient mGoogleApiClient;//Provides the entry point to Google Play services
-    protected LocationRequest mLocationRequest;//Stores parameters for requests to the FusedLocationProviderApi
-    public Location mCurrentLocation;//Localisation géographique
-    protected Boolean mRequestingLocationUpdates;//Tracks the status of the location updates request. Value changes when the user presses the Start Updates and Stop Updates buttons
+    protected View mLayout;
+    Button mButtonCheckPermission = null;
+    GlobalState gs = new GlobalState();
 
-    protected GlobalState gs;
+    protected static final int REQUEST_LOCATION = 1;
+    protected static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+
+    protected GoogleApiClient mGoogleApiClient;
+    protected LocationRequest mLocationRequest;
+    public android.location.Location mCurrentLocation;
+    protected Boolean mRequestingLocationUpdates;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_ecran_de_chargement);
         super.onCreate(savedInstanceState);
-        mRequestingLocationUpdates = false; //SUPPRESSION?
 
-        // Update values using data stored in the Bundle.
-        System.out.println("---------- 1 ----------");
-        updateValuesFromBundle(savedInstanceState);
+        setContentView(R.layout.activity_ecran_de_chargement);
 
-        // Kick off the process of building a GoogleApiClient and requesting the LocationServices
-        // API.
         System.out.println("---------- 2 ----------");
         buildGoogleApiClient();
     }
 
     /**
-     * PREMIERE ETAPE
-     * Updates fields based on data stored in the bundle.
-     * @param savedInstanceState The activity state saved in the Bundle.
-     */
-    private void updateValuesFromBundle(Bundle savedInstanceState) {
-        System.out.println("---------- 3 ----------" );
-        Log.i(TAG, "Updating values from bundle");
-        /*if (savedInstanceState != null) {
-            System.out.println("---------- 4 ----------");
-            // Update the value of mRequestingLocationUpdates from the Bundle, and make sure that
-            // the Start Updates and Stop Updates buttons are correctly enabled or disabled.
-            if (savedInstanceState.keySet().contains(REQUESTING_LOCATION_UPDATES_KEY)) {
-                System.out.println("---------- 5 ----------");
-                mRequestingLocationUpdates = savedInstanceState.getBoolean(REQUESTING_LOCATION_UPDATES_KEY);
-                setButtonsEnabledState();
-            }
-
-            // Update the value of mCurrentLocation from the Bundle and update the UI to show the
-            // correct latitude and longitude.
-            if (savedInstanceState.keySet().contains(LOCATION_KEY)) {
-                System.out.println("---------- 6 ----------" );
-                // Since LOCATION_KEY was found in the Bundle, we can be sure that mCurrentLocation
-                // is not null.
-                mCurrentLocation = savedInstanceState.getParcelable(LOCATION_KEY);
-            }
-
-            // Update the value of mLastUpdateTime from the Bundle and update the UI.
-            if (savedInstanceState.keySet().contains(LAST_UPDATED_TIME_STRING_KEY)) {
-                System.out.println("---------- 7 ----------" );
-                mLastUpdateTime = savedInstanceState.getString(LAST_UPDATED_TIME_STRING_KEY);
-            }
-            updateUI();
-        }*/
-    }
-
-    /**
      * DEUXIEME ETAPE
-     * Builds a GoogleApiClient. Uses the {@code #addApi} method to request the LocationServices API.
      */
     protected synchronized void buildGoogleApiClient() {
         System.out.println("---------- 8 ----------");
@@ -103,34 +63,12 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
         createLocationRequest();
     }
 
-    /**
+    /*
      * TROISIEME ETAPE
-     * Sets up the location request. Android has two location request settings:
-     * {@code ACCESS_COARSE_LOCATION} and {@code ACCESS_FINE_LOCATION}. These settings control
-     * the accuracy of the current location. This sample uses ACCESS_FINE_LOCATION, as defined in the AndroidManifest.xml.
-     * <p/>
-     * When the ACCESS_FINE_LOCATION setting is specified, combined with a fast update
-     * interval (5 seconds), the Fused Location Provider API returns location updates that are accurate to within a few feet.
-     * <p/>
-     * These settings are appropriate for mapping applications that show real-time location updates.
      */
     protected void createLocationRequest() {
         System.out.println("---------- 9 ----------");
         mLocationRequest = new LocationRequest();
-
-        /* SUPPRESSION?
-        // Sets the desired interval for active location updates. This interval is
-        // inexact. You may not receive updates at all if no location sources are available, or
-        // you may receive them slower than requested. You may also receive updates faster than
-        // requested if other applications are requesting location at a faster interval.
-        mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
-
-        // Sets the fastest rate for active location updates. This interval is exact, and your
-        // application will never receive updates faster than this value.
-        mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
-
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        */
     }
 
     /*
@@ -150,82 +88,45 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
     public void onResume() {
         System.out.println("---------- 19 ----------");
         super.onResume();
-        // Within {@code onPause()}, we pause location updates, but leave the
-        // connection to GoogleApiClient intact.  Here, we resume receiving
-        // location updates if the user has requested them.
-
-        /* SUPPRESSION?
-        if (mGoogleApiClient.isConnected() && mRequestingLocationUpdates) {
-            System.out.println("---------- 20 ----------");
-            startLocationUpdates();
-        }
-        */
     }
 
-    /**
+    /*
      * SIXIEME ETAPE
-     * Runs when a GoogleApiClient object successfully connects.
      */
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onConnected(Bundle connectionHint) {
+
         System.out.println("---------- 24 ----------");
         Log.i(TAG, "Connected to GoogleApiClient");
-
-        // If the initial location was never previously requested, we use
-        // FusedLocationApi.getLastLocation() to get it. If it was previously requested, we store
-        // its value in the Bundle and check for it in onCreate(). We
-        // do not request it again unless the user specifically requests location updates by pressing
-        // the Start Updates button.
-        //
-        // Because we cache the value of the initial location in the Bundle, it means that if the
-        // user launches the activity,
-        // moves to a new location, and then changes the device orientation, the original location
-        // is displayed as the activity is re-created.
         if (mCurrentLocation == null) {
             System.out.println("---------- 25 ----------");
-
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                if(shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) == true){
-                    permission.explain();
-                }
-                else{
-                    requestPermissions(new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 2);
-                }
-            }
-
-            /*
+            System.out.println("Manifest.permission.ACCESS_FINE_LOCATION: " + Manifest.permission.ACCESS_FINE_LOCATION);
+            System.out.println("PackageManager.PERMISSION_GRANTED: " + PackageManager.PERMISSION_GRANTED);
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                System.out.println("---------- 26 ----------");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_LOCATION);
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
             }
-            */
-
-            System.out.println("mCurrentLocation" +mCurrentLocation);
-            mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            System.out.println("mCurrentLocation" +mCurrentLocation);
-            updateGlobalState();
         }
 
-        /* SUPPRESSION?
-        // If the user presses the Start Updates button before GoogleApiClient connects, we set
-        // mRequestingLocationUpdates to true (see startUpdatesButtonHandler()). Here, we check
-        // the value of mRequestingLocationUpdates and if it is true, we start location updates.
-        if (mRequestingLocationUpdates) {
-            System.out.println("---------- 27 ----------");
-            startLocationUpdates();
-        }
-        */
+        System.out.println("mCurrentLocation" + mCurrentLocation);
+        mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        System.out.println("mCurrentLocation" + mCurrentLocation);
+        updateGlobalState();
     }
 
     /*
     SEPTIEME ETAPE
     ONZIEME ETAPE
      */
-    private void updateGlobalState() {
+    public void updateGlobalState() {
         System.out.println("---------- 16 ----------");
-
         gs.latitude = mCurrentLocation.getLatitude();
         gs.longitude = mCurrentLocation.getLongitude();
     }
@@ -235,7 +136,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      * Handles the Start Updates button and requests start of location updates. Does nothing if updates have already been requested.
      */
     public void startUpdates(View view) {
-        System.out.println("---------- 10 ----------" );
+        System.out.println("---------- 10 ----------");
         if (!mRequestingLocationUpdates) {
             System.out.println("---------- 11 ----------");
             mRequestingLocationUpdates = true;
@@ -247,21 +148,27 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      * NEUVIEME ETAPE
      * Requests location updates from the FusedLocationApi.
      */
+    @TargetApi(Build.VERSION_CODES.M)
     protected void startLocationUpdates() {
         System.out.println("---------- 14 ----------");
-        // The final argument to {@code requestLocationUpdates()} is a LocationListener
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            System.out.println("---------- 15 ----------" );
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+        System.out.println("Manifest.permission.ACCESS_FINE_LOCATION: " + Manifest.permission.ACCESS_FINE_LOCATION);
+        System.out.println("PackageManager.PERMISSION_GRANTED: " + PackageManager.PERMISSION_GRANTED);
+
+        /*
+        while(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
         }
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        */
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        }
+        else{
+            startActivity(new Intent(Localisation.this, EcranChoixActivitesEdition.class));
+            ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
+        }
+
     }
 
     /**
@@ -269,7 +176,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      * Callback that fires when the location changes.
      */
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(android.location.Location location) {
         System.out.println("---------- 28 ----------");
         mCurrentLocation = location;
         System.out.println("mCurrentLocation: " +mCurrentLocation);
@@ -325,7 +232,7 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
      */
     public void onSaveInstanceState(Bundle savedInstanceState) {
         System.out.println("---------- 31 ----------");
-        savedInstanceState.putBoolean(REQUESTING_LOCATION_UPDATES_KEY, mRequestingLocationUpdates);
+        //savedInstanceState.putBoolean(REQUESTING_LOCATION_UPDATES_KEY, mRequestingLocationUpdates);
         savedInstanceState.putParcelable(LOCATION_KEY, mCurrentLocation);
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -360,22 +267,53 @@ public class Localisation extends AppCompatActivity implements ConnectionCallbac
         // onConnectionFailed.
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
-    {
-        if(requestCode == 2)
-        {
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            {
-                updateGlobalState();
-            }
-            else
-            {
-                //expliquer pourquoi nous avons besoin de la permission
-            }
+/*
+    public void requestLocationPermissions() {
+        boolean requestPermission = Permission.requestPermissions(this);
+        if (requestPermission == true){
+            Log.i(TAG,
+                    "Displaying contacts permission rationale to provide additional context.");
+            // Display a SnackBar with an explanation and a button to trigger the request.
+            Snackbar.make(mLayout, "R.string.permission_contacts_rationale",
+                    Snackbar.LENGTH_INDEFINITE)
+                    .setAction("ok", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ActivityCompat
+                                    .requestPermissions(Localisation.this, mPermission,
+                                            REQUEST_PERMISSION);
+                        }
+                    })
+                    .show();
         }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        else {
+            ActivityCompat.requestPermissions(this, mPermission, REQUEST_PERMISSION);
+        }
+    }*/
+/*
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
 
-    }
+        if (requestCode == REQUEST_PERMISSION) {
+            Log.i(TAG, "Received response for contact permissions request.");
+
+            // We have requested multiple permissions for contacts, so all of them need to be
+            // checked.
+            if (Permission.verifyPermissions(grantResults)) {
+                // All required permissions have been granted, display contacts fragment.
+                Snackbar.make(mLayout, "R.string.permision_available_contacts",
+                        Snackbar.LENGTH_LONG)
+                        .show();
+            } else {
+                Log.i(TAG, "Contacts permissions were NOT granted.");
+                Snackbar.make(mLayout, "R.string.permissions_not_granted",
+                        Snackbar.LENGTH_LONG)
+                        .show();
+            }
+
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }*/
 }

@@ -2,7 +2,7 @@ package fr.ig2i.perfectrip;
 
 import android.app.Application;
 
-import fr.ig2i.perfectrip.interfaces.Call2;
+import fr.ig2i.perfectrip.interfaces.Requete;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PerfectripApp extends Application{
 
-    Call2 service;
+    Requete service;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -20,10 +20,10 @@ public class PerfectripApp extends Application{
                 .baseUrl("https://maps.googleapis.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        service = retrofit.create(Call2.class);
+        service = retrofit.create(Requete.class);
     }
 
-    public Call2 getRetrofitService() {
+    public Requete getRetrofitService() {
         return service;
     }
 

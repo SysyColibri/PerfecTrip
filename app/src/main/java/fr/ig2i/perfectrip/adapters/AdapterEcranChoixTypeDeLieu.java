@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import fr.ig2i.perfectrip.Localisation;
 import fr.ig2i.perfectrip.ecrans.EcranListePossibilites;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
@@ -20,6 +21,7 @@ public class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
     String[] data;
     private static LayoutInflater inflater = null;
     GlobalState gs = new GlobalState();
+    Localisation local = new Localisation();
 
     public AdapterEcranChoixTypeDeLieu(Context context, String[] data) {
         this.context = context;
@@ -62,6 +64,7 @@ public class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
                 gs.lieuEnCours = v.getTag().toString();//Enregistre le lieu choisit par le user
                 Intent mainIntent = new Intent(context, EcranListePossibilites.class);
                 context.startActivity(mainIntent);
+                System.out.println("START ECRAN LISTE POSSIBILITES");
             }
         });
 

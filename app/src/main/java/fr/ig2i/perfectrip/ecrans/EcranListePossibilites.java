@@ -1,25 +1,18 @@
 package fr.ig2i.perfectrip.ecrans;
 
 import android.app.ListActivity;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import fr.ig2i.perfectrip.Data;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.PerfectripApp;
 import fr.ig2i.perfectrip.adapters.AdapterEcranListePossibilites;
-import fr.ig2i.perfectrip.interfaces.Call2;
+import fr.ig2i.perfectrip.interfaces.Requete;
 import fr.ig2i.perfectrip.models.Lieu;
-import fr.ig2i.perfectrip.PlacesService;
-import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.models.LieuContainer;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,8 +43,9 @@ public class EcranListePossibilites extends ListActivity {
     }
 
     private void chargerLieux(){
-        Call2 service = ((PerfectripApp) getApplicationContext()).getRetrofitService();
-        Call<LieuContainer> call = service.getLieux(gs.latitude+","+gs.longitude, "1000", "food", "AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
+        Requete service = ((PerfectripApp) getApplicationContext()).getRetrofitService();
+        System.out.println("Latitude: " +gs.latitude+ " - Longitude: " +gs.longitude);
+        Call<LieuContainer> call = service.getLieux(gs.latitude+","+gs.longitude, "10000", "food", "AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
 
         call.enqueue(new Callback<LieuContainer>() {
             @Override
