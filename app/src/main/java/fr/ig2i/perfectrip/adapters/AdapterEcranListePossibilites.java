@@ -57,7 +57,7 @@ public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> impleme
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_ecran_liste_possibilites, parent, false);
-        }
+        }//THIBAUUUUUUUUUUUUULT
 
         TextView tvName = (TextView)convertView.findViewById(R.id.nom);
         TextView tvNote = (TextView)convertView.findViewById(R.id.note);
