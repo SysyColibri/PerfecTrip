@@ -3,7 +3,6 @@ package fr.ig2i.perfectrip.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,16 +59,16 @@ public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> impleme
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_ecran_liste_possibilites, parent, false);
         }
 
-        TextView tvName = (TextView) convertView.findViewById(R.id.nom);
-        TextView tvNote = (TextView) convertView.findViewById(R.id.note);
-        TextView tvPrix = (TextView) convertView.findViewById(R.id.prix);
+        TextView tvName = (TextView)convertView.findViewById(R.id.nom);
+        TextView tvNote = (TextView)convertView.findViewById(R.id.note);
+        TextView tvPrix = (TextView)convertView.findViewById(R.id.prix);
 
         tvName.setText(lieu.getName());
-        if(lieu.getNote() != null) {
-            tvNote.setText(lieu.getNote().toString());
+        if(lieu.getRating() != null) {
+            tvNote.setText(lieu.getRating().toString());
         }
-        if(lieu.getOrdrePrix() != null) {
-            tvPrix.setText(lieu.getOrdrePrix().toString());
+        if(lieu.getPriceLevel() != null) {
+            tvPrix.setText(lieu.getPriceLevel().toString());
         }
 
         tvName.setOnClickListener(new View.OnClickListener() {
@@ -77,16 +76,13 @@ public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> impleme
             @Override
             public void onClick(View v) {
                 gs.activites.add(new Activite(gs.lieuEnCours,data.get(position),gs.activitesEnCours));
-                Log.i("debug",lieu.getName());
-                Log.i("debug",lieu.getGeometry().getLocation());
                 Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(mainIntent);
             }
         });
 
-        // Return the completed view to render on screen
+        // Return the completed view to render on screen*/
         return convertView;
     }
 }
-
