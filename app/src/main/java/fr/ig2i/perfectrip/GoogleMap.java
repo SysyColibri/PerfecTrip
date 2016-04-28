@@ -20,8 +20,6 @@ public class GoogleMap extends AppCompatActivity {
         }
 
     public void startGoogleMap() {
-        //String url = "https://www.google.fr/maps/dir/" +gs.latitude+ "," +gs.longitude+"/47.1827615,5.0622634/";
-        //gs.activites
         Bundle extras = getIntent().getExtras();
         Integer id = extras.getInt("ID");
         Log.i("ID",id.toString());

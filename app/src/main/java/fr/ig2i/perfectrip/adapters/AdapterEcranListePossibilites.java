@@ -57,17 +57,17 @@ public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> impleme
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_ecran_liste_possibilites, parent, false);
-        }//THIBAUUUUUUUUUUUUULT
+        }
 
-        TextView tvName = (TextView)convertView.findViewById(R.id.nom);
-        TextView tvNote = (TextView)convertView.findViewById(R.id.note);
-        TextView tvPrix = (TextView)convertView.findViewById(R.id.prix);
+        TextView tvName = (TextView) convertView.findViewById(R.id.nom);
+        TextView tvNote = (TextView) convertView.findViewById(R.id.note);
+        TextView tvPrix = (TextView) convertView.findViewById(R.id.prix);
 
         tvName.setText(lieu.getName());
-        if(lieu.getRating() != null) {
+        if (lieu.getRating() != null) {
             tvNote.setText(lieu.getRating().toString());
         }
-        if(lieu.getPriceLevel() != null) {
+        if (lieu.getPriceLevel() != null) {
             tvPrix.setText(lieu.getPriceLevel().toString());
         }
 
@@ -75,14 +75,13 @@ public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> impleme
 
             @Override
             public void onClick(View v) {
-                gs.activites.add(new Activite(gs.lieuEnCours,data.get(position),gs.activitesEnCours));
+                gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
                 Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(mainIntent);
             }
         });
 
-        // Return the completed view to render on screen*/
         return convertView;
     }
 }

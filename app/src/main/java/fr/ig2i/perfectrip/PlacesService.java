@@ -170,8 +170,8 @@ public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
                         Nuémro en dur pour l'instant
 
 
-                );*/
-                //lieux.add(l);
+                );
+                lieux.add(l);*/
             }
         }
         return lieux;

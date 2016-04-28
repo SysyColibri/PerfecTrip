@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import fr.ig2i.perfectrip.Call;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.GoogleMap;
 import fr.ig2i.perfectrip.R;
@@ -49,12 +49,12 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
+
         return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
         if (vi == null)
@@ -63,8 +63,8 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
         TextView text = (TextView) vi.findViewById(R.id.text);
         //on mets les intitulé de manière automatique
         text.setText(data.get(position).getLieu().getName());
-        final Double latitude = data.get(position).getLieu().getLatitude();
-        final String nom = data.get(position).getLieu().getName();
+        //final Double latitude = data.get(position).getLieu().getLatitude();
+        //final String nom = data.get(position).getLieu().getName();
 
         /*
         Bouton téléphone
@@ -75,8 +75,12 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 gs.corespondantTelephonique = v.getTag().toString();
-                Intent mainIntent = new Intent(context, Call.class);
-                context.startActivity(mainIntent);
+                /* Remettre le lancement de Call.java quand les numéros de téléphone
+                seront fonctionnels
+                 */
+                //Intent mainIntent = new Intent(context, Call.class);
+                //context.startActivity(mainIntent);
+                Toast.makeText(v.getContext(),"En cours d'implémentation.",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -94,7 +98,8 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
 
                 gs.activitesEnCours = v.getTag().toString();
                 Intent mainIntent = new Intent(context, GoogleMap.class);
-                //mainIntent.putExtra()
+                mainIntent.putExtra("ID",position);
+                //mainIntent.putExtra("tag",v.getTag().toString());
                 context.startActivity(mainIntent);
             }
         });

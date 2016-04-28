@@ -495,8 +495,8 @@ public class Data {
         return lieuRequetteApi;
     }
 
-    int rayon;
-    public int getRadius(String typeLocomotion){
+    Integer rayon;
+    public Integer getRadius(String typeLocomotion){
         switch (typeLocomotion){
             case "pieton":
                 rayon = 2500;

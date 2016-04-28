@@ -36,9 +36,6 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         */
         listview.setAdapter(new AdapterEcranActivitesEdition(this, romantiqueAmisFamille));
 
-        //Toast.makeText(getApplicationContext(),gs.typeSortie,Toast.LENGTH_LONG).show();
-        //Toast.makeText(getApplicationContext(),gs.typeLocomotion,Toast.LENGTH_LONG).show();
-
         mButtonAccueil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,15 +50,4 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
             }
         });
     }
-
-    /*public void addListenerOnButton() {
-        add = (ImageButton) findViewById(R.id.add);
-        add.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                Toast.makeText(getApplicationContext(),"t'as cliqué ptdr",Toast.LENGTH_LONG).show();
-            }
-        });
-    }*/
 }

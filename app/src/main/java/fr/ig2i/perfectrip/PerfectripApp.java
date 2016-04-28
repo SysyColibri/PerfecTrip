@@ -6,9 +6,7 @@ import fr.ig2i.perfectrip.interfaces.Requete;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by 10082892 on 19/04/2016.
- */
+
 public class PerfectripApp extends Application{
 
     Requete service;

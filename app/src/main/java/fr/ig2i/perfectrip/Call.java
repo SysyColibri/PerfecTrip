@@ -16,8 +16,6 @@ public class Call extends AppCompatActivity {
     Lieu lieu = new Lieu();
     private static final int REQUEST_CALL = 1;
 
-    //1 On trouve le numero du coorespondant
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
