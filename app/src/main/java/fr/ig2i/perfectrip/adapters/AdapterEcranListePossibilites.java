@@ -3,6 +3,7 @@ package fr.ig2i.perfectrip.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import fr.ig2i.perfectrip.GlobalState;
+import fr.ig2i.perfectrip.PerfectripApp;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
+import fr.ig2i.perfectrip.interfaces.Requete;
 import fr.ig2i.perfectrip.models.Activite;
-import fr.ig2i.perfectrip.models.Lieu;
+import fr.ig2i.perfectrip.models.DetailsContainer;
+import fr.ig2i.perfectrip.models.lieu.Lieu;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter  {
+public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter  {
 
     Context context;
     ArrayList<Lieu> data = new ArrayList<Lieu>();
@@ -46,6 +53,17 @@ public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> impleme
         return position;
     }
 
+    /*@Override
+    //Activer ou non un item de la liste (cliquable)
+    public boolean isEnabled(int position) {
+        if(getItem(position).getOpeningHours().getOpenNow() == false) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }*/
+
     @Override
     /*
     Contient les traitements pour la génération des items
@@ -57,6 +75,12 @@ public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> impleme
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_ecran_liste_possibilites, parent, false);
+        }
+
+        if(lieu.getOpeningHours() != null) {
+            if(lieu.getOpeningHours().getOpenNow() == false) {
+                convertView.setBackgroundColor(Color.GRAY);
+            }
         }
 
         TextView tvName = (TextView) convertView.findViewById(R.id.nom);
@@ -72,9 +96,23 @@ public class    AdapterEcranListePossibilites extends ArrayAdapter<Lieu> impleme
         }
 
         tvName.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+                Requete service = ((PerfectripApp) context).getRetrofitService();
+                //Lancer la requete pour le numéro de téléphone
+                Call<DetailsContainer> call = service.getDetails(lieu.getPlaceId(),"AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
+                call.enqueue(new Callback<DetailsContainer>() {
+
+                    @Override
+                    public void onResponse(Call<DetailsContainer> call, Response<DetailsContainer> response) {
+                        //List<Details> details = response.body().getResults();
+                    }
+
+                    @Override
+                    public void onFailure(Call<DetailsContainer> call, Throwable t) {
+
+                    }
+                });
                 gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
                 Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

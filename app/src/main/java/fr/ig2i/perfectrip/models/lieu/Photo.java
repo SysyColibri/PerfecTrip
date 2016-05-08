@@ -1,4 +1,4 @@
-package fr.ig2i.perfectrip.models;
+package fr.ig2i.perfectrip.models.lieu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
