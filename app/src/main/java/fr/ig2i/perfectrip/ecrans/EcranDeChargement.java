@@ -21,6 +21,7 @@ public class EcranDeChargement extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ecran_de_chargement);
 
         Runnable r = new Runnable(){
             public void run(){
@@ -29,8 +30,6 @@ public class EcranDeChargement extends Activity {
                 finish();
             }
         };
-        setContentView(R.layout.activity_ecran_de_chargement);
-
 
         if(!isOnline(this)) {
             new EcranAlerte(this, "Pas de réseau",
