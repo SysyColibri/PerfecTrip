@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -19,11 +20,7 @@ import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
 import fr.ig2i.perfectrip.interfaces.Requete;
 import fr.ig2i.perfectrip.models.Activite;
-import fr.ig2i.perfectrip.models.DetailsContainer;
 import fr.ig2i.perfectrip.models.lieu.Lieu;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter  {
 
@@ -79,7 +76,7 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
 
         if(lieu.getOpeningHours() != null) {
             if(lieu.getOpeningHours().getOpenNow() == false) {
-                convertView.setBackgroundColor(Color.GRAY);
+                convertView.setBackgroundColor(Color.LTGRAY);
             }
         }
 
@@ -95,12 +92,32 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
             tvPrix.setText(lieu.getPriceLevel().toString());
         }
 
-        tvName.setOnClickListener(new View.OnClickListener() {
+        LinearLayout barre = (LinearLayout) convertView.findViewById(R.id.ecranListePossibilites); //Récupération des images
+        barre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*if(lieu.getOpeningHours().getOpenNow()==false) {
+                    new EcranAlerte((EcranListePossibilites)context, "Attention",
+                            "Vous êtes en dehors des heures d'ouvertures.",
+                            "Continuer",
+                            "Annuler",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            },
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                }*/
+
                 Requete service = ((PerfectripApp) context).getRetrofitService();
                 //Lancer la requete pour le numéro de téléphone
-                Call<DetailsContainer> call = service.getDetails(lieu.getPlaceId(),"AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
+                /*Call<DetailsContainer> call = service.getDetails(lieu.getPlaceId(),"AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
                 call.enqueue(new Callback<DetailsContainer>() {
 
                     @Override
@@ -112,7 +129,7 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                     public void onFailure(Call<DetailsContainer> call, Throwable t) {
 
                     }
-                });
+                });*/
                 gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
                 Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

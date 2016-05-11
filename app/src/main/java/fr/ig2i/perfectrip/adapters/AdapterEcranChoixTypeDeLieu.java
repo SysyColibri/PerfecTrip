@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import fr.ig2i.perfectrip.GlobalState;
-import fr.ig2i.perfectrip.Localisation;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranListePossibilites;
 
@@ -21,7 +20,6 @@ public class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
     String[] data;
     private static LayoutInflater inflater = null;
     GlobalState gs = new GlobalState();
-    Localisation local = new Localisation();
 
     public AdapterEcranChoixTypeDeLieu(Context context, String[] data) {
         this.context = context;

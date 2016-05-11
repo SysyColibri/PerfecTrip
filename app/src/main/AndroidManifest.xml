@@ -42,7 +42,6 @@
         <activity android:name=".ecrans.EcranListePossibilites" />
         <activity android:name=".ecrans.EcranChoixActivitesRecapitulation" />
         <activity android:name=".ecrans.APropos" />
-        <activity android:name=".Localisation" />
         <activity android:name=".Call" />
         <activity android:name=".GoogleMap" />
     </application>

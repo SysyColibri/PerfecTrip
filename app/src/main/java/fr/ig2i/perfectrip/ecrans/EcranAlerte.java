@@ -9,29 +9,22 @@ public class EcranAlerte extends AppCompatActivity {
 
     public Activity activity;
 
-    public EcranAlerte(final Activity activity, String title, String message, String textButton, DialogInterface.OnClickListener listener) {
+    public EcranAlerte(final Activity activity, String title, String message, String textPositif, DialogInterface.OnClickListener listenerPositif) {
         this.activity = activity;
         AlertDialog LDialog = new AlertDialog.Builder(this.activity)
                 .setTitle(title)
                 .setMessage(message)
-                .setPositiveButton(textButton, listener).create();
+                .setPositiveButton(textPositif, listenerPositif).create();
         LDialog.show();
     }
 
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ecran_pas_de_reseau);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }*/
+    public EcranAlerte(final Activity activity, String title, String message, String textPositif, String textNegatif, DialogInterface.OnClickListener listenerPositif, DialogInterface.OnClickListener listenerNegatif) {
+        this.activity = activity;
+        AlertDialog LDialog = new AlertDialog.Builder(this.activity)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(textPositif, listenerPositif)
+                .setNegativeButton(textNegatif, listenerNegatif).create();
+        LDialog.show();
+    }
 }

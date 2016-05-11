@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="right|center"
+        android:paddingLeft="5dp"
         android:id="@+id/choixTypeDeLieux">
 
         <ImageButton

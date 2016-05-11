@@ -6,12 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import fr.ig2i.perfectrip.ecrans.EcranChoixTypeDeLieu;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.ecrans.EcranChoixTypeDeLieu;
 
 public class AdapterEcranActivitesEdition extends BaseAdapter {
 
@@ -61,6 +61,20 @@ public class AdapterEcranActivitesEdition extends BaseAdapter {
         //on mets les intitulé de manière automatique
         text.setText(data[position]);
 
+        LinearLayout barre = (LinearLayout) vi.findViewById(R.id.ecranActiviteEdition); //Récupération des images
+        barre.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
+        barre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("DEBUT ACTIVITY TYPE DE LIEU");
+                gs.activitesEnCours = v.getTag().toString();
+                Intent mainIntent = new Intent(context, EcranChoixTypeDeLieu.class);
+                context.startActivity(mainIntent);
+            }
+        });
+        return vi;
+
+        /*
         ImageView add = (ImageView)vi.findViewById(R.id.add); //Récupération des images '+'
         add.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
         add.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +82,11 @@ public class AdapterEcranActivitesEdition extends BaseAdapter {
             public void onClick(View v) {
                 System.out.println("DEBUT ACTIVITY TYPE DE LIEU");
                 gs.activitesEnCours = v.getTag().toString();
-                //Toast.makeText(context, "Ajouter un(e)"+v.getTag().toString(), Toast.LENGTH_SHORT).show();
                 Intent mainIntent = new Intent(context, EcranChoixTypeDeLieu.class);
                 context.startActivity(mainIntent);
             }
         });
         return vi;
+        */
     }
 }

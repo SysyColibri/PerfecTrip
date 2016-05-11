@@ -10,7 +10,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
-import fr.ig2i.perfectrip.Localisation;
 import fr.ig2i.perfectrip.R;
 
 public class EcranDeChargement extends Activity {
@@ -55,7 +54,6 @@ public class EcranDeChargement extends Activity {
         }
         else {
             splashHandler.postDelayed(r, 2000);
-            startActivity(new Intent(EcranDeChargement.this, Localisation.class));
         }
     }
 
