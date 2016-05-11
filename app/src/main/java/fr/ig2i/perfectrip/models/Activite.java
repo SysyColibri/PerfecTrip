@@ -1,5 +1,7 @@
 package fr.ig2i.perfectrip.models;
 
+import fr.ig2i.perfectrip.models.lieu.Lieu;
+
 public class Activite {
 
     private String typeActivite;

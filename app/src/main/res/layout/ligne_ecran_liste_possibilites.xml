@@ -2,12 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+
+    <!--<TextView android:layout_marginLeft="5dp"
+        android:id="@+id/list_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_text_size"
+        android:singleLine="true"
+        android:fontFamily="sans-serif-light"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/title"/>-->
+
     <TextView
         android:id="@+id/nom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dip"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:paddingLeft="5dp"
+        android:textSize="20dip"
+        android:textStyle="bold"
+        android:paddingLeft="10dp"
         android:textColor="@color/black">
     </TextView>
 
@@ -15,9 +28,10 @@
         android:id="@+id/note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/label"
-        android:textSize="12sp"
-        android:paddingLeft="5dp"
+        android:layout_below="@id/nom"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:paddingLeft="15dp"
         android:textColor="@color/black"
         >
     </TextView>
@@ -25,7 +39,7 @@
         android:id="@+id/prix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/label"
+        android:layout_below="@id/note"
         android:textSize="12sp"
         android:paddingLeft="5dp"
         android:textColor="@color/black"

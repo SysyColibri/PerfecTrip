@@ -1,30 +1,30 @@
-package fr.ig2i.perfectrip.models;
+package fr.ig2i.perfectrip.models.lieu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OpeningHours {
+public class opening_hours {
 
-    private Boolean openNow;
+    private Boolean open_now;
     private List<Object> weekdayText = new ArrayList<Object>();
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public OpeningHours() {}
+    public opening_hours() {}
 
-    public OpeningHours(Boolean openNow, Map<String, Object> additionalProperties, List<Object> weekdayText) {
-        this.openNow = openNow;
+    public opening_hours(Boolean openNow, Map<String, Object> additionalProperties, List<Object> weekdayText) {
+        this.open_now = openNow;
         this.additionalProperties = additionalProperties;
         this.weekdayText = weekdayText;
     }
 
     public Boolean getOpenNow() {
-        return openNow;
+        return open_now;
     }
 
     public void setOpenNow(Boolean openNow) {
-        this.openNow = openNow;
+        this.open_now = openNow;
     }
 
     public List<Object> getWeekdayText() {

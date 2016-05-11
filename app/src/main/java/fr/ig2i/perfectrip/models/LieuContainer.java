@@ -1,9 +1,8 @@
 package fr.ig2i.perfectrip.models;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import fr.ig2i.perfectrip.models.Lieu;
+import fr.ig2i.perfectrip.models.lieu.Lieu;
 
 public class LieuContainer {
     private ArrayList<Lieu> results;

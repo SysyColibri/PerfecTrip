@@ -1,4 +1,4 @@
-package fr.ig2i.perfectrip.models;
+package fr.ig2i.perfectrip.models.lieu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,14 @@ public class Lieu {
     private String scope;
     private List<String> types = new ArrayList<String>();
     private String vicinity;
-    private OpeningHours openingHours;
+    private fr.ig2i.perfectrip.models.lieu.opening_hours opening_hours;
     private Double rating;
     private Integer priceLevel;
     private String numTel = "0648674242";
 
     public Lieu() {}
 
-    public Lieu(Geometry geometry, String id, String icon, String name, List<Photo> photos, String placeId, String reference, String scope, String vicinity, OpeningHours openingHours, List<String> types, Double rating, Integer priceLevel) {
+    public Lieu(Geometry geometry, String id, String icon, String name, List<Photo> photos, String placeId, String reference, String scope, String vicinity, opening_hours openingHours, List<String> types, Double rating, Integer priceLevel) {
         this.geometry = geometry;
         this.id = id;
         this.icon = icon;
@@ -32,7 +32,7 @@ public class Lieu {
         this.reference = reference;
         this.scope = scope;
         this.vicinity = vicinity;
-        this.openingHours = openingHours;
+        this.opening_hours = openingHours;
         this.types = types;
         this.rating = rating;
         this.priceLevel = priceLevel;
@@ -126,12 +126,12 @@ public class Lieu {
         this.vicinity = vicinity;
     }
 
-    public OpeningHours getOpeningHours() {
-        return openingHours;
+    public opening_hours getOpeningHours() {
+        return opening_hours;
     }
 
-    public void setOpeningHours(OpeningHours openingHours) {
-        this.openingHours = openingHours;
+    public void setOpeningHours(opening_hours openingHours) {
+        this.opening_hours = openingHours;
     }
 
     public Double getRating() {

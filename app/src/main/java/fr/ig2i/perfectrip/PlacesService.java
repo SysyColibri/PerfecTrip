@@ -16,7 +16,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.ig2i.perfectrip.models.Lieu;
+import fr.ig2i.perfectrip.models.lieu.Lieu;
 
 
 public class PlacesService extends AsyncTask<Void,Integer,List<Lieu>> {
