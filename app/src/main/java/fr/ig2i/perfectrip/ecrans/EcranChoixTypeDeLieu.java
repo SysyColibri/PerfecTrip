@@ -142,8 +142,8 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
 
     public void updateGlobalState() {
         System.out.println("---------- Thib 7 ----------");
-        System.out.println("Latitude: " +gs.latitude);
         gs.latitude = mCurrentLocation.getLatitude();
         gs.longitude = mCurrentLocation.getLongitude();
+        System.out.println("Latitude: " +gs.latitude);
     }
 }

@@ -45,6 +45,7 @@ public class EcranListePossibilites extends ListActivity {
 
         Requete service = ((PerfectripApp) getApplicationContext()).getRetrofitService();
         Call<LieuContainer> call = service.getLieux(gs.latitude+","+gs.longitude, data.getRadius(gs.typeLocomotion).toString(), data.getLieu(gs.lieuEnCours), "AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
+        //System.out.println("LIEN:" +gs.latitude+","+gs.longitude+data.getRadius(gs.typeLocomotion).toString()+data.getLieu(gs.lieuEnCours)+"AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
 
         call.enqueue(new Callback<LieuContainer>() {
             @Override
@@ -67,7 +68,7 @@ public class EcranListePossibilites extends ListActivity {
                     listView = getListView();
                     TextView emptyView = (TextView) findViewById(R.id.textViewNoData);
                     listView.setEmptyView(emptyView);
-                    AdapterEcranListePossibilites adapter = new AdapterEcranListePossibilites(getApplicationContext(), lieuxPossible);
+                    AdapterEcranListePossibilites adapter = new AdapterEcranListePossibilites(EcranListePossibilites.this, getApplicationContext(), lieuxPossible);
                     listView.setAdapter(adapter);
                 }
 

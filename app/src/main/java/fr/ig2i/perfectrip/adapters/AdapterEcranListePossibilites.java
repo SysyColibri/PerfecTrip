@@ -1,7 +1,9 @@
 package fr.ig2i.perfectrip.adapters;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -17,10 +19,12 @@ import java.util.ArrayList;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.PerfectripApp;
 import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.ecrans.EcranAlerte;
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
 import fr.ig2i.perfectrip.interfaces.Requete;
 import fr.ig2i.perfectrip.models.Activite;
 import fr.ig2i.perfectrip.models.lieu.Lieu;
+import fr.ig2i.perfectrip.models.lieu.opening_hours;
 
 public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter  {
 
@@ -28,11 +32,13 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
     ArrayList<Lieu> data = new ArrayList<Lieu>();
     GlobalState gs = new GlobalState();
     private static LayoutInflater inflater = null;
+    private Activity activity;
 
-    public AdapterEcranListePossibilites(Context context, ArrayList<Lieu> data) {
+    public AdapterEcranListePossibilites(Activity activity, Context context, ArrayList<Lieu> data) {
         super(context,0,data);
         this.context = context;
         this.data = data;
+        this.activity = activity;
         //Prend les fichiers xml pour mettre en forme nos Views
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -74,10 +80,12 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_ecran_liste_possibilites, parent, false);
         }
 
-        if(lieu.getOpeningHours() != null) {
-            if(lieu.getOpeningHours().getOpenNow() == false) {
-                convertView.setBackgroundColor(Color.LTGRAY);
-            }
+        if(lieu.getOpeningHours() == null) {
+            lieu.setOpeningHours(new opening_hours(true, null, null)); // Si null, on mets true
+        }
+
+        if(lieu.getOpeningHours().getOpenNow() == false) {
+            convertView.setBackgroundColor(Color.LTGRAY);
         }
 
         TextView tvName = (TextView) convertView.findViewById(R.id.nom);
@@ -96,15 +104,16 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         barre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(lieu.getOpeningHours().getOpenNow()==false) {
-                    new EcranAlerte((EcranListePossibilites)context, "Attention",
+
+                if(lieu.getOpeningHours().getOpenNow()==false) {
+                    new EcranAlerte(activity, "Attention",
                             "Vous êtes en dehors des heures d'ouvertures.",
                             "Continuer",
                             "Annuler",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
+                                    ajoutRecapitulation(position);
                                 }
                             },
                             new DialogInterface.OnClickListener() {
@@ -113,10 +122,18 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
 
                                 }
                             });
-                }*/
+                } else {
+                    ajoutRecapitulation(position);
+                }
+            }
+        });
 
-                Requete service = ((PerfectripApp) context).getRetrofitService();
-                //Lancer la requete pour le numéro de téléphone
+        return convertView;
+    }
+
+    public void ajoutRecapitulation(int position) {
+        Requete service = ((PerfectripApp) context).getRetrofitService();
+        //Lancer la requete pour le numéro de téléphone
                 /*Call<DetailsContainer> call = service.getDetails(lieu.getPlaceId(),"AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
                 call.enqueue(new Callback<DetailsContainer>() {
 
@@ -130,13 +147,9 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
 
                     }
                 });*/
-                gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
-                Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
-                mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(mainIntent);
-            }
-        });
-
-        return convertView;
+        gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
+        Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
+        mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(mainIntent);
     }
 }
