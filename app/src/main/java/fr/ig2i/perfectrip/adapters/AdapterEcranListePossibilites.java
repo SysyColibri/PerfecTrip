@@ -84,12 +84,14 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.ligne_ecran_liste_possibilites, parent, false);
         }
 
+        TextView tvOpen = (TextView) convertView.findViewById(R.id.open);
+        tvOpen.setText("");
         if(lieu.getOpeningHours() == null) {
             lieu.setOpeningHours(new opening_hours(true, null, null)); // Si null, on mets true
         }
 
         if(lieu.getOpeningHours().getOpenNow() == false) {
-            convertView.setBackgroundColor(Color.LTGRAY);
+            tvOpen.setText("Fermé");
         }
 
         TextView tvName = (TextView) convertView.findViewById(R.id.nom);
@@ -100,6 +102,7 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         if (lieu.getRating() != null) {
             tvNote.setText(lieu.getRating().toString());
         }
+        //TODO : ordre de prix
         if (lieu.getPriceLevel() != null) {
             tvPrix.setText(lieu.getPriceLevel().toString());
         }
