@@ -59,24 +59,31 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         View vi = convertView;
-        if (vi == null)
+        if (vi == null) {
             vi = inflater.inflate(R.layout.ligne_ecran_activites_recapitulation, null);
+        }
         //Récupération des zones de texte
         TextView text = (TextView) vi.findViewById(R.id.text);
         //on mets les intitulé de manière automatique
         text.setText(data.get(position).getLieu().getName());
-        //final Double latitude = data.get(position).getLieu().getLatitude();
-        //final String nom = data.get(position).getLieu().getName();
 
         /*
         Bouton téléphone
          */
         ImageView telephone = (ImageView) vi.findViewById(R.id.telephone);
+
+        if(data.get(position).getLieu().getNumTel() == null) {
+            telephone.setBackgroundColor(Color.TRANSPARENT);
+        }
+
+        telephone.setTag(data.get(position)); //Ajout d'un identifiant unique sur chaque image
         if(data.get(position).getLieu().getNumTel() != null) {
-            telephone.setTag(data.get(position)); //Ajout d'un identifiant unique sur chaque image
             telephone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (data.get(position).getLieu().getNumTel() == null) {
+                        Toast.makeText(context, "PAS DE TEL", Toast.LENGTH_SHORT).show();
+                    }
                     gs.activitesEnCours = v.getTag().toString();
                     Intent mainIntent = new Intent(context, Call.class);
                     mainIntent.putExtra("ID", position);
@@ -84,11 +91,6 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
                 }
             });
         }
-
-        if(data.get(position).getLieu().getNumTel() == null) {
-            telephone.setBackgroundColor(Color.TRANSPARENT);
-        }
-
         /*
         Bouton GPS
          */
