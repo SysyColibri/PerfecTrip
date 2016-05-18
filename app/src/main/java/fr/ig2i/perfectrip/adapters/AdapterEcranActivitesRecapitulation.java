@@ -2,6 +2,7 @@ package fr.ig2i.perfectrip.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import fr.ig2i.perfectrip.Call;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.GoogleMap;
 import fr.ig2i.perfectrip.R;
@@ -69,37 +71,35 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
         /*
         Bouton téléphone
          */
-        ImageView telephone = (ImageView)vi.findViewById(R.id.telephone);
-        telephone.setTag(data.get(position)); //Ajout d'un identifiant unique sur chaque image
-        telephone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gs.corespondantTelephonique = v.getTag().toString();
-                /* Remettre le lancement de Call.java quand les numéros de téléphone
-                seront fonctionnels
-                 */
-                //Intent mainIntent = new Intent(context, Call.class);
-                //context.startActivity(mainIntent);
-                Toast.makeText(v.getContext(),"En cours d'implémentation.",Toast.LENGTH_LONG).show();
-            }
-        });
+        ImageView telephone = (ImageView) vi.findViewById(R.id.telephone);
+        if(data.get(position).getLieu().getNumTel() != null) {
+            telephone.setTag(data.get(position)); //Ajout d'un identifiant unique sur chaque image
+            telephone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    gs.activitesEnCours = v.getTag().toString();
+                    Intent mainIntent = new Intent(context, Call.class);
+                    mainIntent.putExtra("ID", position);
+                    context.startActivity(mainIntent);
+                }
+            });
+        }
+
+        if(data.get(position).getLieu().getNumTel() == null) {
+            telephone.setBackgroundColor(Color.TRANSPARENT);
+        }
 
         /*
         Bouton GPS
          */
         ImageView gps = (ImageView)vi.findViewById(R.id.gps); //Récupération des images
         gps.setTag(data.get(position)); //Ajout d'un identifiant unique sur chaque image
-        System.out.println("START GOOGLE MAP ACTIVITY 1");
         gps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //System.out.println("NOM: " +nom);
-                //System.out.println("LATITUDE: " +latitude);
-
                 gs.activitesEnCours = v.getTag().toString();
                 Intent mainIntent = new Intent(context, GoogleMap.class);
                 mainIntent.putExtra("ID",position);
-                //mainIntent.putExtra("tag",v.getTag().toString());
                 context.startActivity(mainIntent);
             }
         });

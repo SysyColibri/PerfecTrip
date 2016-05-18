@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +16,21 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import fr.ig2i.perfectrip.GlobalState;
+import fr.ig2i.perfectrip.HTTPNumero;
 import fr.ig2i.perfectrip.PerfectripApp;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranAlerte;
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
+import fr.ig2i.perfectrip.interfaces.AsyncResponseNumero;
 import fr.ig2i.perfectrip.interfaces.Requete;
 import fr.ig2i.perfectrip.models.Activite;
 import fr.ig2i.perfectrip.models.lieu.Lieu;
 import fr.ig2i.perfectrip.models.lieu.opening_hours;
 
-public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter  {
+public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter {
 
     Context context;
     ArrayList<Lieu> data = new ArrayList<Lieu>();
@@ -113,6 +117,14 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    HTTPNumero caller = new HTTPNumero(lieu.getPlaceId(), activity) {
+                                        @Override
+                                        public void onResponseReceived(Object result) {
+                                            Log.i("num",result.toString());
+                                            lieu.setNumTel(result.toString().replace(" ", ""));
+                                        }
+                                    };
+                                    caller.execute();
                                     ajoutRecapitulation(position);
                                 }
                             },
@@ -132,21 +144,6 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
     }
 
     public void ajoutRecapitulation(int position) {
-        Requete service = ((PerfectripApp) context).getRetrofitService();
-        //Lancer la requete pour le numéro de téléphone
-                /*Call<DetailsContainer> call = service.getDetails(lieu.getPlaceId(),"AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
-                call.enqueue(new Callback<DetailsContainer>() {
-
-                    @Override
-                    public void onResponse(Call<DetailsContainer> call, Response<DetailsContainer> response) {
-                        //List<Details> details = response.body().getResults();
-                    }
-
-                    @Override
-                    public void onFailure(Call<DetailsContainer> call, Throwable t) {
-
-                    }
-                });*/
         gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
         Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
         mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

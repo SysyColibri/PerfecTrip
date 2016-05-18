@@ -27,9 +27,6 @@ public class GlobalState {
     //Ecran choix type de lieux
     public static String lieuEnCours;
 
-    //Call
-    public static String corespondantTelephonique;
-
     public GlobalState() {
     }
 }

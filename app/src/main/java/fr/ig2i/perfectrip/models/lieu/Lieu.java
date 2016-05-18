@@ -10,7 +10,7 @@ public class Lieu {
     private String id;
     private String name;
     private List<Photo> photos = new ArrayList<Photo>();
-    private String placeId;
+    private String place_id;
     private String reference;
     private String scope;
     private List<String> types = new ArrayList<String>();
@@ -18,7 +18,7 @@ public class Lieu {
     private fr.ig2i.perfectrip.models.lieu.opening_hours opening_hours;
     private Double rating;
     private Integer priceLevel;
-    private String numTel = "0648674242";
+    private String numTel;
 
     public Lieu() {}
 
@@ -28,7 +28,7 @@ public class Lieu {
         this.icon = icon;
         this.name = name;
         this.photos = photos;
-        this.placeId = placeId;
+        this.place_id = placeId;
         this.reference = reference;
         this.scope = scope;
         this.vicinity = vicinity;
@@ -87,11 +87,11 @@ public class Lieu {
     }
 
     public String getPlaceId() {
-        return placeId;
+        return place_id;
     }
 
     public void setPlaceId(String placeId) {
-        this.placeId = placeId;
+        this.place_id = placeId;
     }
 
     public String getReference() {
