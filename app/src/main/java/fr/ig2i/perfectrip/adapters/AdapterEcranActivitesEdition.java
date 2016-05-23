@@ -1,5 +1,6 @@
 package fr.ig2i.perfectrip.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -66,10 +67,10 @@ public class AdapterEcranActivitesEdition extends BaseAdapter {
         barre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("DEBUT ACTIVITY TYPE DE LIEU");
                 gs.activitesEnCours = v.getTag().toString();
                 Intent mainIntent = new Intent(context, EcranChoixTypeDeLieu.class);
                 context.startActivity(mainIntent);
+                ((Activity)context).finish();
             }
         });
         return vi;

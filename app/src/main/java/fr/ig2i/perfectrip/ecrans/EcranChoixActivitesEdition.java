@@ -40,6 +40,7 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EcranChoixActivitesEdition.this, EcranDaccueil.class));
+                finish();
             }
         });
 
@@ -47,6 +48,7 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EcranChoixActivitesEdition.this, EcranChoixActivitesRecapitulation.class));
+                finish();
             }
         });
     }

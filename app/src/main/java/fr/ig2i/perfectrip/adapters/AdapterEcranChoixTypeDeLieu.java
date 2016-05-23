@@ -1,5 +1,6 @@
 package fr.ig2i.perfectrip.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -62,6 +63,7 @@ public class AdapterEcranChoixTypeDeLieu extends BaseAdapter {
                 gs.lieuEnCours = v.getTag().toString();//Enregistre le lieu choisit par le user
                 Intent mainIntent = new Intent(context, EcranListePossibilites.class);
                 context.startActivity(mainIntent);
+                ((Activity)context).finish();
             }
         });
 
