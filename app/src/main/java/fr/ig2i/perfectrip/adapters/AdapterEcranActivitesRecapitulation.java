@@ -1,13 +1,16 @@
 package fr.ig2i.perfectrip.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import fr.ig2i.perfectrip.Call;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.GoogleMap;
 import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.ecrans.EcranListePossibilites;
 import fr.ig2i.perfectrip.models.Activite;
 
 
@@ -67,6 +71,13 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
         //on mets les intitulé de manière automatique
         text.setText(data.get(position).getLieu().getName());
 
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,data.get(position).getLieu().getNumTel(),Toast.LENGTH_SHORT);
+            }
+        });
+
         /*
         Bouton téléphone
          */
@@ -88,6 +99,7 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
                     Intent mainIntent = new Intent(context, Call.class);
                     mainIntent.putExtra("ID", position);
                     context.startActivity(mainIntent);
+                    ((Activity)context).finish();
                 }
             });
         }
