@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 
 public class EcranAlerte extends AppCompatActivity {
+    private Activity activity;
 
-    public EcranAlerte(final Activity activity, String title, String message, String textPositif, DialogInterface.OnClickListener listenerPositif) {
+    public EcranAlerte(Activity activity, String title, String message, String textPositif, DialogInterface.OnClickListener listenerPositif) {
+        this.activity = activity;
         AlertDialog LDialog = new AlertDialog.Builder(activity)
                 .setTitle(title)
                 .setMessage(message)
@@ -15,7 +17,8 @@ public class EcranAlerte extends AppCompatActivity {
         LDialog.show();
     }
 
-    public EcranAlerte(final Activity activity, String title, String message, String textPositif, String textNegatif, DialogInterface.OnClickListener listenerPositif, DialogInterface.OnClickListener listenerNegatif) {
+    public EcranAlerte(Activity activity, String title, String message, String textPositif, String textNegatif, DialogInterface.OnClickListener listenerPositif, DialogInterface.OnClickListener listenerNegatif) {
+        this.activity = activity;
         AlertDialog LDialog = new AlertDialog.Builder(activity)
                 .setTitle(title)
                 .setMessage(message)

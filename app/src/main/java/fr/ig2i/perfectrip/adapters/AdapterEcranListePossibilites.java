@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +15,12 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import fr.ig2i.perfectrip.GlobalState;
-import fr.ig2i.perfectrip.HTTPNumero;
-import fr.ig2i.perfectrip.PerfectripApp;
+import fr.ig2i.perfectrip.utils.HTTPNumero;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranAlerte;
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
-import fr.ig2i.perfectrip.interfaces.AsyncResponseNumero;
-import fr.ig2i.perfectrip.interfaces.Requete;
 import fr.ig2i.perfectrip.models.Activite;
 import fr.ig2i.perfectrip.models.lieu.Lieu;
 import fr.ig2i.perfectrip.models.lieu.opening_hours;

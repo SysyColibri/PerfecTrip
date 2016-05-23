@@ -1,4 +1,4 @@
-package fr.ig2i.perfectrip;
+package fr.ig2i.perfectrip.utils;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

@@ -10,19 +10,39 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.utils.FilesUtils;
 
 public class EcranDeChargement extends Activity {
     private Handler splashHandler = new Handler();
-    private static final int REQUEST_LOCATION = 2;
-    private static final int REQUEST_CALL = 2;
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_de_chargement);
 
-        Runnable r = new Runnable(){
+        String marcus1 = "file.txt";
+
+        JSONObject marcus2 = new JSONObject();
+        try {
+            marcus2.put("id", "3");
+            marcus2.put("name", "NAME OF STUDENT");
+            marcus2.put("year", "3rd");
+            marcus2.put("curriculum", "Arts");
+            marcus2.put("birthday", "5/5/1993");
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        //------------------------------------------------------------------------------------------
+
+        final Runnable r = new Runnable(){
             public void run(){
                 Intent brain = new Intent(EcranDeChargement.this, EcranDaccueil.class);
                 startActivity(brain);
@@ -49,6 +69,24 @@ public class EcranDeChargement extends Activity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
+                        }
+                    });
+        }
+        else if(!FilesUtils.existsJson(this, marcus2)) {
+            new EcranAlerte(this, "Sauvegarde existante",
+                    "Voulez-vous récupérez les données de la sortie préscedente?",
+                    "OUI",
+                    "NON",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            splashHandler.postDelayed(r, 2000);
+                        }
+                    },
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            splashHandler.postDelayed(r, 2000);
                         }
                     });
         }
