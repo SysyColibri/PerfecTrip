@@ -32,7 +32,6 @@ public class EcranListePossibilites extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         chargerLieux();
     }
 

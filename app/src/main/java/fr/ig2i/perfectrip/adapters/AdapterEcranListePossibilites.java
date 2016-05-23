@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -123,8 +124,8 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                                     HTTPNumero caller = new HTTPNumero(lieu.getPlaceId(), activity) {
                                         @Override
                                         public void onResponseReceived(Object result) {
-                                            Log.i("num",result.toString());
-                                            lieu.setNumTel(result.toString().replace(" ", ""));
+                                            if(result != null) {
+                                                lieu.setNumTel(result.toString().replace(" ", ""));}
                                         }
                                     };
                                     caller.execute();
@@ -138,10 +139,21 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                                 }
                             });
                 } else {
+                    HTTPNumero caller = new HTTPNumero(lieu.getPlaceId(), activity) {
+                        @Override
+                        public void onResponseReceived(Object result) {
+                            if(result != null) {
+                                lieu.setNumTel(result.toString().replace(" ", ""));
+                            }
+                        }
+                    };
+                    caller.execute();
                     ajoutRecapitulation(position);
                 }
             }
         });
+
+
 
         return convertView;
     }
@@ -151,5 +163,6 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
         mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(mainIntent);
+        //((Activity)context).finish();
     }
 }

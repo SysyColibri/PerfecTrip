@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
@@ -36,6 +37,7 @@ public class EcranChoixActivitesRecapitulation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EcranChoixActivitesRecapitulation.this, EcranDaccueil.class));
+                finish();
             }
         });
 
@@ -43,6 +45,7 @@ public class EcranChoixActivitesRecapitulation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(EcranChoixActivitesRecapitulation.this, EcranChoixActivitesEdition.class));
+                finish();
             }
         });
     }
