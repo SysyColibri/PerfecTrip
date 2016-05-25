@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.utils.FilesUtils;
 
 public class EcranDeChargement extends Activity {
     private Handler splashHandler = new Handler();
@@ -23,19 +24,19 @@ public class EcranDeChargement extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_de_chargement);
 
+        final JSONObject save = new JSONObject();
+
+        //------------------------------------------------------------------------------------------
+        /*
         JSONObject save = new JSONObject();
         try {
-            save.put("typeLocomotion", "3");
-            save.put("typeSortie", "NAME OF STUDENT");
-            save.put("year", "3rd");
-            save.put("curriculum", "Arts");
-            save.put("birthday", "5/5/1993");
-
+            save.put("typeLocomotion", "");
+            save.put("typeSortie", "");
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+        */
         //------------------------------------------------------------------------------------------
 
         final Runnable r = new Runnable(){
@@ -68,7 +69,7 @@ public class EcranDeChargement extends Activity {
                         }
                     });
         }
-        /*else if(!FilesUtils.existsJson(this, save)) {
+        else if(!FilesUtils.existsJson(this, save)) {
             new EcranAlerte(this, "Sauvegarde existante",
                     "Voulez-vous récupérez les données de la sortie précédente?",
                     "OUI",
@@ -82,11 +83,25 @@ public class EcranDeChargement extends Activity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                save.put("typeLocomotion", "");
+                                save.put("typeSortie", "");
+                            } catch (JSONException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
                             splashHandler.postDelayed(r, 2000);
                         }
                     });
-        }*/
+        }
         else {
+            try {
+                save.put("typeLocomotion", "");
+                save.put("typeSortie", "");
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             splashHandler.postDelayed(r, 2000);
         }
     }

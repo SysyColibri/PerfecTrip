@@ -12,11 +12,13 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import fr.ig2i.perfectrip.models.Activite;
+
 public class FilesUtils {
     public String getFilesLocation(Context ctx){
         return ctx.getFilesDir().getAbsolutePath();
     }
-    public boolean set(Context ctx, String key, ArrayList value){
+    public boolean set(Context ctx, String key, Activite value){
         try{
             FileOutputStream outputStream = ctx.openFileOutput(key, Context.MODE_PRIVATE);
             ObjectOutputStream objStream = new ObjectOutputStream(outputStream);
@@ -68,7 +70,7 @@ public class FilesUtils {
         return false;
     }
 
-    public boolean delete(Context ctx, String key){
+    public static boolean delete(Context ctx, String key){
         try{
             ctx.deleteFile(key);
             return true;

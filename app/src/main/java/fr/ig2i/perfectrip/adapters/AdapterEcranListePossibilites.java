@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import fr.ig2i.perfectrip.models.Activite;
 import fr.ig2i.perfectrip.models.lieu.Lieu;
 import fr.ig2i.perfectrip.models.lieu.opening_hours;
 import fr.ig2i.perfectrip.utils.FilesUtils;
-import fr.ig2i.perfectrip.utils.HTTPNumero;
+import fr.ig2i.perfectrip.utils.HTTPNumeroUtils;
 
 public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter {
 
@@ -116,7 +117,7 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    HTTPNumero caller = new HTTPNumero(lieu.getPlaceId(), activity) {
+                                    HTTPNumeroUtils caller = new HTTPNumeroUtils(lieu.getPlaceId(), activity) {
                                         @Override
                                         public void onResponseReceived(Object result) {
                                             if(result != null) {
@@ -134,7 +135,7 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                                 }
                             });
                 } else {
-                    HTTPNumero caller = new HTTPNumero(lieu.getPlaceId(), activity) {
+                    HTTPNumeroUtils caller = new HTTPNumeroUtils(lieu.getPlaceId(), activity) {
                         @Override
                         public void onResponseReceived(Object result) {
                             if(result != null) {
@@ -152,11 +153,13 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
     }
 
     public void ajoutRecapitulation(int position) {
-        gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
+        Activite a = new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours);
+        //gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
+        gs.activites.add(a);
         Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
         mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(mainIntent);
-        //((Activity)context).finish();
-        //filesUtils.set(this, data.get(position).getId(), );
+        Log.i("test",filesUtils.getFilesLocation(context));
+        filesUtils.set(context, data.get(position).getId(),a);
     }
 }

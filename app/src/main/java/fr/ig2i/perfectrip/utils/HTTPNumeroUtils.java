@@ -18,7 +18,7 @@ import java.net.URL;
 
 import fr.ig2i.perfectrip.interfaces.AsyncResponseNumero;
 
-public abstract class HTTPNumero extends AsyncTask<String, String, String> {
+public abstract class HTTPNumeroUtils extends AsyncTask<String, String, String> {
 
     private ProgressDialog pDialog;
     private String placeId;
@@ -27,7 +27,7 @@ public abstract class HTTPNumero extends AsyncTask<String, String, String> {
     private AsyncResponseNumero callback;
 
 
-    public HTTPNumero(String placeId, Activity activity) {
+    public HTTPNumeroUtils(String placeId, Activity activity) {
         super();
         this.placeId = placeId;
         this.activity = activity;
