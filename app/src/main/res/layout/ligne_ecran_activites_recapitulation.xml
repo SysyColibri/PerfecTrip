@@ -36,6 +36,14 @@
             android:id="@+id/gps"
             android:scaleType="fitXY"/>
 
+        <ImageButton
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:contentDescription="thumbnail"
+            android:background="@drawable/delete"
+            android:id="@+id/delete"
+            android:scaleType="fitXY"/>
+
     </LinearLayout>
 
 </RelativeLayout>

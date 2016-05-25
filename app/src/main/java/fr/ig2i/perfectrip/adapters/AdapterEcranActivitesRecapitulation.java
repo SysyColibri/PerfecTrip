@@ -118,6 +118,26 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
             }
         });
 
+        /*
+        Bouton poubelle
+         */
+        ImageView delete = (ImageView)vi.findViewById(R.id.delete); //Récupération des images
+        delete.setTag(data.get(position)); //Ajout d'un identifiant unique sur chaque image
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i  = 0;
+                while(gs.activites.get(i).getLieu().getId() != data.get(position).getLieu().getId()) {
+                    i++;
+                }
+                gs.activites.remove(i);
+                refresh(gs.activites);
+            }
+        });
         return vi;
+    }
+
+    public void refresh(ArrayList<Activite> activites) {
+        notifyDataSetChanged();
     }
 }
