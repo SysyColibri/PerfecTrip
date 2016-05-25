@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,10 +16,13 @@ public class FilesUtils {
     public String getFilesLocation(Context ctx){
         return ctx.getFilesDir().getAbsolutePath();
     }
-    public boolean set(Context ctx, String key, String value){
+    public boolean set(Context ctx, String key, ArrayList value){
         try{
             FileOutputStream outputStream = ctx.openFileOutput(key, Context.MODE_PRIVATE);
-            outputStream.write(value.getBytes());
+            ObjectOutputStream objStream = new ObjectOutputStream(outputStream);
+
+            objStream.writeObject(value);
+            objStream.close();
             outputStream.close();
             return true;
         }
@@ -26,16 +31,18 @@ public class FilesUtils {
         }
         return false;
     }
-    public String get(Context ctx, String key){
+    public Object get(Context ctx, String key){
         try{
             FileInputStream inputStream = ctx.openFileInput(key);
-            byte[] buffer =   new byte[(int) inputStream.getChannel().size()];
-            inputStream.read(buffer);
+            ObjectInputStream objInput = new ObjectInputStream(inputStream);
+            Object result = objInput.readObject();
+            objInput.close();
             inputStream.close();
-            String result = new String(buffer);
             return result;
         }
         catch(IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;

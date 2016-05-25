@@ -14,26 +14,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import fr.ig2i.perfectrip.R;
-import fr.ig2i.perfectrip.utils.FilesUtils;
 
 public class EcranDeChargement extends Activity {
     private Handler splashHandler = new Handler();
-    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_de_chargement);
 
-        String marcus1 = "file.txt";
-
-        JSONObject marcus2 = new JSONObject();
+        JSONObject save = new JSONObject();
         try {
-            marcus2.put("id", "3");
-            marcus2.put("name", "NAME OF STUDENT");
-            marcus2.put("year", "3rd");
-            marcus2.put("curriculum", "Arts");
-            marcus2.put("birthday", "5/5/1993");
+            save.put("typeLocomotion", "3");
+            save.put("typeSortie", "NAME OF STUDENT");
+            save.put("year", "3rd");
+            save.put("curriculum", "Arts");
+            save.put("birthday", "5/5/1993");
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -72,15 +68,15 @@ public class EcranDeChargement extends Activity {
                         }
                     });
         }
-        else if(!FilesUtils.existsJson(this, marcus2)) {
+        /*else if(!FilesUtils.existsJson(this, save)) {
             new EcranAlerte(this, "Sauvegarde existante",
-                    "Voulez-vous récupérez les données de la sortie préscedente?",
+                    "Voulez-vous récupérez les données de la sortie précédente?",
                     "OUI",
                     "NON",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            splashHandler.postDelayed(r, 2000);
+                            setContentView(R.layout.activity_ecran_choix_activites_recapitulation);
                         }
                     },
                     new DialogInterface.OnClickListener() {
@@ -89,7 +85,7 @@ public class EcranDeChargement extends Activity {
                             splashHandler.postDelayed(r, 2000);
                         }
                     });
-        }
+        }*/
         else {
             splashHandler.postDelayed(r, 2000);
         }
@@ -105,4 +101,7 @@ public class EcranDeChargement extends Activity {
         LocationManager lm = (LocationManager)ctx.getSystemService(Context.LOCATION_SERVICE);
         return lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
+
+    @Override
+    public void onBackPressed() {}
 }

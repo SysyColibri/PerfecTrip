@@ -1,13 +1,9 @@
 package fr.ig2i.perfectrip.ecrans;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -33,39 +29,13 @@ public class EcranDaccueil extends AppCompatActivity {
 
     protected GlobalState gs;
 
-    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
-    private static final int MY_PERMISSIONS_REQUEST_CALL = 2;
+
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_daccueil);
-
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
-                Toast.makeText(EcranDaccueil.this, "Veuillez autoriser la permission \"Position\" dans Paramètres/Applications/PerfecTrip/Autorisations.", Toast.LENGTH_LONG).show();
-                //Cela signifie que la permission à déjà était demandé et l'utilisateur l'a refusé
-                //Vous pouvez aussi expliquer à l'utilisateur pourquoi cette permission est nécessaire et la redemander
-            } else {
-                //Sinon demander la permission
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-        }
-        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.CALL_PHONE)) {
-                Toast.makeText(EcranDaccueil.this, "Veuillez autoriser la permission \"Téléphone\" dans Paramètres/Applications/PerfecTrip/Autorisations.", Toast.LENGTH_LONG).show();
-                //Cela signifie que la permission à déjà était
-                //demandé et l'utilisateur l'a refusé
-                //Vous pouvez aussi expliquer à l'utilisateur pourquoi
-                //cette permission est nécessaire et la redemander
-            } else {
-                //Sinon demander la permission
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE},MY_PERMISSIONS_REQUEST_CALL);
-            }
-        }
 
         gs = new GlobalState();
         mPieton = (Button) findViewById(R.id.buttonPieton);
@@ -187,12 +157,11 @@ public class EcranDaccueil extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+    public void onBackPressed() {}
 
+    //NE FONCTIONNE PAS
     public boolean onKeyDown(){
-        Toast.makeText(getBaseContext(), "Vous devez d'abord définir le moyen de déplacement.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Ce bouton est désactivé.", Toast.LENGTH_SHORT).show();
         return true;
     }
 }

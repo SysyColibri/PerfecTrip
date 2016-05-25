@@ -20,8 +20,6 @@ public class GlobalState {
     public static String activitesEnCours;
     public static ArrayList<Activite> activites = new ArrayList<>();
 
-
-    //public static String[] activites = {"Thibault", "Pierre", "Pierre-Hugues", "Guillaume", "Martin", "Sylvain"};
     public static Switch mSwitchEditionRecapitulation;
 
     //Ecran choix type de lieux

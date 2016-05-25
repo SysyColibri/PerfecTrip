@@ -52,4 +52,8 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

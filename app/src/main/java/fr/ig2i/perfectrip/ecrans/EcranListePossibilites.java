@@ -2,6 +2,7 @@ package fr.ig2i.perfectrip.ecrans;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
@@ -79,5 +80,10 @@ public class EcranListePossibilites extends ListActivity {
                 Log.i("HELLO", "HELLO KO");
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(EcranListePossibilites.this, EcranChoixTypeDeLieu.class));
     }
 }

@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +12,24 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import fr.ig2i.perfectrip.GlobalState;
-import fr.ig2i.perfectrip.utils.HTTPNumero;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranAlerte;
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
 import fr.ig2i.perfectrip.models.Activite;
 import fr.ig2i.perfectrip.models.lieu.Lieu;
 import fr.ig2i.perfectrip.models.lieu.opening_hours;
+import fr.ig2i.perfectrip.utils.FilesUtils;
+import fr.ig2i.perfectrip.utils.HTTPNumero;
 
 public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements ListAdapter {
 
     Context context;
     ArrayList<Lieu> data = new ArrayList<Lieu>();
+    FilesUtils filesUtils = new FilesUtils();
     GlobalState gs = new GlobalState();
     private static LayoutInflater inflater = null;
     private Activity activity;
@@ -148,8 +148,6 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
             }
         });
 
-
-
         return convertView;
     }
 
@@ -159,5 +157,6 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(mainIntent);
         //((Activity)context).finish();
+        //filesUtils.set(this, data.get(position).getId(), );
     }
 }

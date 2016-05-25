@@ -1,12 +1,14 @@
 package fr.ig2i.perfectrip.ecrans;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -28,6 +30,7 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
     protected GoogleApiClient mGoogleApiClient;
     protected LocationRequest mLocationRequest;
     public android.location.Location mCurrentLocation;
+    private static final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,17 +115,25 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
     @Override
     public void onConnected(Bundle connectionHint) {
         System.out.println("---------- Thib 5 ----------");
-        if (mCurrentLocation == null) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        //if (mCurrentLocation == null) {
+            if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
 
-                return;
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    Toast.makeText(EcranChoixTypeDeLieu.this, "Veuillez autoriser la permission \"Position\" dans Paramètres/Applications/PerfecTrip/Autorisations.", Toast.LENGTH_LONG).show();
+                    //Cela signifie que la permission à déjà était demandé et l'utilisateur l'a refusé
+                    //Vous pouvez aussi expliquer à l'utilisateur pourquoi cette permission est nécessaire et la redemander
+                } else {
+                    //Sinon demander la permission
+                    ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSIONS_REQUEST_LOCATION);
+                    return;
+                }
             }
             System.out.println("---------- Thib 6 ----------");
             System.out.println("mCurrentLocation: " + mCurrentLocation);
             mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             System.out.println("mCurrentLocation: " + mCurrentLocation);
             updateGlobalState();
-        }
+        //}
     }
 
     @Override
@@ -145,5 +156,10 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
         gs.latitude = mCurrentLocation.getLatitude();
         gs.longitude = mCurrentLocation.getLongitude();
         System.out.println("Latitude: " +gs.latitude);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(EcranChoixTypeDeLieu.this, EcranChoixActivitesEdition.class));
     }
 }
