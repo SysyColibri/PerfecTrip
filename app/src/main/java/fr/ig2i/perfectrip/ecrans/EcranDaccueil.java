@@ -30,7 +30,7 @@ public class EcranDaccueil extends AppCompatActivity {
 
     protected GlobalState gs;
 
-
+    //THIBEAU EST BAULT!!!!!!
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
