@@ -1,9 +1,10 @@
 package fr.ig2i.perfectrip.models.lieu;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Location {
+public class Location implements Serializable{
 
     private Double lat;
     private Double lng;

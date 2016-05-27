@@ -13,11 +13,15 @@ import android.os.Handler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.utils.FilesUtils;
 
 public class EcranDeChargement extends Activity {
     private Handler splashHandler = new Handler();
+
+    protected FilesUtils f = new FilesUtils();
+    protected GlobalState gs = new GlobalState();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,19 +82,15 @@ public class EcranDeChargement extends Activity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            setContentView(R.layout.activity_ecran_choix_activites_recapitulation);
+                            gs.activites = f.getAll(getApplicationContext());
+                            //f.seeAll(getApplicationContext());
+                            startActivity(new Intent(EcranDeChargement.this, EcranChoixActivitesRecapitulation.class));
                         }
                     },
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            try {
-                                save.put("typeLocomotion", "");
-                                save.put("typeSortie", "");
-                            } catch (JSONException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            }
+                           FilesUtils.deleteAll(getApplicationContext());
                             splashHandler.postDelayed(r, 2000);
                         }
                     });

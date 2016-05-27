@@ -1,9 +1,10 @@
 package fr.ig2i.perfectrip.models.lieu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lieu {
+public class Lieu implements Serializable{
 
     private Geometry geometry;
     private String icon;

@@ -161,5 +161,8 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         context.startActivity(mainIntent);
         Log.i("test",filesUtils.getFilesLocation(context));
         filesUtils.set(context, data.get(position).getId(),a);
+        //Log.i("test",((Activite)filesUtils.get(context,data.get(position).getId())).getLieu().getName());
+        FilesUtils f = new FilesUtils();
+        f.seeAll(context);
     }
 }

@@ -1,9 +1,10 @@
 package fr.ig2i.perfectrip.models.lieu;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Geometry {
+public class Geometry implements Serializable{
 
     public Location location;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();

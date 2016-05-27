@@ -1,16 +1,20 @@
 package fr.ig2i.perfectrip.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import fr.ig2i.perfectrip.models.Activite;
 
@@ -18,7 +22,7 @@ public class FilesUtils {
     public String getFilesLocation(Context ctx){
         return ctx.getFilesDir().getAbsolutePath();
     }
-    public boolean set(Context ctx, String key, Activite value){
+    public boolean set(Context ctx, String key, Object value){
         try{
             FileOutputStream outputStream = ctx.openFileOutput(key, Context.MODE_PRIVATE);
             ObjectOutputStream objStream = new ObjectOutputStream(outputStream);
@@ -79,5 +83,34 @@ public class FilesUtils {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void deleteAll(Context ctx){
+        File dossier = ctx.getFilesDir();
+        for(File fichier : dossier.listFiles()) {
+            Log.i("test taille",String.valueOf(dossier.listFiles().length));
+            Log.i("test delete",String.valueOf((fichier.delete())));
+        }
+    }
+
+    public void seeAll(Context ctx){
+        File dossier = ctx.getFilesDir();
+        //Log.i("test taille",String.valueOf(dossier.listFiles().length));
+        for(File fichier : dossier.listFiles()) {
+            //Log.i("test",((Activite)get(ctx,fichier.getName())).getLieu().getName());
+        }
+    }
+
+    public ArrayList<Activite> getAll(Context ctx) {
+        File dossier = ctx.getFilesDir();
+        ArrayList<Activite> activites = new ArrayList<>();
+        for(File fichier : dossier.listFiles()) {
+            if(!fichier.isDirectory()) {
+                //Log.i("test",(Activite) (get(ctx, fichier.getName())));
+                //activites.add((Activite) (get(ctx, fichier.getName())));
+            }
+        }
+
+        return activites;
     }
 }

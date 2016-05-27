@@ -1,11 +1,12 @@
 package fr.ig2i.perfectrip.models.lieu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Photo {
+public class Photo implements Serializable{
 
     private Integer height;
     private List<String> htmlAttributions = new ArrayList<String>();

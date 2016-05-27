@@ -1,11 +1,12 @@
 package fr.ig2i.perfectrip.models.lieu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class opening_hours {
+public class opening_hours implements Serializable{
 
     private Boolean open_now;
     private List<Object> weekdayText = new ArrayList<Object>();

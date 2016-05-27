@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.utils.FilesUtils;
 
 public class EcranDaccueil extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class EcranDaccueil extends AppCompatActivity {
     protected Boolean moyenDeplacementEtat = false;
 
     protected GlobalState gs;
+    protected FilesUtils f = new FilesUtils();
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -54,6 +56,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
                 gs.typeLocomotion = "pieton";
+                f.set(getApplicationContext(),gs.typeLocomotion,gs.typeLocomotion);
             }
         });
 
@@ -122,7 +125,7 @@ public class EcranDaccueil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (moyenDeplacementEtat) {
-                    gs.typeSortie = "autre";
+                    gs.typeSortie = "autres";
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
                     finish();
                 } else {

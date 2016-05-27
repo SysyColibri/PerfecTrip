@@ -1,8 +1,10 @@
 package fr.ig2i.perfectrip.models;
 
+import java.io.Serializable;
+
 import fr.ig2i.perfectrip.models.lieu.Lieu;
 
-public class Activite {
+public class Activite implements Serializable{
 
     private String typeActivite;
     private String typeLieu;

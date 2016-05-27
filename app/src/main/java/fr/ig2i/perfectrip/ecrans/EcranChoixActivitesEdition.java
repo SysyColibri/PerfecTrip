@@ -8,15 +8,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.adapters.AdapterEcranActivitesEdition;
 
 public class EcranChoixActivitesEdition extends AppCompatActivity {
 
     ListView listview;
+    GlobalState gs = new GlobalState();
+
     EcranChoixActivitesRecapitulation switchRecapitulation = new EcranChoixActivitesRecapitulation();
     ImageButton add;
     String[] romantiqueAmisFamille = new String[]{"Cadeau", "Repas", "Sortie", "Hébergement", "Autres"};
+    String[] autres = new String[]{"Autres"};
 
     protected Button mButtonAccueil;
     protected Button mButtonEdition;
@@ -34,7 +38,12 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
         * 1er paramètre : le contexte
         * 2ème paramètre : un tableau de données qui va représenter le contenu de la ListView
         */
-        listview.setAdapter(new AdapterEcranActivitesEdition(this, romantiqueAmisFamille));
+        if(gs.typeSortie == "autres") {
+            listview.setAdapter(new AdapterEcranActivitesEdition(this, autres));
+        }
+        else{
+            listview.setAdapter(new AdapterEcranActivitesEdition(this, romantiqueAmisFamille));
+        }
 
         mButtonAccueil.setOnClickListener(new View.OnClickListener() {
             @Override
