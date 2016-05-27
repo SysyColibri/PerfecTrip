@@ -30,8 +30,6 @@ public class EcranDaccueil extends AppCompatActivity {
 
     protected GlobalState gs;
 
-    //THIBEAU EST BAULT!!!!!!
-
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -177,7 +175,7 @@ public class EcranDaccueil extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ( keyCode == KeyEvent.KEYCODE_MENU ) {
-            Toast.makeText(EcranDaccueil.this, "THIBAULT est Beau", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(EcranDaccueil.this, APropos.class));
             return true;
         }
         return super.onKeyDown(keyCode, event);

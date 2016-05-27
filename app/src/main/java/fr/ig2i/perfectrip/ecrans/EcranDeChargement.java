@@ -42,6 +42,7 @@ public class EcranDeChargement extends Activity {
         final Runnable r = new Runnable(){
             public void run(){
                 Intent brain = new Intent(EcranDeChargement.this, EcranDaccueil.class);
+                //Intent brain = new Intent(EcranDeChargement.this, APropos.class);
                 startActivity(brain);
                 finish();
             }

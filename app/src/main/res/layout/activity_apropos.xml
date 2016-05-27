@@ -7,6 +7,46 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#660000"
     tools:context=".ecrans.APropos">
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:contentDescription="thumbnail"
+        android:background="@drawable/ig2i"
+        android:id="@+id/ig2i"
+        android:scaleType="fitXY"/>
+
+    <!--<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:layout_weight="1"
+        android:layout_below="@+id/texteTypeSortie"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layoutAProposTexte">
+
+        <TextView android:id="@+id/auteurs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Sylvain CURT - Thibault BUTTERDROGHE"
+            android:textAppearance="?android:attr/textAppearanceLargePopupMenu"
+            android:textColor="@color/black"/>
+
+        <TextView android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Application développée dans le cadre d'un projet mobile pour la formation IG2I de l'école d'ingénieur Central Lille."
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>-->
 
 </RelativeLayout>
