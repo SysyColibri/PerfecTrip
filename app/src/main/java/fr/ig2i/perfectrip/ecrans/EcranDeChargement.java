@@ -31,19 +31,6 @@ public class EcranDeChargement extends Activity {
 
         final JSONObject save = new JSONObject();
 
-        //------------------------------------------------------------------------------------------
-        /*
-        JSONObject save = new JSONObject();
-        try {
-            save.put("typeLocomotion", "");
-            save.put("typeSortie", "");
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        */
-        //------------------------------------------------------------------------------------------
-
         final Runnable r = new Runnable(){
             public void run(){
                 Intent brain = new Intent(EcranDeChargement.this, EcranDaccueil.class);
@@ -75,7 +62,7 @@ public class EcranDeChargement extends Activity {
                         }
                     });
         }
-        else if(!FilesUtils.existsJson(this, save)) {
+        else if(FilesUtils.existsString(this, "locomotion")) {
             new EcranAlerte(this, "Sauvegarde existante",
                     "Voulez-vous récupérez les données de la sortie précédente?",
                     "OUI",
@@ -83,10 +70,8 @@ public class EcranDeChargement extends Activity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //f.seeAll(getApplicationContext());
                             gs.activites = f.getAll(getApplicationContext());
                             startActivity(new Intent(EcranDeChargement.this, EcranChoixActivitesRecapitulation.class));
-                            Toast.makeText(EcranDeChargement.this, "TEEEEEST", Toast.LENGTH_SHORT).show();
                         }
                     },
                     new DialogInterface.OnClickListener() {
@@ -98,13 +83,6 @@ public class EcranDeChargement extends Activity {
                     });
         }
         else {
-            try {
-                save.put("typeLocomotion", "");
-                save.put("typeSortie", "");
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
             splashHandler.postDelayed(r, 2000);
         }
     }

@@ -1,6 +1,7 @@
 package fr.ig2i.perfectrip.utils;
 
 import android.content.Context;
+import android.provider.Settings;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -16,9 +17,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.models.Activite;
 
 public class FilesUtils {
+    GlobalState gs = new GlobalState();
+
     public String getFilesLocation(Context ctx){
         return ctx.getFilesDir().getAbsolutePath();
     }
@@ -55,10 +59,12 @@ public class FilesUtils {
     }
 
     public static boolean existsString(Context ctx, String key){
-        ArrayList<String> fileList = new ArrayList<String>(Arrays.asList(ctx.fileList()));
-        for(String file : fileList){
-            if(file.equals(key)){
-                return true;
+        File dossier = ctx.getFilesDir();
+        for(File fichier : dossier.listFiles()) {
+            if(!fichier.isDirectory()) {
+                if(fichier.getName() == "locomotion") {
+                    return true;
+                }
             }
         }
         return false;
@@ -109,8 +115,16 @@ public class FilesUtils {
 
         for(File fichier : dossier.listFiles()) {
             if(!fichier.isDirectory()) {
-                Log.i("test",fichier.getName());
-                activites.add((Activite) (get(ctx, fichier.getName())));
+                if(fichier.getName().equals("locomotion")) {
+                    gs.typeLocomotion = get(ctx,"locomotion").toString();
+                }
+                else if(fichier.getName().equals("sortie")) {
+                    gs.typeLocomotion = get(ctx,"sortie").toString();
+                }
+                else {
+                    Log.i("test", fichier.getName());
+                    activites.add((Activite) (get(ctx, fichier.getName())));
+                }
             }
         }
 

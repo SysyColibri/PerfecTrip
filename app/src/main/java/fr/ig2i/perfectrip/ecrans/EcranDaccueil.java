@@ -56,7 +56,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
                 gs.typeLocomotion = "pieton";
-                //f.set(getApplicationContext(),gs.typeLocomotion,gs.typeLocomotion);
+                f.set(getApplicationContext(),"locomotion",gs.typeLocomotion);
             }
         });
 
@@ -69,6 +69,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
                 gs.typeLocomotion = "velo";
+                f.set(getApplicationContext(),"locomotion",gs.typeLocomotion);
             }
         });
 
@@ -81,6 +82,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
                 gs.typeLocomotion = "voiture";
+                f.set(getApplicationContext(),"locomotion",gs.typeLocomotion);
             }
         });
 
@@ -89,6 +91,7 @@ public class EcranDaccueil extends AppCompatActivity {
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
                     gs.typeSortie = "romantique";
+                    f.set(getApplicationContext(),"sortie",gs.typeSortie);
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
                     finish();
                 }
@@ -101,6 +104,7 @@ public class EcranDaccueil extends AppCompatActivity {
             public void onClick(View v) {
                 if(moyenDeplacementEtat) {
                     gs.typeSortie = "amis";
+                    f.set(getApplicationContext(),"sortie",gs.typeSortie);
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
                     finish();
                 }
@@ -113,6 +117,7 @@ public class EcranDaccueil extends AppCompatActivity {
             public void onClick(View v) {
                 if (moyenDeplacementEtat) {
                     gs.typeSortie = "famille";
+                    f.set(getApplicationContext(),"sortie",gs.typeSortie);
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
                     finish();
                 } else {
@@ -126,6 +131,7 @@ public class EcranDaccueil extends AppCompatActivity {
             public void onClick(View v) {
                 if (moyenDeplacementEtat) {
                     gs.typeSortie = "autres";
+                    f.set(getApplicationContext(),"sortie",gs.typeSortie);
                     startActivity(new Intent(EcranDaccueil.this, EcranChoixActivitesEdition.class));
                     finish();
                 } else {

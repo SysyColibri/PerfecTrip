@@ -3,6 +3,7 @@ package fr.ig2i.perfectrip.ecrans;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ public class EcranChoixActivitesRecapitulation extends AppCompatActivity {
 
     protected Button mButtonAccueil;
     protected Button mButtonRecapitulation;
+    protected GlobalState gs = new GlobalState();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
