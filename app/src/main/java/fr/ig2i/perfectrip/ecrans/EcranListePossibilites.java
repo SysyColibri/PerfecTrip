@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,5 +78,14 @@ public class EcranListePossibilites extends ListActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(EcranListePossibilites.this, EcranChoixTypeDeLieu.class));
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            startActivity(new Intent(EcranListePossibilites.this, APropos.class));
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

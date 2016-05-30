@@ -20,6 +20,7 @@ import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranAlerte;
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
+import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesRecapitulation;
 import fr.ig2i.perfectrip.models.Activite;
 import fr.ig2i.perfectrip.models.lieu.Lieu;
 import fr.ig2i.perfectrip.models.lieu.opening_hours;
@@ -156,7 +157,7 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         Activite a = new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours);
         //gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
         gs.activites.add(a);
-        Intent mainIntent = new Intent(context, EcranChoixActivitesEdition.class);
+        Intent mainIntent = new Intent(context, EcranChoixActivitesRecapitulation.class);
         mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(mainIntent);
         Log.i("test",filesUtils.getFilesLocation(context));

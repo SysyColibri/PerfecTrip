@@ -3,6 +3,7 @@ package fr.ig2i.perfectrip.ecrans;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -64,5 +65,14 @@ public class EcranChoixActivitesEdition extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            startActivity(new Intent(EcranChoixActivitesEdition.this, APropos.class));
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
