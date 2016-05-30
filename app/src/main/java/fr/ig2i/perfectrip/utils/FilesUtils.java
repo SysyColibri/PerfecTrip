@@ -67,7 +67,7 @@ public class FilesUtils {
     public static boolean existsJson(Context ctx, JSONObject key){
         ArrayList<String> fileList = new ArrayList<String>(Arrays.asList(ctx.fileList()));
         for(String file : fileList){
-            if(file.equals(key)){
+            if(file.equals(key)) {
                 return true;
             }
         }
@@ -95,19 +95,22 @@ public class FilesUtils {
 
     public void seeAll(Context ctx){
         File dossier = ctx.getFilesDir();
-        //Log.i("test taille",String.valueOf(dossier.listFiles().length));
+        Log.i("test taille",String.valueOf(dossier.listFiles().length));
         for(File fichier : dossier.listFiles()) {
-            //Log.i("test",((Activite)get(ctx,fichier.getName())).getLieu().getName());
+            if(!fichier.isDirectory()) {
+                Log.i("test nom", ((Activite) get(ctx, fichier.getName())).getLieu().getName());
+            }
         }
     }
 
     public ArrayList<Activite> getAll(Context ctx) {
         File dossier = ctx.getFilesDir();
         ArrayList<Activite> activites = new ArrayList<>();
+
         for(File fichier : dossier.listFiles()) {
             if(!fichier.isDirectory()) {
-                //Log.i("test",(Activite) (get(ctx, fichier.getName())));
-                //activites.add((Activite) (get(ctx, fichier.getName())));
+                Log.i("test",fichier.getName());
+                activites.add((Activite) (get(ctx, fichier.getName())));
             }
         }
 

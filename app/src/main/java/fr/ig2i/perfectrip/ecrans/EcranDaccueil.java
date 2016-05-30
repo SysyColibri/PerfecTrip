@@ -56,7 +56,7 @@ public class EcranDaccueil extends AppCompatActivity {
                 moyenDeplacementEtat = true;
                 setButtonsEnabledState();
                 gs.typeLocomotion = "pieton";
-                f.set(getApplicationContext(),gs.typeLocomotion,gs.typeLocomotion);
+                //f.set(getApplicationContext(),gs.typeLocomotion,gs.typeLocomotion);
             }
         });
 
@@ -177,7 +177,7 @@ public class EcranDaccueil extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+        if (keyCode == KeyEvent.KEYCODE_MENU ) {
             startActivity(new Intent(EcranDaccueil.this, APropos.class));
             return true;
         }

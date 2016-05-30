@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,9 +83,10 @@ public class EcranDeChargement extends Activity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            gs.activites = f.getAll(getApplicationContext());
                             //f.seeAll(getApplicationContext());
+                            gs.activites = f.getAll(getApplicationContext());
                             startActivity(new Intent(EcranDeChargement.this, EcranChoixActivitesRecapitulation.class));
+                            Toast.makeText(EcranDeChargement.this, "TEEEEEST", Toast.LENGTH_SHORT).show();
                         }
                     },
                     new DialogInterface.OnClickListener() {

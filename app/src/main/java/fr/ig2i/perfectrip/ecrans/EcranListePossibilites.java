@@ -53,14 +53,6 @@ public class EcranListePossibilites extends ListActivity {
                 lieuxPossible = response.body().getResults();
                 mProgressDialog.dismiss();
                 if(lieuxPossible.size() == 0) {
-                    /*ViewStub vs = ((ViewStub)findViewById(R.id.stub));
-                    if(vs == null) {
-                        Toast.makeText(getApplicationContext(),"TON VS EST POURRI FDP", Toast.LENGTH_LONG).show();
-                    }
-                    else {
-                        vs.inflate();
-                    }*/
-
                     Toast.makeText(getApplicationContext(),"Pas de résultats. Veuillez choisir un autre type de lieu.",Toast.LENGTH_LONG).show();
                 }
                 else {
