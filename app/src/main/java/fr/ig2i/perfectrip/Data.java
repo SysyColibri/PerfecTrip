@@ -8,29 +8,19 @@ public class Data {
 
     public static String[] romantiqueCadeau = new String[]{
             "Agence de voyages",
-            "Animalerie",
             "Bijouterie",
-            "Boulangerie",
             "Fleuriste",
             "Galerie marchande",
-            "Institut de beauté",
             "Librairie",
             "Magasin",
-            "Magasin d’alcool",
-            "Magasin d’électronique",
             "Magasin de chaussure",
-            "Magasin de meubles",
-            "Magasin de produit de maison",
             "Magasin de vêtements",
-            "Parc d'attractions",
-            "Salon de beauté",
-            "Spa"};
+            "Supermarché"};
 
     public static String[] romantiqueRepas = new String[]{
             "Bar",
             "Boulangerie",
             "Café",
-            "Casino",
             "Repas à emporter",
             "Restaurant"};
 
