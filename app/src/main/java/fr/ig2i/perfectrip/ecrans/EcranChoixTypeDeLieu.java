@@ -86,7 +86,6 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
     }
 
     protected synchronized void buildGoogleApiClient() {
-        System.out.println("---------- Thib 1 ----------");
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -96,45 +95,36 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
     }
 
     protected void createLocationRequest() {
-        System.out.println("---------- Thib 2 ----------");
         mLocationRequest = new LocationRequest();
     }
 
     @Override
     protected void onStart() {
-        System.out.println("---------- Thib 3 ----------");
         super.onStart();
         mGoogleApiClient.connect();
     }
 
     @Override
     public void onResume() {
-        System.out.println("---------- Thib 4 ----------");
         super.onResume();
     }
 
     @Override
     public void onConnected(Bundle connectionHint) {
-        System.out.println("---------- Thib 5 ----------");
-        //if (mCurrentLocation == null) {
-            if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
 
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    Toast.makeText(EcranChoixTypeDeLieu.this, "Veuillez autoriser la permission \"Position\" dans Paramètres/Applications/PerfecTrip/Autorisations.", Toast.LENGTH_LONG).show();
-                    //Cela signifie que la permission à déjà était demandé et l'utilisateur l'a refusé
-                    //Vous pouvez aussi expliquer à l'utilisateur pourquoi cette permission est nécessaire et la redemander
-                } else {
-                    //Sinon demander la permission
-                    ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSIONS_REQUEST_LOCATION);
-                    return;
-                }
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Toast.makeText(EcranChoixTypeDeLieu.this, "Veuillez autoriser la permission \"Position\" dans Paramètres/Applications/PerfecTrip/Autorisations.", Toast.LENGTH_LONG).show();
+                //Cela signifie que la permission à déjà était demandé et l'utilisateur l'a refusé
+                //Vous pouvez aussi expliquer à l'utilisateur pourquoi cette permission est nécessaire et la redemander
+            } else {
+                //Sinon demander la permission
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSIONS_REQUEST_LOCATION);
+                return;
             }
-            System.out.println("---------- Thib 6 ----------");
-            System.out.println("mCurrentLocation: " + mCurrentLocation);
-            mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-            System.out.println("mCurrentLocation: " + mCurrentLocation);
-            updateGlobalState();
-        //}
+        }
+        mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        updateGlobalState();
     }
 
     @Override
@@ -153,10 +143,9 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
     }
 
     public void updateGlobalState() {
-        System.out.println("---------- Thib 7 ----------");
         gs.latitude = mCurrentLocation.getLatitude();
         gs.longitude = mCurrentLocation.getLongitude();
-        System.out.println("Latitude: " +gs.latitude);
+        System.out.println("Latitude: " +gs.latitude+ " & Longitude: " +gs.longitude);
     }
 
     @Override
