@@ -7,6 +7,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -161,5 +162,13 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
     @Override
     public void onBackPressed() {
         startActivity(new Intent(EcranChoixTypeDeLieu.this, EcranChoixActivitesEdition.class));
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            startActivity(new Intent(EcranChoixTypeDeLieu.this, APropos.class));
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -3,7 +3,6 @@ package fr.ig2i.perfectrip;
 import android.util.Log;
 
 public class Data {
-    GlobalState gs = new GlobalState();
     protected static final String TAG = "Data Liste Possibilités";
 
     public static String[] romantiqueCadeau = new String[]{
@@ -28,26 +27,30 @@ public class Data {
             "Bar",
             "Boite de nuit",
             "Bowling",
+            "Café",
             "Casino",
             "Cinéma",
             "Galerie d’art",
             "Galerie marchande",
-            "Magasin d’électronique",
+            "Institut de beauté",
+            "Magasin de chaussure",
             "Magasin de vêtements",
             "Musée",
             "Parc",
             "Parc d'attractions",
+            "Salon de beauté",
+            "Spa",
             "Stade",
             "Zoo"};
 
     public static String[] romantiqueHébergement = new String[]{
             "Camping",
+            "Emplacement camping car",
             "Hébergement"};
 
     public static String[] amisCadeau = new String[]{
             "Agence de voyages",
             "Bijouterie",
-            "Boulangerie",
             "Epicerie ou supermarché",
             "Fleuriste",
             "Galerie marchande",
@@ -61,11 +64,7 @@ public class Data {
             "Magasin de produit de maison",
             "Magasin de vélo",
             "Magasin de vêtements",
-            "Parc d'attractions",
-            "Salon de beauté",
-            "Spa",
-            "Stade",
-            "Supérette"};
+            "Supermarché"};
 
     public static String[] amisRepas = new String[]{
             "Bar",
@@ -79,6 +78,7 @@ public class Data {
             "Bar",
             "Boite de nuit",
             "Bowling",
+            "Café",
             "Casino",
             "Cinéma",
             "Galerie d’art",
@@ -88,6 +88,7 @@ public class Data {
             "Musée",
             "Parc",
             "Parc d'attractions",
+            "Spa",
             "Stade",
             "Zoo"};
 
@@ -98,7 +99,6 @@ public class Data {
     public static String[] familleCadeau = new String[]{
             "Agence de voyages",
             "Bijouterie",
-            "Boulangerie",
             "Fleuriste",
             "Galerie marchande",
             "Institut de beauté",
@@ -111,28 +111,25 @@ public class Data {
             "Magasin de produit de maison",
             "Magasin de vélo",
             "Magasin de vêtements",
-            "Parc d'attractions",
             "Salon de beauté",
             "Spa",
-            "Stade"};
+            "Supermarché"};
 
     public static String[] familleRepas = new String[]{
             "Bar",
             "Boulangerie",
             "Café",
-            "Casino",
             "Repas à emporter",
             "Restaurant"};
 
     public static String[] familleSortie = new String[]{
             "Bar",
-            "Boite de nuit",
+            "Bibliothèque",
             "Bowling",
             "Casino",
             "Cinéma",
             "Galerie d’art",
             "Galerie marchande",
-            "Magasin d’électronique",
             "Magasin de vêtements",
             "Musée",
             "Parc",
