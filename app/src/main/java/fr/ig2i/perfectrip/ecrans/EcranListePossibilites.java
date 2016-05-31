@@ -45,6 +45,10 @@ public class EcranListePossibilites extends ListActivity {
         mProgressDialog.show();
 
         Requete service = ((PerfectripApp) getApplicationContext()).getRetrofitService();
+        Log.i("gs.typeLocomotion", gs.typeLocomotion);
+        Log.i("gs.typeSortie", gs.typeSortie);
+        Log.i("gs.lieuEnCours", gs.lieuEnCours);
+
         Call<LieuContainer> call = service.getLieux(gs.latitude+","+gs.longitude, data.getRadius(gs.typeLocomotion).toString(), data.getLieu(gs.lieuEnCours), "AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
 
         call.enqueue(new Callback<LieuContainer>() {
