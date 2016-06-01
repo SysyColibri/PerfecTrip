@@ -100,6 +100,24 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         tvName.setText(lieu.getName());
         if (lieu.getRating() != null) {
             tvNote.setText(lieu.getRating().toString());
+            if(0<1){
+                tvNote.setText("Note: " +lieu.getRating().toString()+ "/5");
+                tvNote.setTextColor(Color.parseColor("#009933"));
+            } else if(1<2){
+                tvNote.setText("Note: " +lieu.getRating().toString()+ "/5");
+                tvNote.setTextColor(Color.parseColor("#99cc00"));
+            } else if(2<3){
+                tvNote.setText("Note: " +lieu.getRating().toString()+ "/5");
+                tvNote.setTextColor(Color.parseColor("#ff9900"));
+            }
+            else if(3<4){
+                tvNote.setText("Note: " +lieu.getRating().toString()+ "/5");
+                tvNote.setTextColor(Color.parseColor("#ff3300"));
+            }
+            else{
+                tvNote.setText("Note: " +lieu.getRating().toString()+ "/5");
+                tvNote.setTextColor(Color.parseColor("#ff0000"));
+            }
         }
         //TODO : ordre de prix
         if (lieu.getPriceLevel() != null) {

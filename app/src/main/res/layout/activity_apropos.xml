@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="V0.4.2"
+            android:text="V0.4.3"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"/>
 
