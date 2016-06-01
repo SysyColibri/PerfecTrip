@@ -22,6 +22,7 @@ import fr.ig2i.perfectrip.GoogleMap;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.ecrans.EcranListePossibilites;
 import fr.ig2i.perfectrip.models.Activite;
+import fr.ig2i.perfectrip.utils.FilesUtils;
 
 
 public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
@@ -29,6 +30,7 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
     Context context;
     ArrayList<Activite> data;
     GlobalState gs = new GlobalState();
+    FilesUtils fu = new FilesUtils();
     private static LayoutInflater inflater = null;
 
 
@@ -130,6 +132,7 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
                 while(gs.activites.get(i).getLieu().getId() != data.get(position).getLieu().getId()) {
                     i++;
                 }
+                fu.delete(getContext(), data.get(position).getLieu().getId());
                 gs.activites.remove(i);
                 refresh(gs.activites);
             }

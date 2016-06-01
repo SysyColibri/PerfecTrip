@@ -96,8 +96,7 @@ public class FilesUtils {
     public static void deleteAll(Context ctx){
         File dossier = ctx.getFilesDir();
         for(File fichier : dossier.listFiles()) {
-            Log.i("test taille",String.valueOf(dossier.listFiles().length));
-            Log.i("test delete",String.valueOf((fichier.delete())));
+            fichier.delete();
         }
     }
 
@@ -127,6 +126,21 @@ public class FilesUtils {
                     Log.i("fichier.getName()", fichier.getName());
                     activites.add((Activite) (get(ctx, fichier.getName())));
                 }
+            }
+        }
+
+        return activites;
+    }
+
+    public ArrayList<Activite> deleteSortie(Context ctx, String key) {
+        File dossier = ctx.getFilesDir();
+        ArrayList<Activite> activites = new ArrayList<>();
+
+        for(File fichier : dossier.listFiles()) {
+            if(!fichier.isDirectory()) {
+                fichier.delete();
+                Log.i("fichier.getName()", fichier.getName());
+                activites.add((Activite) (get(ctx, fichier.getName())));
             }
         }
 
