@@ -18,7 +18,7 @@ public class Lieu implements Serializable{
     private String vicinity;
     private fr.ig2i.perfectrip.models.lieu.opening_hours opening_hours;
     private Double rating;
-    private Integer priceLevel;
+    private Integer price_level;
     private String numTel;
 
     public Lieu() {}
@@ -36,7 +36,7 @@ public class Lieu implements Serializable{
         this.opening_hours = openingHours;
         this.types = types;
         this.rating = rating;
-        this.priceLevel = priceLevel;
+        this.price_level = priceLevel;
     }
 
     public String getNumTel() {
@@ -144,10 +144,10 @@ public class Lieu implements Serializable{
     }
 
     public Integer getPriceLevel() {
-        return priceLevel;
+        return price_level;
     }
 
     public void setPriceLevel(Integer priceLevel) {
-        this.priceLevel = priceLevel;
+        this.price_level = priceLevel;
     }
 }

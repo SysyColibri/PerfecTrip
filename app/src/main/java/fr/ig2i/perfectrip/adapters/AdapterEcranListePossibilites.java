@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,7 +103,31 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         }
         //TODO : ordre de prix
         if (lieu.getPriceLevel() != null) {
-            tvPrix.setText(lieu.getPriceLevel().toString());
+            switch (lieu.getPriceLevel()) {
+                case 1:
+                    tvPrix.setText("€");
+                    tvPrix.setTextColor(Color.parseColor("#009933"));
+                    break;
+                case 2:
+                    tvPrix.setText("€€");
+                    tvPrix.setTextColor(Color.parseColor("#99cc00"));
+                    break;
+                case 3:
+                    tvPrix.setText("€€€");
+                    tvPrix.setTextColor(Color.parseColor("#ff9900"));
+                    break;
+                case 4:
+                    tvPrix.setText("€€€€");
+                    tvPrix.setTextColor(Color.parseColor("#ff3300"));
+                    break;
+                case 5:
+                    tvPrix.setText("€€€€€");
+                    tvPrix.setTextColor(Color.parseColor("#ff0000"));
+                    break;
+                default:
+                    tvPrix.setText("");
+                    break;
+            }
         }
 
         LinearLayout barre = (LinearLayout) convertView.findViewById(R.id.ecranListePossibilites); //Récupération des images
