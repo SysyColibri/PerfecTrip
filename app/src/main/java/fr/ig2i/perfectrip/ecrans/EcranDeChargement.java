@@ -9,10 +9,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
@@ -21,7 +24,7 @@ import fr.ig2i.perfectrip.utils.FilesUtils;
 public class EcranDeChargement extends Activity {
     private Handler splashHandler = new Handler();
 
-    protected FilesUtils f = new FilesUtils();
+    protected FilesUtils fu = new FilesUtils();
     protected GlobalState gs = new GlobalState();
 
     @Override
@@ -62,7 +65,7 @@ public class EcranDeChargement extends Activity {
                         }
                     });
         }
-        else if(FilesUtils.existsString(this, "locomotion")) {
+        else if(fu.existsSave(this, "locomotion")) {
             new EcranAlerte(this, "Sauvegarde existante",
                     "Voulez-vous récupérez les données de la sortie précédente?",
                     "OUI",
@@ -70,14 +73,14 @@ public class EcranDeChargement extends Activity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            gs.activites = f.getAll(getApplicationContext());
+                            gs.activites = fu.getAll(getApplicationContext());
                             startActivity(new Intent(EcranDeChargement.this, EcranChoixActivitesRecapitulation.class));
                         }
                     },
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                           FilesUtils.deleteAll(getApplicationContext());
+                            FilesUtils.deleteAll(getApplicationContext());
                             splashHandler.postDelayed(r, 2000);
                         }
                     });

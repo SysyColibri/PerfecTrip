@@ -12,7 +12,7 @@ public class Data {
             "Galerie marchande",
             "Librairie",
             "Magasin",
-            "Magasin de chaussure",
+            "Magasin de chaussures",
             "Magasin de vêtements",
             "Supermarché"};
 
@@ -25,7 +25,7 @@ public class Data {
 
     public static String[] romantiqueSortie = new String[]{
             "Bar",
-            "Boite de nuit",
+            "Boîte de nuit",
             "Bowling",
             "Café",
             "Casino",
@@ -33,7 +33,7 @@ public class Data {
             "Galerie d’art",
             "Galerie marchande",
             "Institut de beauté",
-            "Magasin de chaussure",
+            "Magasin de chaussures",
             "Magasin de vêtements",
             "Musée",
             "Parc",
@@ -59,7 +59,7 @@ public class Data {
             "Magasin",
             "Magasin d’alcool",
             "Magasin d’électronique",
-            "Magasin de chaussure",
+            "Magasin de chaussures",
             "Magasin de meubles",
             "Magasin de produit de maison",
             "Magasin de vélo",
@@ -76,7 +76,7 @@ public class Data {
 
     public static String[] amisSortie = new String[]{
             "Bar",
-            "Boite de nuit",
+            "Boîte de nuit",
             "Bowling",
             "Café",
             "Casino",
@@ -106,7 +106,7 @@ public class Data {
             "Magasin",
             "Magasin d’alcool",
             "Magasin d’électronique",
-            "Magasin de chaussure",
+            "Magasin de chaussures",
             "Magasin de meubles",
             "Magasin de produit de maison",
             "Magasin de vélo",
@@ -155,7 +155,7 @@ public class Data {
             "Bibliothèque",
             "Bijouterie",
             "Blanchisserie",
-            "Boite de nuit",
+            "Boîte de nuit",
             "Boulangerie",
             "Bowling",
             "Bureau de poste",
@@ -195,7 +195,7 @@ public class Data {
             "Magasin",
             "Magasin d’alcool",
             "Magasin d’électronique",
-            "Magasin de chaussure",
+            "Magasin de chaussures",
             "Magasin de meubles",
             "Magasin de produit de maison",
             "Magasin de vélo",
@@ -276,7 +276,7 @@ public class Data {
             case "Blanchisserie":
                 lieuRequetteApi = "laundry";
                 break;
-            case "Boite de nuit":
+            case "Boite de nuît":
                 lieuRequetteApi = "night_club";
                 break;
             case "Boulangerie":
@@ -396,7 +396,7 @@ public class Data {
             case "Magasin d’électronique":
                 lieuRequetteApi = "electronics_store";
                 break;
-            case "Magasin de chaussure":
+            case "Magasin de chaussures":
                 lieuRequetteApi = "shoe_store";
                 break;
             case "Magasin de meubles":

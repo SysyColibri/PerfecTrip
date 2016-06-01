@@ -58,11 +58,13 @@ public class FilesUtils {
         return null;
     }
 
-    public static boolean existsString(Context ctx, String key){
+    public boolean existsSave(Context ctx, String key){
         File dossier = ctx.getFilesDir();
         for(File fichier : dossier.listFiles()) {
             if(!fichier.isDirectory()) {
-                if(fichier.getName() == "locomotion") {
+                //Log.i("TEST LOG","TEST LOG");
+                if(fichier.getName().equals("locomotion")) {
+                    Log.i("TYPE LOCOMOTION",get(ctx,"locomotion").toString());
                     return true;
                 }
             }
@@ -119,10 +121,10 @@ public class FilesUtils {
                     gs.typeLocomotion = get(ctx,"locomotion").toString();
                 }
                 else if(fichier.getName().equals("sortie")) {
-                    gs.typeLocomotion = get(ctx,"sortie").toString();
+                    gs.typeSortie = get(ctx,"sortie").toString();
                 }
                 else {
-                    Log.i("test", fichier.getName());
+                    Log.i("fichier.getName()", fichier.getName());
                     activites.add((Activite) (get(ctx, fichier.getName())));
                 }
             }
