@@ -3,10 +3,12 @@ package fr.ig2i.perfectrip.ecrans;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,8 +38,8 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_ecran_choix_type_de_lieu);
+
         mListView = (ListView) findViewById(R.id.listViewActivites);
 
         buildGoogleApiClient();
@@ -91,17 +93,27 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-        createLocationRequest();
+        //createLocationRequest();
     }
 
+    /*INUTILE?
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
     }
+    */
 
     @Override
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
     }
 
     @Override
@@ -113,19 +125,29 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
     public void onConnected(Bundle connectionHint) {
         if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED) {
 
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 Toast.makeText(EcranChoixTypeDeLieu.this, "Veuillez autoriser la permission \"Position\" dans Paramètres/Applications/PerfecTrip/Autorisations.", Toast.LENGTH_LONG).show();
                 //Cela signifie que la permission à déjà était demandé et l'utilisateur l'a refusé
                 //Vous pouvez aussi expliquer à l'utilisateur pourquoi cette permission est nécessaire et la redemander
             } else {
                 //Sinon demander la permission
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSIONS_REQUEST_LOCATION);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
                 return;
             }
         }
+
         mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        updateGlobalState();
+        System.out.println("LOCATION 1: " +mCurrentLocation);
+
+        if (mCurrentLocation != null) {
+            updateGlobalState();
+        }
+        else{
+            Toast.makeText(this, "Localisation impossible, vérifiez que la géolocalisation est activé.", Toast.LENGTH_SHORT).show();
+        }
     }
+
+
 
     @Override
     public void onConnectionSuspended(int i) {

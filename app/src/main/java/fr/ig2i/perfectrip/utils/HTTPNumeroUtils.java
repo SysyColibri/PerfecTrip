@@ -42,6 +42,7 @@ public abstract class HTTPNumeroUtils extends AsyncTask<String, String, String> 
         pDialog.setMessage("Veuillez patienter...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
+        pDialog.setCanceledOnTouchOutside(false);
         pDialog.show();
     }
 
