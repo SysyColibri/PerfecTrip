@@ -1,7 +1,5 @@
 package fr.ig2i.perfectrip;
 
-import android.util.Log;
-
 public class Data {
     protected static final String TAG = "Data Liste Possibilités";
 
@@ -511,7 +509,6 @@ public class Data {
                 lieuRequetteApi = "zoo";
                 break;
             default:
-                Log.i(TAG, "Mot clef inconnu");
                 break;
         }
         return lieuRequetteApi;
@@ -530,7 +527,6 @@ public class Data {
                 rayon = 15000;
                 break;
             default:
-                Log.i(TAG, "Rayon inconnu");
                 break;
         }
         return rayon;

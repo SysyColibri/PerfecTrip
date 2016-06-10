@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,17 +30,10 @@ public class EcranListePossibilites extends ListActivity {
     GlobalState gs = new GlobalState();
     ArrayList<Lieu> lieuxPossible;
     ListView listView;
-    ArrayList<String> tri = new ArrayList<String>() {{
-        add("Alphabétique");
-        add("Note");
-        add("Ordre de prix");
-    }};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ecran_liste_possibilites);
         chargerLieux();
     }
 
@@ -54,8 +45,11 @@ public class EcranListePossibilites extends ListActivity {
         mProgressDialog.show();
 
         Requete service = ((PerfectripApp) getApplicationContext()).getRetrofitService();
+        Log.i("gs.typeLocomotion", gs.typeLocomotion);
+        Log.i("gs.typeSortie", gs.typeSortie);
+        Log.i("gs.lieuEnCours", gs.lieuEnCours);
 
-        Call<LieuContainer> call = service.getLieux(gs.latitude+","+gs.longitude,data.getRadius(gs.typeLocomotion).toString(),data.getLieu(gs.lieuEnCours),"AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
+        Call<LieuContainer> call = service.getLieux(gs.latitude+","+gs.longitude, data.getRadius(gs.typeLocomotion).toString(), data.getLieu(gs.lieuEnCours), "AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U");
 
         call.enqueue(new Callback<LieuContainer>() {
             @Override
@@ -72,10 +66,6 @@ public class EcranListePossibilites extends ListActivity {
                     listView.setEmptyView(emptyView);
                     AdapterEcranListePossibilites adapter = new AdapterEcranListePossibilites(EcranListePossibilites.this, getApplicationContext(), lieuxPossible);
                     listView.setAdapter(adapter);
-
-                    Spinner spinner = (Spinner) findViewById(R.id.tri_spinner);
-                    ArrayAdapter<String> adapterSpinner = new ArrayAdapter<String>(EcranListePossibilites.this, R.layout.ligne_spinner_tri, tri);adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner.setAdapter(adapterSpinner);
                 }
 
             }
