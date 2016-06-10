@@ -20,6 +20,9 @@ import fr.ig2i.perfectrip.Call;
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.GoogleMap;
 import fr.ig2i.perfectrip.R;
+import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesEdition;
+import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesRecapitulation;
+import fr.ig2i.perfectrip.ecrans.EcranDaccueil;
 import fr.ig2i.perfectrip.ecrans.EcranListePossibilites;
 import fr.ig2i.perfectrip.models.Activite;
 import fr.ig2i.perfectrip.utils.FilesUtils;
@@ -57,7 +60,6 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
 
     @Override
     public long getItemId(int position) {
-
         return position;
     }
 
@@ -84,7 +86,7 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
         Bouton téléphone
          */
         ImageView telephone = (ImageView) vi.findViewById(R.id.telephone);
-
+        System.out.println("data.get(position).getLieu().getNumTel(): " +data.get(position).getLieu().getNumTel());
         if(data.get(position).getLieu().getNumTel() == null) {
             telephone.setBackgroundColor(Color.TRANSPARENT);
         }
@@ -100,8 +102,9 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
                     gs.activitesEnCours = v.getTag().toString();
                     Intent mainIntent = new Intent(context, Call.class);
                     mainIntent.putExtra("ID", position);
-                    context.startActivity(mainIntent);
                     ((Activity)context).finish();
+                    context.startActivity(mainIntent);
+
                 }
             });
         }
@@ -137,6 +140,7 @@ public class AdapterEcranActivitesRecapitulation extends ArrayAdapter {
                 refresh(gs.activites);
             }
         });
+        refresh(data);
         return vi;
     }
 

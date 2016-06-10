@@ -11,11 +11,9 @@
         <TextView
             android:id="@+id/nom"
             android:layout_width="wrap_content"
-            android:layout_height="40dip"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_height="40dp"
             android:paddingLeft="5dp"
             android:textSize="11dp"
-            android:gravity="left|center"
             android:textColor="@color/black">
         </TextView>
 
@@ -23,31 +21,25 @@
             android:id="@+id/note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/nom"
             android:textSize="11dp"
             android:textStyle="italic"
-            android:paddingLeft="12dp"
-            android:textColor="@color/black">
+            android:paddingLeft="5dp">
         </TextView>
 
         <TextView
             android:id="@+id/prix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/note"
             android:textSize="11dp"
-            android:paddingLeft="5dp"
-            android:textColor="@color/black">
+            android:paddingLeft="5dp">
         </TextView>
 
         <TextView
             android:id="@+id/open"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/note"
             android:textSize="11dp"
-            android:paddingLeft="5dp"
-            android:textColor="@color/red">
+            android:paddingLeft="5dp">
         </TextView>
     </LinearLayout>
 </LinearLayout>

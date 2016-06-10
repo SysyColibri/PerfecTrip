@@ -15,6 +15,7 @@ public class EcranAlerte extends AppCompatActivity {
                 .setMessage(message)
                 .setPositiveButton(textPositif, listenerPositif).create();
         LDialog.show();
+        LDialog.setCanceledOnTouchOutside(false);
     }
 
     public EcranAlerte(Activity activity, String title, String message, String textPositif, String textNegatif, DialogInterface.OnClickListener listenerPositif, DialogInterface.OnClickListener listenerNegatif) {
@@ -25,5 +26,6 @@ public class EcranAlerte extends AppCompatActivity {
                 .setPositiveButton(textPositif, listenerPositif)
                 .setNegativeButton(textNegatif, listenerNegatif).create();
         LDialog.show();
+        LDialog.setCanceledOnTouchOutside(false);
     }
 }

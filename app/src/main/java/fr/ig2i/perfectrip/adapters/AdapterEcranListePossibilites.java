@@ -86,11 +86,14 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         TextView tvOpen = (TextView) convertView.findViewById(R.id.open);
         tvOpen.setText("");
         if(lieu.getOpeningHours() == null) {
+            tvOpen.setText("Horaires inconnus");
+            tvOpen.setTextColor(Color.parseColor("#fc8710"));
             lieu.setOpeningHours(new opening_hours(true, null, null)); // Si null, on mets true
         }
 
         if(lieu.getOpeningHours().getOpenNow() == false) {
             tvOpen.setText("Fermé");
+            tvOpen.setTextColor(Color.RED);
         }
 
         TextView tvName = (TextView) convertView.findViewById(R.id.nom);
@@ -119,7 +122,7 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                 tvNote.setTextColor(Color.parseColor("#ff0000"));
             }
         }
-        //TODO : ordre de prix
+        //ordre de prix
         if (lieu.getPriceLevel() != null) {
             switch (lieu.getPriceLevel()) {
                 case 1:
@@ -165,11 +168,11 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                                         @Override
                                         public void onResponseReceived(Object result) {
                                             if(result != null) {
-                                                lieu.setNumTel(result.toString().replace(" ", ""));}
+                                                data.get(position).setNumTel(result.toString().replace(" ", ""));}
                                         }
                                     };
                                     caller.execute();
-                                    ajoutRecapitulation(position);
+                                    ajoutRecapitulation(position,lieu);
                                 }
                             },
                             new DialogInterface.OnClickListener() {
@@ -183,12 +186,13 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
                         @Override
                         public void onResponseReceived(Object result) {
                             if(result != null) {
-                                lieu.setNumTel(result.toString().replace(" ", ""));
+                                data.get(position).setNumTel(result.toString().replace(" ", ""));
                             }
+                            ajoutRecapitulation(position,data.get(position));
                         }
                     };
                     caller.execute();
-                    ajoutRecapitulation(position);
+
                 }
             }
         });
@@ -196,8 +200,8 @@ public class AdapterEcranListePossibilites extends ArrayAdapter<Lieu> implements
         return convertView;
     }
 
-    public void ajoutRecapitulation(int position) {
-        Activite a = new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours);
+    public void ajoutRecapitulation(int position, Lieu lieu) {
+        Activite a = new Activite(gs.lieuEnCours, lieu, gs.activitesEnCours);
         //gs.activites.add(new Activite(gs.lieuEnCours, data.get(position), gs.activitesEnCours));
         gs.activites.add(a);
         Intent mainIntent = new Intent(context, EcranChoixActivitesRecapitulation.class);
