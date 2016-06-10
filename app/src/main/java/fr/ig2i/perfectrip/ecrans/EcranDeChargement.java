@@ -9,13 +9,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.File;
 
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
@@ -37,7 +32,6 @@ public class EcranDeChargement extends Activity {
         final Runnable r = new Runnable(){
             public void run(){
                 Intent brain = new Intent(EcranDeChargement.this, EcranDaccueil.class);
-                //Intent brain = new Intent(EcranDeChargement.this, APropos.class);
                 startActivity(brain);
                 finish();
             }

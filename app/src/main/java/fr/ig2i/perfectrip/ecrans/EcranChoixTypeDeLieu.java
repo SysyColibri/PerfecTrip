@@ -93,14 +93,8 @@ public class EcranChoixTypeDeLieu extends AppCompatActivity implements GoogleApi
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-        //createLocationRequest();
     }
 
-    /*INUTILE?
-    protected void createLocationRequest() {
-        mLocationRequest = new LocationRequest();
-    }
-    */
 
     @Override
     protected void onStart() {

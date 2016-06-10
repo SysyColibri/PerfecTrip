@@ -74,20 +74,5 @@ public class AdapterEcranActivitesEdition extends BaseAdapter {
             }
         });
         return vi;
-
-        /*
-        ImageView add = (ImageView)vi.findViewById(R.id.add); //Récupération des images '+'
-        add.setTag(data[position]); //Ajout d'un identifiant unique sur chaque image
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("DEBUT ACTIVITY TYPE DE LIEU");
-                gs.activitesEnCours = v.getTag().toString();
-                Intent mainIntent = new Intent(context, EcranChoixTypeDeLieu.class);
-                context.startActivity(mainIntent);
-            }
-        });
-        return vi;
-        */
     }
 }

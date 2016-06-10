@@ -167,20 +167,6 @@ public class EcranDaccueil extends AppCompatActivity {
     @Override
     public void onBackPressed() {}
 
-    /*@Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        int keyCode = event.getKeyCode();
-        int action = event.getAction();
-        boolean isDown = action == KeyEvent.ACTION_DOWN;
-
-        if (keyCode == KeyEvent.KEYCODE_MENU) {
-            Toast.makeText(EcranDaccueil.this, "THIBAULT est Beau", Toast.LENGTH_SHORT).show();
-            return isDown ? this.onKeyDown(keyCode, event) : this.onKeyUp(keyCode, event);
-        }
-
-        return super.dispatchKeyEvent(event);
-    }*/
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_MENU ) {

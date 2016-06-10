@@ -62,7 +62,6 @@ public class FilesUtils {
         File dossier = ctx.getFilesDir();
         for(File fichier : dossier.listFiles()) {
             if(!fichier.isDirectory()) {
-                //Log.i("TEST LOG","TEST LOG");
                 if(fichier.getName().equals("locomotion")) {
                     Log.i("TYPE LOCOMOTION",get(ctx,"locomotion").toString());
                     return true;
