@@ -18,18 +18,20 @@ import java.net.URL;
 
 import fr.ig2i.perfectrip.interfaces.AsyncResponseNumero;
 
-public abstract class HTTPNumeroUtils extends AsyncTask<String, String, String> {
+public abstract class HTTPNextPageTokenUtils extends AsyncTask<String, String, String> {
 
     private ProgressDialog pDialog;
-    private String placeId;
+    private String requete;
+    private String nextPageToken;
     private String apiKey = "AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U";
     private Activity activity;
     private AsyncResponseNumero callback;
 
 
-    public HTTPNumeroUtils(String placeId, Activity activity) {
+    public HTTPNextPageTokenUtils(String requete, String nextPageToken, Activity activity) {
         super();
-        this.placeId = placeId;
+        this.requete = requete;
+        this.nextPageToken = nextPageToken;
         this.activity = activity;
     }
 
@@ -51,7 +53,7 @@ public abstract class HTTPNumeroUtils extends AsyncTask<String, String, String> 
         String result = null;
         String numero = null;
         try {
-            url = new URL("https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key="+apiKey);
+            url = new URL(requete+"pagetoken="+nextPageToken);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -76,7 +78,7 @@ public abstract class HTTPNumeroUtils extends AsyncTask<String, String, String> 
         JSONObject jObject = null;
         try {
             jObject = new JSONObject(result);
-            numero = jObject.getJSONObject("result").getString("formatted_phone_number");
+            numero = jObject.getString("next_page_token");
         } catch (JSONException e) {
             e.printStackTrace();
         }
