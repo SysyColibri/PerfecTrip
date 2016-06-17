@@ -23,7 +23,7 @@ public abstract class HTTPNextPageTokenUtils extends AsyncTask<String, String, S
     private ProgressDialog pDialog;
     private String requete;
     private String nextPageToken;
-    private String apiKey = "AIzaSyC7hRH7RnYQcYCPlMbnIXeMCZ7LgVX134U";
+    private String apiKey = "AIzaSyBoBzstF6x733X93EDriHu2ZXMB_CUEyeo";
     private Activity activity;
     private AsyncResponseNumero callback;
 

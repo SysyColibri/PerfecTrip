@@ -1,6 +1,7 @@
 package fr.ig2i.perfectrip;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesRecapitulation;
 
-public class Call extends AppCompatActivity {
+public class Call extends Activity {
     private static final int MY_PERMISSIONS_REQUEST_CALL = 1;
     GlobalState gs = new GlobalState();
 

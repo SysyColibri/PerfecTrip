@@ -19,18 +19,21 @@
         android:icon="@mipmap/ic_launcher"
         android:noHistory="true"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        android:supportsRtl="true">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         >
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBoBzstF6x733X93EDriHu2ZXMB_CUEyeo"/>
 
         <activity
             android:name=".ecrans.EcranDeChargement"
             android:label="@string/app_name"
-            android:screenOrientation="nosensor"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -39,22 +42,44 @@
         </activity>
 
         <activity android:name=".ecrans.EcranDaccueil"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
-            android:screenOrientation="nosensor"/>
         <activity android:name=".ecrans.EcranChoixActivitesEdition"
-            android:screenOrientation="nosensor"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity android:name=".ecrans.EcranChoixTypeDeLieu"
-            android:screenOrientation="nosensor"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity android:name=".ecrans.EcranListePossibilites"
-            android:screenOrientation="nosensor"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity android:name=".ecrans.EcranChoixActivitesRecapitulation"
-            android:screenOrientation="nosensor"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity android:name=".ecrans.APropos"
-            android:screenOrientation="nosensor"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity android:name=".Call"
-            android:screenOrientation="nosensor"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
         <activity android:name=".GoogleMap"
-            android:screenOrientation="nosensor"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 
 </manifest>

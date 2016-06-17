@@ -11,6 +11,8 @@ public class GlobalState {
     //Ecran de chargement
     public static double latitude;
     public static double longitude;
+    public static double altitude;
+    public static double accuracy;
 
     //Ecran d'accueil
     public static String typeLocomotion;

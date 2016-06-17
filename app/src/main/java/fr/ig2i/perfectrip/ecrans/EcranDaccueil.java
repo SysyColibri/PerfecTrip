@@ -1,20 +1,24 @@
 package fr.ig2i.perfectrip.ecrans;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.utils.FilesUtils;
 
-public class EcranDaccueil extends AppCompatActivity {
+public class EcranDaccueil extends Activity {
 
     protected Button mPieton;
     protected Button mVelo;
@@ -23,6 +27,9 @@ public class EcranDaccueil extends AppCompatActivity {
     protected Button mAmis;
     protected Button mFamille;
     protected Button mAutres;
+
+    protected TextView mTexteMoyenDeplacement;
+    protected TextView mTexteTypeSortie;
 
     protected Boolean moyenDeplacementPieton = false;
     protected Boolean moyenDeplacementVelo = false;
@@ -36,6 +43,7 @@ public class EcranDaccueil extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_ecran_daccueil);
 
         gs = new GlobalState();
@@ -46,6 +54,19 @@ public class EcranDaccueil extends AppCompatActivity {
         mAmis = (Button) findViewById(R.id.buttonAmis);
         mFamille = (Button) findViewById(R.id.buttonFamille);
         mAutres = (Button) findViewById(R.id.buttonAutres);
+        mTexteMoyenDeplacement = (TextView) findViewById(R.id.texteMoyenDeplacement);
+        mTexteTypeSortie = (TextView) findViewById(R.id.texteTypeSortie);
+
+        /*Typeface font = Typeface.createFromAsset(getAssets(), "Arthurien.ttf");
+        mPieton.setTypeface(font);
+        mVelo.setTypeface(font);
+        mVoiture.setTypeface(font);
+        mRomantique.setTypeface(font);
+        mAmis.setTypeface(font);
+        mFamille.setTypeface(font);
+        mAutres.setTypeface(font);
+        mTexteMoyenDeplacement.setTypeface(font);
+        mTexteTypeSortie.setTypeface(font);*/
 
         mPieton.setOnClickListener(new View.OnClickListener() {
             @Override

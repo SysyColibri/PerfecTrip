@@ -1,5 +1,6 @@
 package fr.ig2i.perfectrip.ecrans;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.adapters.AdapterEcranActivitesEdition;
 
-public class EcranChoixActivitesEdition extends AppCompatActivity {
+public class EcranChoixActivitesEdition extends Activity {
 
     ListView listview;
     GlobalState gs = new GlobalState();

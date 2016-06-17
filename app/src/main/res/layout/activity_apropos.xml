@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="V0.4.7"
+            android:text="V0.4.9"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"/>
 
@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Ecole centrale de Lille - IG2I"
+            android:text="Centrale Lille - IG2I"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/black"/>
 

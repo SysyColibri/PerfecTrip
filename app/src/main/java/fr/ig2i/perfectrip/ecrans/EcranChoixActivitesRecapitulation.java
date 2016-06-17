@@ -1,6 +1,7 @@
 package fr.ig2i.perfectrip.ecrans;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -23,7 +24,7 @@ import fr.ig2i.perfectrip.GlobalState;
 import fr.ig2i.perfectrip.R;
 import fr.ig2i.perfectrip.adapters.AdapterEcranActivitesRecapitulation;
 
-public class EcranChoixActivitesRecapitulation extends AppCompatActivity {
+public class EcranChoixActivitesRecapitulation extends Activity {
 
     protected Button mButtonAccueil;
     protected Button mButtonRecapitulation;

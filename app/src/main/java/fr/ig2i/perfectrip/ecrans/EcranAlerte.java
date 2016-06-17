@@ -5,7 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 
-public class EcranAlerte extends AppCompatActivity {
+public class EcranAlerte extends Activity {
     private Activity activity;
 
     public EcranAlerte(Activity activity, String title, String message, String textPositif, DialogInterface.OnClickListener listenerPositif) {

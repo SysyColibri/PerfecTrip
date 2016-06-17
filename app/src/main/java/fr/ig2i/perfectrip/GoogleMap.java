@@ -1,5 +1,6 @@
 package fr.ig2i.perfectrip;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,7 +9,7 @@ import android.util.Log;
 
 import fr.ig2i.perfectrip.ecrans.EcranChoixActivitesRecapitulation;
 
-public class GoogleMap extends AppCompatActivity {
+public class GoogleMap extends Activity {
     GlobalState gs = new GlobalState();
 
     @Override

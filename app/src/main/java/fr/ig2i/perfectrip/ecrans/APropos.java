@@ -1,12 +1,13 @@
 package fr.ig2i.perfectrip.ecrans;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import fr.ig2i.perfectrip.R;
 
 
-public class APropos extends AppCompatActivity {
+public class APropos extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
